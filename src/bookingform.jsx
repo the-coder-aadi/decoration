@@ -448,7 +448,7 @@ const handleSubmit = async (e) => {
                       </>
                     ) : (
                       <>
-                        Submit Booking Request <FaPaperPlane className="text-sm" />
+                        Submit Request <FaPaperPlane className="text-sm" />
                       </>
                     )}
                   </button>

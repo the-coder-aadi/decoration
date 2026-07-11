@@ -945,9 +945,9 @@ const InstagramGallery = () => (
         href="https://instagram.com/New.flower.decor.gadarwara"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[#7A1F3B]/30 text-[#7A1F3B] text-sm font-medium hover:bg-[#7A1F3B] hover:text-white transition-colors duration-300"
+        className="inline-flex items-center gap-2 px-5 sm:px-7 py-3 rounded-full border border-[#7A1F3B]/30 text-[#7A1F3B] text-sm font-medium hover:bg-[#7A1F3B] hover:text-white transition-colors duration-300"
       >
-        <FaInstagram /> Follow @New.flower.decor.gadarwara
+        <FaInstagram />@New.flower.decor.gadarwara
       </a>
     </Reveal>
   </section>
