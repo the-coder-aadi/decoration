@@ -278,7 +278,7 @@ const handleSubmit = async (e) => {
               <div className="border-t border-white/15 pt-6">
                 <p className="text-xs uppercase tracking-widest text-[#C9A227] mb-2">Prefer to talk?</p>
                 <a href="tel:+911234567890" className="flex items-center gap-2 text-lg nfd-display">
-                  <FaPhoneAlt className="text-[#C9A227] text-base" /> +91 12345 67890
+                  <FaPhoneAlt className="text-[#C9A227] text-base" /> +91 62626 46491
                 </a>
                 <p className="text-xs text-[#F6E1E8]/60 mt-2">Mon – Sun, 9 AM – 9 PM</p>
               </div>

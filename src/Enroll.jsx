@@ -22,7 +22,7 @@ import { GlobalStyles, FloralDivider, Navbar, Footer, Loader } from "./Home";
    Same palette/type system as Home.jsx / BookingForm.jsx
    ============================================================ */
  
-const COURSE_TYPES = ["Online Course", "Offline Course"];
+const COURSE_TYPES = ["All In One Course", "Firework Course", "Balloons Decor Course"];
  
 const INITIAL_FORM = {
   fullName: "",

@@ -40,8 +40,12 @@ import {
 import { GiFlowerPot, GiCampingTent } from "react-icons/gi";
 import { useNavigate , Link, useLocation} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
-
+import WhatYouLearn from "../components/whatyoulearn";
+import CourseHighlights from "../components/coursehighlights";
+import TrainingShowcase from "../components/traningshowcase";
+import StudentFeedback from "../components/studentfeedback";
+import AppSection from "../components/Apps";
+import { useScrollToSection } from "../components/scrolltosection";
 /* ============================================================
    NEW FLOWER DECORATION — Luxury Home Page
    Palette : Wine #7A1F3B | Wine Dark #4A1027 | Ink #2B0E1A
@@ -267,20 +271,45 @@ const WHY_US = [
 
 const COURSES = [
   {
-    type: "Online Course",
-    title: "Flower & Event Styling — Live Online",
-    desc: "Learn decoration design, colour theory & client handling from anywhere.",
-    features: ["Live weekly classes", "Recorded sessions", "Certificate on completion", "Portfolio project"],
-    price: "₹4,999",
-    img: "/onlinebatch.png",
+    type: "Most Popular",
+      slug: "6-in-1-decoration",
+    title: "6-in-1 Professional Decoration Course",
+     desc: "Learn complete event decoration with 80+ videos, Hindi training and a completion certificate.",
+    features: [
+      "80+ HD Pre-recorded Videos",
+      "25+ Hours Complete Training & more.",
+    ],
+    price: "₹2,499",
+    img: "/allinone.webp",
+    badge: "Best Seller",
   },
+
   {
-    type: "Offline Course",
-    title: "Hands-on Decoration Workshop",
-    desc: "In-studio training with real materials, stage builds & live event exposure.",
-    features: ["Studio access", "Live event internship", "Tools & material kit", "Placement guidance"],
-    price: "₹9,999",
-    img: "/offlinebatch.jpg",
+    type: "Special Course",
+     slug: "wedding-firework",
+    title: "Indian Wedding Firework Masterclass",
+    desc: "Master cold pyro, fireworks and professional wedding special effects with practical guidance.",
+    features: [
+      "Cold Pyro & Firework Setup",
+      "Professional Safety Training & more.",
+    ],
+    price: "₹2,064",
+    img: "/firewall.webp",
+    badge: "New",
+  },
+
+  {
+    type: "Beginner Friendly",
+     slug: "balloon-decoration",
+    title: "Basic to Advanced Balloon Decoration",
+    desc: "Master balloon decoration from basic to advanced with one-year access and certificate.",
+    features: [
+      "Balloon Basics to Advanced",
+      "Stage & Ring Decoration & more.",
+    ],
+    price: "₹1,036",
+    img: "/baloons.webp",
+    badge: "Budget",
   },
 ];
 
@@ -302,17 +331,17 @@ const VIDEO_REVIEWS = [
 ];
 
 const GOOGLE_REVIEWS = [
-  { name: "Anjali Verma", rating: 5, text: "The mandap was more beautiful than I imagined. Every guest was asking who did our decoration!", avatar: "https://picsum.photos/seed/nfd-av1/100/100" },
-  { name: "Rohit Malhotra", rating: 5, text: "Professional team, on-time setup, and the lighting made our reception look like a five-star affair.", avatar: "https://picsum.photos/seed/nfd-av2/100/100" },
-  { name: "Simran Kaur", rating: 5, text: "Booked them for our haldi and mehndi both — colourful, fresh and exactly on budget.", avatar: "https://picsum.photos/seed/nfd-av3/100/100" },
-  { name: "Karan Joshi", rating: 5, text: "Took their offline course and now run my own decoration business. Best investment I made!", avatar: "https://picsum.photos/seed/nfd-av4/100/100" },
+  { name: "Ajay Shakya", rating: 5, text: "By coming here I learnt everything from basic to advance level and got the confidence that I can do this work safely… New follower decoration team supports you in every way and answers every question… By coming here you can make your dreams come true… Here you are provided with experience from theory to field… so that you can do your work safely.", avatar: "https://lh3.googleusercontent.com/a-/ALV-UjXL0xLxSIhiMZ1E7xUE1JBN5srEzNGwyiDqsN2nwuVQARtO3KCT=w90-h90-p-rp-mo-br100" },
+  { name: "Nikhil Rajput", rating: 5, text: "I had a great experience at New Flower Decoration while learning ✨wedding event management and flower decoration, Balloon Decoration . The training environment is very positive and professional. The trainers are supportive and explain everything clearly from basic to advanced level. More focus is given on practical work, which helps in gaining real event experience. I learned many new skills related to decoration, planning, and event execution. Overall, this training was very helpful and informative.", avatar: "https://picsum.photos/seed/nfd-av2/100/100" },
+  { name: "Simran Kaur", rating: 5, text: "Thank you 🙏What you guys taught us, I understood it very well.Now we can start our own event.In which we can do tent decoration, flower decoration, sfx, balloon decoration, and fire work.Everything that is explained here, I understood it all.We are not disappointed after coming here, we are happy that we are interested in this work.A big thank you to all the staff.", avatar: "https://picsum.photos/seed/nfd-av3/100/100" },
+  { name: "Vinod Kumar", rating: 5, text: "Thanks new flower Decoration Gadarwara learning and theoretical course for flower decoration, event planner, balloon decoration, Natural flower decoration, SFX Effect for event and minesThanks", avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVKyrBmqZmiAYfuG4_obkVX3T3HdPEIQSFq6o4W-u20gDi4vaM=w90-h90-p-rp-mo-br100" },
 ];
 
 const NUMBERS = [
   { icon: FaGlassCheers, end: 500, suffix: "+", label: "Events" },
-  { icon: FaUsers, end: 300, suffix: "+", label: "Students" },
-  { icon: GiFlowerPot, end: 150, suffix: "+", label: "Decor Themes" },
-  { icon: FaCrown, end: 10, suffix: "+", label: "Years" },
+  { icon: FaUsers, end: 5000, suffix: "+", label: "Students" },
+  { icon: GiFlowerPot, end: 500, suffix: "+", label: "Decor Themes" },
+  { icon: FaCrown, end: 5, suffix: "+", label: "Years" },
 ];
 const INSTAGRAM_POSTS = [
   {
@@ -358,20 +387,7 @@ export const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation();
 
-    const goToSection = (id) => {
-  if (location.pathname === "/") {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  } else {
-    navigate("/");
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 300);
-  }
-};
+const goToSection = useScrollToSection();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -407,7 +423,7 @@ export const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-4">
           <a href="tel:+911234567890" className="flex items-center gap-2 text-[#F6E1E8] text-sm">
-            <FaPhoneAlt className="text-[#C9A227]" /> +91 12345 67890
+            <FaPhoneAlt className="text-[#C9A227]" /> +91 6262646491
           </a>
          <Link
   to="/book-decoration"
@@ -507,16 +523,16 @@ const Hero = () => {
           <span className="text-[#F6E1E8]/40">•</span>
           <span className="text-[#F6E1E8]/90">1000+ Happy Clients</span>
           <span className="text-[#F6E1E8]/40 hidden sm:inline">•</span>
-          <span className="text-[#F6E1E8]/90 hidden sm:inline">10 Years Experience</span>
+          <span className="text-[#F6E1E8]/90 hidden sm:inline">Professional Training</span>
         </div>
 
         <h1 className="nfd-display text-[33px] sm:text-5xl md:text-6xl lg:text-7xl text-[#FDF6F0] leading-[1.1] mb-6">
           Creating Memorable Celebrations
-          <br className="hidden sm:block" /> with <span className="italic text-[#C9A227]">Elegant</span> Decorations
+          <br className="hidden sm:block" /> & <span className="italic text-[#C9A227]">Expert</span> Training
         </h1>
 
         <p className="text-[#F6E1E8]/80 max-w-xl mx-auto mb-9 text-sm sm:text-base">
-          From weddings to corporate galas — New Flower Decoration crafts bespoke, luxury décor across Gadarwara & beyond.
+         Premium event decoration services and industry-focused online & offline training to help you become a professional decorator.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -550,9 +566,9 @@ const TrustBar = () => (
     <Reveal>
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl shadow-black/10 grid grid-cols-3 divide-x divide-[#F6E1E8] py-6 md:py-8">
         {[
-          { label: "5-Star Rated", value: "★★★★★" },
+           { label: "Students Trained", value: "5000+" },
           { label: "Events Decorated", value: "500+" },
-          { label: "Years of Trust", value: "10+" },
+          { label: "Years of Trust", value: "5+" },
         ].map((s) => (
           <div key={s.label} className="text-center px-2">
             <p className="nfd-display text-xl md:text-3xl text-[#7A1F3B]">{s.value}</p>
@@ -568,7 +584,7 @@ const TrustBar = () => (
    TRUSTED BY (marquee)
    ============================================================ */
 const TrustedBy = () => (
-  <section className="pt-16 md:pt-20 pb-6">
+  <section className="pt-16 md:pt-20 pb-10 ">
     <Reveal>
       <p className="text-center text-xs md:text-sm tracking-[0.25em] uppercase text-[#2B0E1A]/50 mb-6">
         Trusted By
@@ -593,7 +609,7 @@ const TrustedBy = () => (
    SECTION HEADING helper
    ============================================================ */
 const SectionHeading = ({ eyebrow, title, subtitle, light = false }) => (
-  <Reveal className="max-w-2xl mx-auto text-center mb-12 md:mb-16 px-4">
+  <Reveal className="max-w-2xl mx-auto text-center mb-6 md:mb-12 px-4">
     <p className={`text-xs md:text-sm tracking-[0.3em] uppercase mb-3 ${light ? "text-[#C9A227]" : "text-[#7A1F3B]"}`}>
       {eyebrow}
     </p>
@@ -610,7 +626,7 @@ const SectionHeading = ({ eyebrow, title, subtitle, light = false }) => (
    SERVICES
    ============================================================ */
 const Services = () => (
-  <section id="services" className="py-14 md:py-25 px-5 md:px-8 bg-[#FDF6F0]">
+  <section id="services" className="py-12 md:py-20 px-5 md:px-8 bg-[#FDF6F0]">
     <SectionHeading
       eyebrow="What We Offer"
       title="Our Decoration Services"
@@ -639,7 +655,7 @@ const Services = () => (
    FEATURED PROJECTS (masonry)
    ============================================================ */
 const Projects = () => (
-  <section id="projects" className="py-14 md:py-25 px-5 md:px-8 bg-[#F6E1E8]/40">
+  <section id="projects" className="py-12 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
     <SectionHeading eyebrow="Portfolio" title="Featured Projects" subtitle="A glimpse into celebrations we've brought to life." />
     <div className="max-w-6xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
       {PROJECTS.map((p, i) => (
@@ -726,42 +742,181 @@ const WhyChooseUs = () => (
    COURSES
    ============================================================ */
 const Courses = () => (
-  <section id="courses" className="py-16 md:py-25 px-5 md:px-8 bg-[#FDF6F0]">
-    <SectionHeading eyebrow="Learn With Us" title="Online & Offline Courses" subtitle="Turn your passion for decoration into a career." />
-    <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
-      {COURSES.map((c, i) => (
-        <Reveal key={c.title} delay={i * 120}>
-          <div className="group relative rounded-3xl overflow-hidden h-full shadow-lg shadow-[#7A1F3B]/10">
-            <img src={c.img} alt={c.title} className="w-full h-58 object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div className="absolute top-3 left-3 px-4 py-1.5 rounded-full bg-[#C9A227] text-[#2B0E1A] text-xs font-semibold">
-              {c.type}
+  <section id="courses" className="py-16 md:py-22 px-5 md:px-8 bg-[#FDF6F0]">
+    <SectionHeading eyebrow="Learn With Us" title="Our Courses" subtitle="Turn your passion for decoration into a career." />
+ <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+  {COURSES.map((c, i) => (
+    <Reveal key={c.title} delay={i * 120}>
+<div
+  className="
+    group
+    relative
+    h-full
+    rounded-[28px]
+    overflow-hidden
+    bg-white/90
+    backdrop-blur-xl
+    border border-white/60
+    shadow-xl shadow-[#7A1F3B]/10
+    hover:-translate-y-3
+    hover:shadow-[0_25px_60px_rgba(122,31,59,0.18)]
+    transition-all
+    duration-500
+    before:absolute
+    before:inset-0
+    
+    before:bg-gradient-to-br
+    before:from-white/30
+    before:via-transparent
+    before:to-[#C9A227]/5
+    before:pointer-events-none
+  "
+>
+        {/* IMAGE */}
+
+        <div className="relative overflow-hidden">
+
+ <img
+  src={c.img}
+  alt={c.title}
+  className="
+    h-60
+    w-full
+    object-cover
+    duration-700
+    transition-all
+    group-hover:scale-110
+    group-hover:rotate-[1deg]
+  "
+/>
+
+   <div
+  className="
+    absolute
+    inset-0
+    opacity-0
+    group-hover:opacity-100
+    duration-700
+    transition
+    bg-gradient-to-r
+    from-transparent
+    via-white/20
+    to-transparent
+    -translate-x-full
+    group-hover:translate-x-full
+  "
+/>
+
+
+
+
+        </div>
+
+        {/* CONTENT */}
+
+        <div className="flex flex-col p-5 sm:p-7 h-auto sm:h-[350px]">
+
+         <h3
+  className="
+    text-2xl
+    font-semibold
+    text-[#2B0E1A]
+    transition
+    duration-300
+    group-hover:text-[#7A1F3B]
+  "
+>
+  {c.title}
+</h3>
+
+          <p className="mt-3 text-[15px] leading-7 text-[#2B0E1A]/65 min-h-[90px]">
+
+            {c.desc}
+
+          </p>
+
+          <ul className="space-y-3 mt-2 flex-1">
+
+            {c.features.map((f) => (
+            <li
+  key={f}
+  className="
+    flex
+    items-center
+    gap-3
+    text-sm
+    text-[#2B0E1A]/75
+    transition
+    duration-300
+    group-hover:translate-x-1
+  "
+>
+                <FaCheckCircle className="text-[#7A1F3B] shrink-0" />
+
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6  flex items-center justify-between">
+
+            <div>
+
+              <p className="text-xs uppercase tracking-widest text-[#2B0E1A]/50">
+
+                Starting From
+
+              </p>
+
+            <h4 className="text-2xl sm:text-3xl font-bold text-[#7A1F3B] tracking-tight">
+  {c.price}
+</h4>
+
             </div>
-            <div className="bg-white p-6 md:p-8">
-              <h3 className="nfd-display text-xl md:text-2xl text-[#2B0E1A] mb-2">{c.title}</h3>
-              <p className="text-sm text-[#2B0E1A]/60 mb-5">{c.desc}</p>
-              <ul className="space-y-2 mb-6">
-                {c.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-[#2B0E1A]/75">
-                    <FaCheckCircle className="text-[#7A1F3B] shrink-0" /> {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center justify-between">
-                <span className="nfd-display text-xl text-[#7A1F3B]">
-                  {c.price} <span className="text-xs text-[#2B0E1A]/50 font-sans">onwards</span>
-                </span>
-                <Link
-                 to={"/enroll-form"}
-                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#7A1F3B] text-white text-[13px] sm:text-sm font-medium hover:bg-[#5c1730] transition-colors duration-300"
-                >
-                  Enroll Now <FaArrowRight className="text-xs" />
-                </Link>
-              </div>
-            </div>
+
+<Link
+to={`/course/${c.slug}`}
+  className="
+    group/btn
+    relative
+    overflow-hidden
+    rounded-full
+    bg-[#7A1F3B]
+    sm:px-5
+    px-4
+    py-2
+    sm:py-2.5
+    text-white
+    font-semibold
+    transition-all
+    duration-500
+    hover:scale-105
+   
+    hover:bg-[#5d1730]
+    shadow-lg
+  "
+>
+  <span className="relative z-10 flex items-center gap-2">
+    <span className="hidden sm:inline">View Course</span>
+    <span className="sm:hidden text-[15px]">View</span>
+
+    <FaArrowRight
+      className="
+        duration-300
+        group-hover/btn:translate-x-1
+      "
+    />
+  </span>
+</Link>
+
           </div>
-        </Reveal>
-      ))}
-    </div>
+
+        </div>
+
+      </div>
+    </Reveal>
+  ))}
+</div>
   </section>
 );
 
@@ -769,7 +924,7 @@ const Courses = () => (
    PROCESS TIMELINE
    ============================================================ */
 const Process = () => (
-  <section className="py-14 md:py-25 px-5 md:px-8 bg-[#F6E1E8]/40">
+  <section className="py-14 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
     <SectionHeading eyebrow="How It Works" title="Our Process" />
     <div className="max-w-6xl mx-auto relative">
       <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-[#7A1F3B]/15" />
@@ -801,7 +956,7 @@ const Testimonials = () => {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % GOOGLE_REVIEWS.length), 5000);
+    const t = setInterval(() => setActive((a) => (a + 1) % GOOGLE_REVIEWS.length), 10000);
     return () => clearInterval(t);
   }, []);
 
@@ -809,26 +964,10 @@ const Testimonials = () => {
   const next = () => setActive((a) => (a + 1) % GOOGLE_REVIEWS.length);
 
   return (
-    <section id="testimonials" className="py-14 md:py-25 px-5 md:px-8 bg-[#FDF6F0]">
+    <section id="testimonials" className="py-14 md:py-18 px-5 md:px-8 bg-[#FDF6F0]">
       <SectionHeading eyebrow="Kind Words" title="Client Stories" subtitle="Real celebrations, real feedback." />
 
-      {/* Video reviews */}
-      <Reveal className="max-w-6xl mx-auto mb-14">
-        <div className="flex gap-4 md:gap-6 overflow-x-auto nfd-scrollbar pb-4 snap-x">
-          {VIDEO_REVIEWS.map((v) => (
-            <div key={v.name} className="relative shrink-0 w-40 sm:w-48 h-64 sm:h-72 rounded-2xl overflow-hidden group cursor-pointer snap-start">
-              <img src={v.thumb} alt={v.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-[#2B0E1A]/40 group-hover:bg-[#2B0E1A]/55 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="w-12 h-12 rounded-full bg-[#C9A227]/90 text-[#2B0E1A] flex items-center justify-center nfd-pulse">
-                  <FaPlay className="ml-0.5" />
-                </span>
-              </div>
-              <p className="absolute bottom-3 left-0 right-0 text-center text-white text-xs font-medium">{v.name}</p>
-            </div>
-          ))}
-        </div>
-      </Reveal>
+
 
       {/* Google reviews slider */}
       <Reveal className="max-w-3xl mx-auto">
@@ -916,7 +1055,7 @@ const Numbers = () => {
    INSTAGRAM GALLERY
    ============================================================ */
 const InstagramGallery = () => (
-  <section className="py-18 md:py-25 px-5  md:px-8 bg-[#FDF6F0]">
+  <section className="py-18 md:py-20 px-5  md:px-8 bg-[#FDF6F0]">
     <SectionHeading  eyebrow="@newflowerdecoration" title="From Our Instagram" subtitle="Latest décor moments, straight from the field." />
 <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
   {INSTAGRAM_POSTS.map((post, i) => (
@@ -983,7 +1122,7 @@ const FaqItem = ({ faq, isOpen, onClick }) => {
 const FAQ = () => {
   const [open, setOpen] = useState(0);
   return (
-    <section className="py-14 md:py-25 px-5 md:px-8 bg-[#F6E1E8]/40">
+    <section className="py-14 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
       <SectionHeading eyebrow="FAQ" title="Common Questions" />
       <Reveal className="max-w-2xl mx-auto bg-white rounded-2xl p-6 md:p-10 shadow-sm">
         {FAQS.map((f, i) => (
@@ -1026,7 +1165,36 @@ const CTA = () => (
 /* ============================================================
    FOOTER
    ============================================================ */
-export const Footer = () => (
+   const SOCIALS = [
+  {
+    icon: FaInstagram,
+    url: "https://www.instagram.com/new_flower_decoration_/?hl=en#",
+  },
+  {
+    icon: FaInstagram,
+    url: "https://www.instagram.com/new.flower.decor.gadarwara/?hl=en#",
+  },
+  {
+    icon: FaFacebookF,
+    url: "https://facebook.com/yourpage",
+  },
+  {
+    icon: FaYoutube,
+    url: "https://l.instagram.com/?u=https%3A%2F%2Fyt.openinapp.co%2Fqqd86%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGngje0rBI0s4PjG8WYCyIog9XS_ItTlEPau0i3PtbYOtNIms4yGp8xDEtrH_M_aem_lJmtgvZGt423W4XfskLDAg&e=AUCRNARg5GFPentGpWQqI4PNOmPT2RwndbBQCumRIEYCv8HtJHKdnXRaQ6rchq-P3ZGIpXgJpk9eu_vSd8QYY4gNx2NXD9pGF-FCrQ9faSkbWFCNSoDT_8jjAcBB13Tj1Ksjv4_Cw2fN_flo_QF8ahA",
+  },
+  {
+    icon: FaWhatsapp,
+    url: "https://wa.me/916232491618",
+  },
+];
+export const Footer = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+const goToSection = useScrollToSection()
+
+    return (
   <footer id="contact" className="bg-[#2B0E1A] text-[#F6E1E8] pt-14 md:pt-20 pb-8 px-5 md:px-8">
     <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-8 mb-12">
       <div>
@@ -1037,32 +1205,37 @@ export const Footer = () => (
           </span>
         </div>
         <p className="text-sm text-[#F6E1E8]/60 mb-5 leading-relaxed">
-          Crafting elegant, memorable décor for weddings, birthdays & corporate events since 2015.
+          Crafting elegant, memorable décor for weddings, birthdays & corporate events since 2020.
         </p>
-        <div className="flex gap-3">
-          {[FaInstagram, FaFacebookF, FaYoutube, FaWhatsapp, FaPinterestP].map((Icon, i) => (
-            <a
-              key={i}
-              href="#"
-              className="w-9 h-9 rounded-full border border-[#F6E1E8]/20 flex items-center justify-center hover:bg-[#C9A227] hover:text-[#2B0E1A] hover:border-[#C9A227] transition-colors duration-300"
-            >
-              <Icon className="text-sm" />
-            </a>
-          ))}
-        </div>
+   <div className="flex gap-3">
+  {SOCIALS.map(({ icon: Icon, url }, i) => (
+    <a
+      key={i}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-9 h-9 rounded-full border border-[#F6E1E8]/20 flex items-center justify-center hover:bg-[#C9A227] hover:text-[#2B0E1A] hover:border-[#C9A227] transition-colors duration-300"
+    >
+      <Icon className="text-sm" />
+    </a>
+  ))}
+</div>
       </div>
 
       <div>
         <h4 className="nfd-display text-lg mb-4">Quick Links</h4>
-        <ul className="space-y-2 text-sm text-[#F6E1E8]/60">
-          {NAV_LINKS.map((l) => (
-            <li key={l.label}>
-              <a href={l.href} className="hover:text-[#C9A227] cursor-pointer transition-colors duration-300">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+<ul className="space-y-2 text-sm text-[#F6E1E8]/60">
+  {NAV_LINKS.map((l) => (
+    <li key={l.label}>
+      <button
+        onClick={() => goToSection(l.id)}
+        className="hover:text-[#C9A227] transition-colors duration-300"
+      >
+        {l.label}
+      </button>
+    </li>
+  ))}
+</ul>
       </div>
 
       <div>
@@ -1083,7 +1256,7 @@ export const Footer = () => (
             <FaMapMarkerAlt className="text-[#C9A227] mt-1 shrink-0" /> Niranjan Ward, Gadarwara 487551
           </li>
           <li className="flex items-center gap-2">
-            <FaPhoneAlt className="text-[#C9A227]" /> +91 12345 67890
+            <FaPhoneAlt className="text-[#C9A227]" /> +91 62626 46491
           </li>
           <li className="flex items-center gap-2">
             <FaEnvelope className="text-[#C9A227]" /> hello@newflowerdecoration.com
@@ -1105,7 +1278,8 @@ export const Footer = () => (
       <p>Designed with <span className="text-[#C9A227]">♥</span> for beautiful celebrations.</p>
     </div>
   </footer>
-);
+     );
+};
 
 /* ============================================================
    HOME (default export)
@@ -1233,6 +1407,11 @@ useEffect(() => {
       <Hero />
       <TrustBar />
       <TrustedBy />
+            <TrainingShowcase />
+            <StudentFeedback />
+<CourseHighlights />
+<AppSection />
+<WhatYouLearn />
       <Services />
       <Projects />
       <WhyChooseUs />
