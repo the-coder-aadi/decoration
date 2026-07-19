@@ -321,19 +321,12 @@ const PROCESS = [
   { icon: FaGlassCheers, title: "Event Day", desc: "You celebrate — we handle everything else." },
 ];
 
-const VIDEO_REVIEWS = [
-  { name: "Riya & Arjun", thumb: "https://picsum.photos/seed/nfd-vid1/500/650" },
-  { name: "Priya Sharma", thumb: "https://picsum.photos/seed/nfd-vid2/500/650" },
-  { name: "Kunal Mehta", thumb: "https://picsum.photos/seed/nfd-vid3/500/650" },
-  { name: "Sneha & Rahul", thumb: "https://picsum.photos/seed/nfd-vid4/500/650" },
-  { name: "kirti & Mohit", thumb: "https://picsum.photos/seed/nfd-vid5/500/650" },
 
-];
 
 const GOOGLE_REVIEWS = [
   { name: "Ajay Shakya", rating: 5, text: "By coming here I learnt everything from basic to advance level and got the confidence that I can do this work safely… New follower decoration team supports you in every way and answers every question… By coming here you can make your dreams come true… Here you are provided with experience from theory to field… so that you can do your work safely.", avatar: "https://lh3.googleusercontent.com/a-/ALV-UjXL0xLxSIhiMZ1E7xUE1JBN5srEzNGwyiDqsN2nwuVQARtO3KCT=w90-h90-p-rp-mo-br100" },
   { name: "Nikhil Rajput", rating: 5, text: "I had a great experience at New Flower Decoration while learning ✨wedding event management and flower decoration, Balloon Decoration . The training environment is very positive and professional. The trainers are supportive and explain everything clearly from basic to advanced level. More focus is given on practical work, which helps in gaining real event experience. I learned many new skills related to decoration, planning, and event execution. Overall, this training was very helpful and informative.", avatar: "https://picsum.photos/seed/nfd-av2/100/100" },
-  { name: "Simran Kaur", rating: 5, text: "Thank you 🙏What you guys taught us, I understood it very well.Now we can start our own event.In which we can do tent decoration, flower decoration, sfx, balloon decoration, and fire work.Everything that is explained here, I understood it all.We are not disappointed after coming here, we are happy that we are interested in this work.A big thank you to all the staff.", avatar: "https://picsum.photos/seed/nfd-av3/100/100" },
+  { name: "Asheesh Kumar", rating: 5, text: "Thank you 🙏What you guys taught us, I understood it very well.Now we can start our own event.In which we can do tent decoration, flower decoration, sfx, balloon decoration, and fire work.Everything that is explained here, I understood it all.We are not disappointed after coming here, we are happy that we are interested in this work.A big thank you to all the staff.", avatar: "https://picsum.photos/seed/nfd-av3/100/100" },
   { name: "Vinod Kumar", rating: 5, text: "Thanks new flower Decoration Gadarwara learning and theoretical course for flower decoration, event planner, balloon decoration, Natural flower decoration, SFX Effect for event and minesThanks", avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVKyrBmqZmiAYfuG4_obkVX3T3HdPEIQSFq6o4W-u20gDi4vaM=w90-h90-p-rp-mo-br100" },
 ];
 
@@ -1155,7 +1148,7 @@ const CTA = () => (
           Book Consultation
         </Link>
         <a href="tel:+911234567890" className="flex items-center gap-2 text-[#F6E1E8] text-sm">
-          <FaPhoneAlt className="text-[#C9A227]" /> +91 12345 67890
+          <FaPhoneAlt className="text-[#C9A227]" /> +91 62626 46491
         </a>
       </div>
     </Reveal>

@@ -411,15 +411,56 @@ export default function CourseView() {
       </section>
 
       {/* ---------------- Demo Video ---------------- */}
-      <section className="relative mt-8 md:mt-14 px-5 md:px-8 pb-12 md:pb-20">
-        <Reveal className="max-w-4xl mx-auto">
-          <div className="text-center mb-6 md:mb-8">
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#7A1F3B] mb-2">Preview</p>
-            <h2 className="nfd-display text-2xl md:text-3xl text-[#2B0E1A]">Watch a Free Demo Lesson</h2>
-          </div>
-          <PremiumVideoPlayer src={detail.demoVideo} poster={course.img} />
-        </Reveal>
-      </section>
+<section className="relative mt-8 md:mt-14 px-5 md:px-8 pb-12 md:pb-20">
+  <Reveal className="max-w-5xl mx-auto">
+    <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#4A1027] via-[#7A1F3B] to-[#2B0E1A] p-8 md:p-14">
+
+      {/* Glow */}
+      <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#C9A227]/20 blur-3xl" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
+
+      <div className="relative text-center">
+
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-5 py-2 mb-6 backdrop-blur-md">
+          <FaPlay className="text-[#C9A227] text-xs" />
+          <span className="text-xs uppercase tracking-[0.3em] text-[#F6E1E8]/80">
+            Free Preview
+          </span>
+        </div>
+
+        <h2 className="nfd-display text-3xl md:text-5xl text-white leading-tight">
+          Watch the Official
+          <br />
+          <span className="italic text-[#C9A227]">
+            Demo Lesson
+          </span>
+        </h2>
+
+        <p className="mt-6 max-w-2xl mx-auto text-[#F6E1E8]/70 leading-8">
+          Experience the teaching style, practical demonstrations and course
+          quality before enrolling. Watch the official demo lesson hosted on
+          our learning platform.
+        </p>
+
+        <a
+          href="https://tcspsi.courses.store/585464"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-3 mt-10 rounded-full bg-[#C9A227] hover:bg-[#e8c860] text-[#2B0E1A] font-semibold px-8 py-4 transition-all duration-500 hover:-translate-y-1 shadow-2xl shadow-black/30"
+        >
+          <FaPlay className="text-sm" />
+          Watch Demo Video
+          <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
+        </a>
+
+        <p className="mt-5 text-xs text-[#F6E1E8]/50">
+          Opens securely on our official learning platform
+        </p>
+
+      </div>
+    </div>
+  </Reveal>
+</section>
 
       {/* ---------------- About / Highlights ---------------- */}
       <section className="py-10 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
