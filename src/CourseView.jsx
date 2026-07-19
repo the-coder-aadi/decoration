@@ -449,7 +449,7 @@ export default function CourseView() {
           className="group inline-flex items-center gap-3 mt-10 rounded-full bg-[#C9A227] hover:bg-[#e8c860] text-[#2B0E1A] font-semibold px-8 py-4 transition-all duration-500 hover:-translate-y-1 shadow-2xl shadow-black/30"
         >
           <FaPlay className="text-sm" />
-          Watch Demo Video
+           Demo Video
           <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
         </a>
 
