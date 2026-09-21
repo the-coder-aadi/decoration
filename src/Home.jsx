@@ -203,23 +203,13 @@ export const FloralDivider = ({ tone = "gold" }) => {
    logo can never be stretched, squashed or cropped at any breakpoint.
    ============================================================ */
 export const BrandLogo = ({
-  variant = "horizontal",
   className = "h-11 md:h-14",
 }) => {
-  const src =
-    variant === "stacked"
-      ? "/logo.png"
-      : variant === "mark"
-      ? "/logo-mark.png"
-      : "/logo-horizontal.png";
-
   return (
     <img
-      src={src}
+      src="/logo.png"
       alt="New Flower Decoration Training Institute"
       className={`nfd-logo ${className}`}
-      width={variant === "horizontal" ? 2364 : undefined}
-      height={variant === "horizontal" ? 548 : undefined}
       decoding="async"
     />
   );
@@ -436,7 +426,7 @@ const goToSection = useScrollToSection();
         <a href="#home" className="flex items-center shrink-0" aria-label="New Flower Decoration Training Institute — home">
           <BrandLogo
             className={`transition-all duration-500 ${
-              scrolled ? "h-10 md:h-12" : "h-12 md:h-16"
+              scrolled ? "h-10 md:h-14" : "h-12 md:h-18"
             }`}
           />
         </a>
@@ -1318,36 +1308,36 @@ export default function Home() {
 const navigate = useNavigate()
 const [showBatchPopup, setShowBatchPopup] = useState(false);
 
-useEffect(() => {
-  document.body.style.overflow = "hidden";
+// useEffect(() => {
+//   document.body.style.overflow = "hidden";
 
-  const loaderTimer = setTimeout(() => {
-    setLoading(false);
-    document.body.style.overflow = "";
+//   const loaderTimer = setTimeout(() => {
+//     setLoading(false);
+//     document.body.style.overflow = "";
 
-    // Agar popup pehle hi dikh chuka hai to dobara mat dikhao
-    if (!sessionStorage.getItem("batchPopupShown")) {
-      setTimeout(() => {
-        setShowBatchPopup(true);
-        sessionStorage.setItem("batchPopupShown", "true");
-      }, 500);
-    }
-  }, 2000);
+//     // Agar popup pehle hi dikh chuka hai to dobara mat dikhao
+//     if (!sessionStorage.getItem("batchPopupShown")) {
+//       setTimeout(() => {
+//         setShowBatchPopup(true);
+//         sessionStorage.setItem("batchPopupShown", "true");
+//       }, 500);
+//     }
+//   }, 2000);
 
-  return () => clearTimeout(loaderTimer);
-}, []);
+//   return () => clearTimeout(loaderTimer);
+// }, []);
 
-useEffect(() => {
-  const handleBeforeUnload = () => {
-    sessionStorage.removeItem("batchPopupShown");
-  };
+// useEffect(() => {
+//   const handleBeforeUnload = () => {
+//     sessionStorage.removeItem("batchPopupShown");
+//   };
 
-  window.addEventListener("beforeunload", handleBeforeUnload);
+//   window.addEventListener("beforeunload", handleBeforeUnload);
 
-  return () => {
-    window.removeEventListener("beforeunload", handleBeforeUnload);
-  };
-}, []);
+//   return () => {
+//     window.removeEventListener("beforeunload", handleBeforeUnload);
+//   };
+// }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
