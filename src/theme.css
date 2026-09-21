@@ -1,0 +1,195 @@
+/* ============================================================================
+   NEW FLOWER DECORATION TRAINING INSTITUTE
+   ============================  T H E M E  ====================================
+
+   >>> THIS IS THE ONLY FILE YOU NEED TO EDIT TO RE-SKIN THE WHOLE WEBSITE. <<<
+
+   Every colour, font, radius and shadow used anywhere in the site resolves to a
+   token defined below. Nothing is hard-coded in the components any more, so
+   changing a value here changes it everywhere at once.
+
+   Palette is derived directly from the official gold logo:
+     - the gold ramp is sampled from the logo artwork itself
+       (deep bronze #A9761A -> core gold #D4A32B -> highlight #F7E9A8)
+     - the darks are warm espresso / onyx tones chosen so the gold reads as
+       real metallic gold rather than yellow
+     - the lights are ivory & champagne, not pink, so the whole site stays in
+       one warm, premium, "institute" family.
+
+   HOW TO USE THE TOKENS IN JSX
+   ----------------------------
+   Tailwind v4 turns every `--color-*` token below into real utility classes:
+       bg-brand-deep   text-brand-gold   border-brand-gold/30   from-brand-ink
+   In inline styles / SVG props use the variable directly:
+       style={{ color: "var(--color-brand-gold)" }}
+
+   HOW TO RE-THEME
+   ---------------
+   1. Change the RAW BRAND RAMPS below (or just the SEMANTIC ROLES).
+   2. Save. That's it — no component files need to be touched.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. RAW BRAND RAMPS  —  the literal brand colours
+   ------------------------------------------------------------------------ */
+:root {
+  /* Gold ramp — sampled from the official logo */
+  --nfd-gold-deep: #a9761a; /* bronze: gold text on light backgrounds */
+  --nfd-gold: #d4a32b; /* CORE BRAND GOLD — the logo gold */
+  --nfd-gold-light: #efc96b; /* hover / highlight gold */
+  --nfd-gold-pale: #f7e9a8; /* soft gold for hairlines & glows */
+
+  /* Dark ramp — warm espresso / onyx, the backdrop the gold sits on */
+  --nfd-ink: #14100a; /* deepest: page ink, darkest sections */
+  --nfd-deep: #251e12; /* navbar, footer, loader, dark panels */
+  --nfd-primary: #453a22; /* mid dark: primary brand surface & headings */
+  --nfd-primary-soft: #2e2615; /* between deep and primary */
+
+  /* Light ramp — ivory & champagne */
+  --nfd-cream: #fbf7ef; /* page background */
+  --nfd-cream-light: #fdfbf6; /* lifted cards on cream */
+  --nfd-champagne: #f5ead6; /* light text on dark / tinted surfaces */
+  --nfd-champagne-soft: #f2e9d8; /* subtle tinted bands */
+
+  /* Neutrals for body copy */
+  --nfd-muted: #6f6250;
+  --nfd-muted-dark: #575047;
+}
+
+/* ---------------------------------------------------------------------------
+   2. SEMANTIC ROLES  —  what each colour MEANS. Point these at the ramp above.
+      (Exposed to Tailwind as utilities: bg-brand-gold, text-brand-ink, ...)
+   ------------------------------------------------------------------------ */
+@theme {
+  /* --- Brand core --- */
+  --color-brand-gold: var(--nfd-gold);
+  --color-brand-gold-light: var(--nfd-gold-light);
+  --color-brand-gold-deep: var(--nfd-gold-deep);
+  --color-brand-gold-pale: var(--nfd-gold-pale);
+
+  --color-brand-primary: var(--nfd-primary);
+  --color-brand-primary-soft: var(--nfd-primary-soft);
+  --color-brand-deep: var(--nfd-deep);
+  --color-brand-ink: var(--nfd-ink);
+
+  --color-brand-cream: var(--nfd-cream);
+  --color-brand-cream-light: var(--nfd-cream-light);
+  --color-brand-champagne: var(--nfd-champagne);
+  --color-brand-champagne-soft: var(--nfd-champagne-soft);
+
+  --color-brand-muted: var(--nfd-muted);
+  --color-brand-muted-dark: var(--nfd-muted-dark);
+
+  /* --- Roles (aliases you can repoint without touching the ramp) --- */
+  --color-brand-bg: var(--nfd-cream); /* page background      */
+  --color-brand-surface: var(--nfd-cream-light); /* cards / panels       */
+  --color-brand-text: var(--nfd-ink); /* body text on light   */
+  --color-brand-text-invert: var(--nfd-champagne); /* body text on dark    */
+  --color-brand-border: var(--nfd-gold); /* hairlines, dividers  */
+  --color-brand-accent: var(--nfd-gold); /* buttons, icons, CTAs */
+  --color-brand-accent-hover: var(--nfd-gold-light);
+
+  /* --- Typography --- */
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Poppins", "Inter", system-ui, sans-serif;
+
+  /* --- Radii --- */
+  --radius-brand-sm: 0.5rem;
+  --radius-brand: 0.875rem;
+  --radius-brand-lg: 1.25rem;
+  --radius-brand-pill: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-brand-soft: 0 10px 30px -12px rgb(20 16 10 / 0.28);
+  --shadow-brand-lift: 0 22px 48px -18px rgb(20 16 10 / 0.42);
+  --shadow-brand-gold: 0 10px 30px -10px rgb(212 163 43 / 0.38);
+}
+
+/* ---------------------------------------------------------------------------
+   3. DERIVED VALUES  —  gradients, glows and rgba tints used by the animations
+      and by a few inline styles. They all read from the ramp above, so they
+      follow along automatically when you re-theme.
+   ------------------------------------------------------------------------ */
+:root {
+  --brand-gold-ring: color-mix(in srgb, var(--nfd-gold) 45%, transparent);
+  --brand-gold-ring-out: color-mix(in srgb, var(--nfd-gold) 0%, transparent);
+  --brand-primary-tint: color-mix(in srgb, var(--nfd-primary) 18%, transparent);
+  --brand-shadow-strong: rgb(20 16 10 / 0.45);
+  --brand-shadow-soft: rgb(20 16 10 / 0.25);
+
+  /* Signature metallic sweep — mirrors the gradient inside the logo itself */
+  --brand-gold-gradient: linear-gradient(
+    90deg,
+    var(--nfd-gold-deep),
+    var(--nfd-gold),
+    var(--nfd-gold-pale),
+    var(--nfd-gold),
+    var(--nfd-gold-deep)
+  );
+
+  /* Standard section scrim over photography / video */
+  --brand-hero-scrim: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--nfd-ink) 80%, transparent),
+    color-mix(in srgb, var(--nfd-deep) 72%, transparent),
+    color-mix(in srgb, var(--nfd-ink) 92%, transparent)
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   5. GOLD-ON-LIGHT READABILITY
+   ---------------------------------------------------------------------------
+   The brand gold is tuned to glow against the dark espresso sections. On the
+   ivory/cream sections the same gold only reaches ~2.2:1 contrast, which is
+   below the WCAG minimum even for large headings, and it reads as "bright
+   yellow" rather than as metal.
+
+   So inside light surfaces only, gold TEXT resolves to the deeper bronze end
+   of the same ramp (~4:1). Backgrounds, borders and icons are untouched, so
+   gold buttons and hairlines keep their full brightness everywhere.
+
+   >>> Don't want this? Delete this one block and gold becomes uniform again.
+   ------------------------------------------------------------------------ */
+:is(
+    .bg-brand-cream,
+    .bg-brand-cream-light,
+    .bg-brand-champagne,
+    .bg-brand-champagne-soft,
+    .bg-white
+  )
+  .text-brand-gold {
+  color: var(--nfd-gold-deep);
+}
+
+/* ---------------------------------------------------------------------------
+   6. BRAND PRIMITIVES  —  small reusable classes so button / badge / card
+      styling is defined once instead of being repeated in every component.
+   ------------------------------------------------------------------------ */
+
+/* Metallic gold text, matching the logo's gradient */
+.nfd-gold-text {
+  background: var(--brand-gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Thin gold rule used to separate institute sections */
+.nfd-gold-rule {
+  height: 1px;
+  background: var(--brand-gold-gradient);
+  opacity: 0.65;
+}
+
+/* The logo lockup: never let it be stretched, squashed or cropped anywhere.
+   NOTE: height is intentionally NOT set here — the height comes from the
+   utility class passed to <BrandLogo> (h-12, h-16, ...) and the width then
+   resolves from the image's own aspect ratio. `object-fit: contain` is the
+   safety net: if a container is ever too narrow, the logo letterboxes
+   instead of distorting. */
+.nfd-logo {
+  width: auto; /* width follows the logo's own aspect ratio */
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}

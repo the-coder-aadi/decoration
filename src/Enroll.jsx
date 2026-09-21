@@ -15,7 +15,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { GiFlowerPot } from "react-icons/gi";
-import { GlobalStyles, FloralDivider, Navbar, Footer, Loader } from "./Home";
+import { GlobalStyles, FloralDivider, Navbar, Footer, Loader, BrandLogo } from "./Home";
  
 /* ============================================================
    ENROLL — New Flower Decoration (Online & Offline Courses)
@@ -69,9 +69,9 @@ function validateField(name, value) {
 /* ---------------- reusable field wrapper ---------------- */
 const Field = ({ label, icon: Icon, error, touched, required, children }) => (
   <div>
-    <label className="flex items-center gap-2 text-sm font-medium text-[#2B0E1A] mb-2">
-      <Icon className="text-[#7A1F3B]" />
-      {label} {required && <span className="text-[#C9A227]">*</span>}
+    <label className="flex items-center gap-2 text-sm font-medium text-brand-ink mb-2">
+      <Icon className="text-brand-primary" />
+      {label} {required && <span className="text-brand-gold">*</span>}
     </label>
     {children}
     <div
@@ -89,12 +89,12 @@ const Field = ({ label, icon: Icon, error, touched, required, children }) => (
 );
  
 const inputBase =
-  "w-full rounded-xl border bg-[#FDF6F0]/60 px-4 py-3 text-sm text-[#2B0E1A] placeholder:text-[#2B0E1A]/35 outline-none transition-all duration-300 focus:bg-white";
+  "w-full rounded-xl border bg-brand-cream/60 px-4 py-3 text-sm text-brand-ink placeholder:text-brand-ink/35 outline-none transition-all duration-300 focus:bg-white";
  
 const inputState = (touched, error) =>
   touched && error
     ? "border-red-400 focus:ring-2 focus:ring-red-100"
-    : "border-[#7A1F3B]/15 focus:border-[#C9A227] focus:ring-2 focus:ring-[#C9A227]/15";
+    : "border-brand-primary/15 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/15";
  
 export default function Enroll() {
   const [loading, setLoading] = useState(true);
@@ -197,17 +197,17 @@ export default function Enroll() {
       <Navbar />
  
       {/* Page Hero / Slogan */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-5 md:px-8 bg-[#4A1027] overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_15%_20%,#C9A227,transparent_45%),radial-gradient(circle_at_85%_80%,#C9A227,transparent_45%)]" />
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-5 md:px-8 bg-brand-deep overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_15%_20%,var(--color-brand-gold),transparent_45%),radial-gradient(circle_at_85%_80%,var(--color-brand-gold),transparent_45%)]" />
         <div className="relative max-w-3xl mx-auto text-center">
-          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#C9A227] mb-4">
+          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-gold mb-4">
             Learn With Us
           </p>
           <h1 className="nfd-display text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-4">
             Turn Your Passion for Decoration Into a{" "}
-            <span className="italic text-[#C9A227]">Career</span>
+            <span className="italic text-brand-gold">Career</span>
           </h1>
-          <p className="text-[#F6E1E8]/70 text-sm md:text-base max-w-xl mx-auto">
+          <p className="text-brand-champagne/70 text-sm md:text-base max-w-xl mx-auto">
             Enroll in our online or offline decoration course and learn directly from industry
             professionals. Fill the form below and our team will reach out with batch details.
           </p>
@@ -220,9 +220,9 @@ export default function Enroll() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-6 md:gap-8">
           {/* Left info panel */}
           <div className="lg:col-span-2">
-            <div className="lg:sticky lg:top-28 bg-[#7A1F3B] text-white rounded-3xl p-8 md:p-10 shadow-xl shadow-[#7A1F3B]/20 h-full flex flex-col justify-between">
+            <div className="lg:sticky lg:top-28 bg-brand-primary text-white rounded-3xl p-8 md:p-10 shadow-xl shadow-brand-primary/20 h-full flex flex-col justify-between">
               <div>
-                <GiFlowerPot className="text-[#C9A227] text-3xl mb-5" />
+                <BrandLogo variant="mark" className="h-12 mb-5" />
                 <h2 className="nfd-display text-2xl md:text-3xl mb-4">
                   Why Learn With Us?
                 </h2>
@@ -233,8 +233,8 @@ export default function Enroll() {
                     { icon: FaUsers, text: "300+ students trained, many now running their own setups" },
                     { icon: FaStar, text: "Flexible online batches or in-studio offline sessions" },
                   ].map((f) => (
-                    <li key={f.text} className="flex items-start gap-3 text-sm text-[#F6E1E8]/85">
-                      <span className="w-8 h-8 shrink-0 rounded-full bg-white/10 flex items-center justify-center text-[#C9A227]">
+                    <li key={f.text} className="flex items-start gap-3 text-sm text-brand-champagne/85">
+                      <span className="w-8 h-8 shrink-0 rounded-full bg-white/10 flex items-center justify-center text-brand-gold">
                         <f.icon className="text-xs" />
                       </span>
                       {f.text}
@@ -244,18 +244,18 @@ export default function Enroll() {
               </div>
  
               <div className="border-t border-white/15 pt-6">
-                <p className="text-xs uppercase tracking-widest text-[#C9A227] mb-2">Have questions?</p>
+                <p className="text-xs uppercase tracking-widest text-brand-gold mb-2">Have questions?</p>
                 <a href="tel:+911234567890" className="flex items-center gap-2 text-lg nfd-display">
-                  <FaPhoneAlt className="text-[#C9A227] text-base" /> +91 12345 67890
+                  <FaPhoneAlt className="text-brand-gold text-base" /> +91 12345 67890
                 </a>
-                <p className="text-xs text-[#F6E1E8]/60 mt-2">Mon – Sun, 9 AM – 9 PM</p>
+                <p className="text-xs text-brand-champagne/60 mt-2">Mon – Sun, 9 AM – 9 PM</p>
               </div>
             </div>
           </div>
  
           {/* Right form panel */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-3xl shadow-xl shadow-[#7A1F3B]/10 p-6 sm:p-8 md:p-10 relative overflow-hidden">
+            <div className="bg-white rounded-3xl shadow-xl shadow-brand-primary/10 p-6 sm:p-8 md:p-10 relative overflow-hidden">
               {/* Success state */}
               <div
                 className={`absolute inset-0 z-10 flex flex-col items-center justify-center text-center bg-white px-8 transition-all duration-500 ${
@@ -263,21 +263,21 @@ export default function Enroll() {
                 }`}
               >
                 <div
-                  className="w-20 h-20 rounded-full bg-[#F6E1E8] flex items-center justify-center text-[#7A1F3B] text-3xl mb-6"
+                  className="w-20 h-20 rounded-full bg-brand-champagne flex items-center justify-center text-brand-primary text-3xl mb-6"
                   style={{ animation: submitted ? "nfd-fadein 0.6s ease-out" : "none" }}
                 >
                   <FaCheckCircle />
                 </div>
-                <h3 className="nfd-display text-2xl md:text-3xl text-[#2B0E1A] mb-3">
+                <h3 className="nfd-display text-2xl md:text-3xl text-brand-ink mb-3">
                   Enrollment Request Sent!
                 </h3>
-                <p className="text-sm text-[#2B0E1A]/60 max-w-sm mb-8">
+                <p className="text-sm text-brand-ink/60 max-w-sm mb-8">
                   Thank you for your interest! Our academy team will contact you shortly with batch
                   timings and course details.
                 </p>
                 <button
                   onClick={resetForm}
-                  className="px-7 py-3 rounded-full bg-[#7A1F3B] text-white text-sm font-medium hover:bg-[#5c1730] transition-colors duration-300"
+                  className="px-7 py-3 rounded-full bg-brand-primary text-white text-sm font-medium hover:bg-brand-primary-soft transition-colors duration-300"
                 >
                   Enroll for Another Course
                 </button>
@@ -292,11 +292,11 @@ export default function Enroll() {
                 }`}
               >
                 <div className="sm:col-span-2">
-                  <h2 className="nfd-display text-xl md:text-2xl text-[#2B0E1A] mb-1">
+                  <h2 className="nfd-display text-xl md:text-2xl text-brand-ink mb-1">
                     Course Enrollment
                   </h2>
-                  <p className="text-xs text-[#2B0E1A]/50 mb-2">
-                    Fields marked <span className="text-[#C9A227]">*</span> are required.
+                  <p className="text-xs text-brand-ink/50 mb-2">
+                    Fields marked <span className="text-brand-gold">*</span> are required.
                   </p>
                 </div>
  
@@ -376,7 +376,7 @@ export default function Enroll() {
                       onChange={handleChange}
                       rows={3}
                       placeholder="Tell us about your goals, prior experience, or preferred batch timing..."
-                      className={`${inputBase} border-[#7A1F3B]/15 focus:border-[#C9A227] focus:ring-2 focus:ring-[#C9A227]/15 resize-none`}
+                      className={`${inputBase} border-brand-primary/15 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/15 resize-none`}
                     />
                   </Field>
                 </div>
@@ -385,12 +385,12 @@ export default function Enroll() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-3.5 rounded-full bg-[#C9A227] text-[#2B0E1A] font-semibold hover:bg-[#e8c860] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-lg shadow-[#C9A227]/20"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-lg shadow-brand-gold/20"
                   >
                     {submitting ? (
                       <>
                         <span
-                          className="w-4 h-4 rounded-full border-2 border-[#2B0E1A]/30 border-t-[#2B0E1A] nfd-spin-slow"
+                          className="w-4 h-4 rounded-full border-2 border-brand-ink/30 border-t-brand-ink nfd-spin-slow"
                           style={{ animationDuration: "0.7s" }}
                         />
                         Sending Request...
@@ -401,7 +401,7 @@ export default function Enroll() {
                       </>
                     )}
                   </button>
-                  <p className="text-xs text-[#2B0E1A]/40 mt-3">
+                  <p className="text-xs text-brand-ink/40 mt-3">
                     By submitting, you agree to be contacted by New Flower Decoration regarding this
                     course.
                   </p>

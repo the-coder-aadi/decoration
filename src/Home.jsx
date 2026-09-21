@@ -47,10 +47,14 @@ import StudentFeedback from "../components/studentfeedback";
 import AppSection from "../components/Apps";
 import { useScrollToSection } from "../components/scrolltosection";
 /* ============================================================
-   NEW FLOWER DECORATION — Luxury Home Page
-   Palette : Wine #7A1F3B | Wine Dark #4A1027 | Ink #2B0E1A
-             Cream #FDF6F0 | Blush #F6E1E8 | Gold #C9A227
-   Display : Playfair Display  |  Body : Poppins
+   NEW FLOWER DECORATION TRAINING INSTITUTE — Home Page
+
+   THEME: every colour / font / radius / shadow on this page comes from
+   the central theme file  ->  src/theme.css
+   Nothing here is hard-coded. To re-skin the whole site, edit theme.css only.
+
+   Tokens in use: brand-gold · brand-primary · brand-deep · brand-ink
+                  brand-cream · brand-champagne · brand-muted
    ============================================================ */
 
 /* ---------------- Global font + keyframe injector ---------------- */
@@ -68,8 +72,8 @@ export const GlobalStyles = () => {
 
   return (
     <style>{`
-      .nfd-root{ font-family:'Poppins', sans-serif; background:#FDF6F0; color:#2B0E1A; overflow-x:hidden; }
-      .nfd-display{ font-family:'Playfair Display', serif; }
+      .nfd-root{ font-family:var(--font-body); background:var(--color-brand-bg); color:var(--color-brand-text); overflow-x:hidden; }
+      .nfd-display{ font-family:var(--font-display); }
 
       @keyframes nfd-fall{
         0%{ transform:translateY(-10vh) translateX(0) rotate(0deg); opacity:0; }
@@ -81,8 +85,8 @@ export const GlobalStyles = () => {
         100%{ transform:translateX(-50%); }
       }
       @keyframes nfd-pulse-ring{
-        0%{ box-shadow:0 0 0 0 rgba(201,162,39,0.45); }
-        100%{ box-shadow:0 0 0 22px rgba(201,162,39,0); }
+        0%{ box-shadow:0 0 0 0 var(--brand-gold-ring); }
+        100%{ box-shadow:0 0 0 22px var(--brand-gold-ring-out); }
       }
       @keyframes nfd-spin-slow{
         from{ transform:rotate(0deg);} to{ transform:rotate(360deg);}
@@ -101,7 +105,7 @@ export const GlobalStyles = () => {
       .nfd-arrow-bounce{ animation:nfd-bounce-arrow 1.8s ease-in-out infinite; }
 
       .nfd-scrollbar::-webkit-scrollbar{ height:6px; width:8px; }
-      .nfd-scrollbar::-webkit-scrollbar-thumb{ background:#C9A227; border-radius:10px; }
+      .nfd-scrollbar::-webkit-scrollbar-thumb{ background:var(--color-brand-gold); border-radius:10px; }
       .nfd-scrollbar::-webkit-scrollbar-track{ background:transparent; }
 
       .nfd-clip-wave{ clip-path: polygon(0 12%, 100% 0, 100% 100%, 0% 100%); }
@@ -174,7 +178,7 @@ function useCounter(end, start, duration = 1800) {
 
 /* ---------------- Floral Divider (signature element) ---------------- */
 export const FloralDivider = ({ tone = "gold" }) => {
-  const stroke = tone === "gold" ? "#C9A227" : "#F6E1E8";
+  const stroke = tone === "gold" ? "var(--color-brand-gold)" : "var(--color-brand-champagne)";
   return (
     <div className="flex items-center justify-center py-2 select-none" aria-hidden="true">
       <svg width="220" height="24" viewBox="0 0 220 24" fill="none">
@@ -187,23 +191,57 @@ export const FloralDivider = ({ tone = "gold" }) => {
   );
 };
 
+/* ============================================================
+   BRAND LOGO — the single place the official logo is defined.
+   Swap the files in /public to change the logo everywhere at once.
+
+     /logo-horizontal.png  lockup for tight bars (navbar, footer)
+     /logo.png             full stacked lockup (loader, splash)
+     /logo-mark.png        emblem only (favicons, compact badges)
+
+   `.nfd-logo` (see theme.css) locks object-fit:contain and width:auto so the
+   logo can never be stretched, squashed or cropped at any breakpoint.
+   ============================================================ */
+export const BrandLogo = ({
+  variant = "horizontal",
+  className = "h-11 md:h-14",
+}) => {
+  const src =
+    variant === "stacked"
+      ? "/logo.png"
+      : variant === "mark"
+      ? "/logo-mark.png"
+      : "/logo-horizontal.png";
+
+  return (
+    <img
+      src={src}
+      alt="New Flower Decoration Training Institute"
+      className={`nfd-logo ${className}`}
+      width={variant === "horizontal" ? 2364 : undefined}
+      height={variant === "horizontal" ? 548 : undefined}
+      decoding="async"
+    />
+  );
+};
+
 /* ---------------- Loader ---------------- */
 export const Loader = ({ loading }) => (
   <div
-    className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#4A1027] transition-opacity duration-700 ${
+    className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-brand-deep transition-opacity duration-700 ${
       loading ? "opacity-100" : "opacity-0 pointer-events-none"
     }`}
   >
-    <div className="relative w-24 h-24 flex items-center justify-center">
-      <div className="absolute inset-0 rounded-full border-2 border-[#C9A227]/30" />
-      <div className="absolute inset-0 rounded-full border-t-2 border-[#C9A227] nfd-spin-slow" />
-      <GiFlowerPot className="text-[#C9A227] text-3xl" />
+    <div className="relative flex items-center justify-center px-6">
+      <div className="absolute -inset-6 rounded-full border border-brand-gold/20" />
+      <div className="absolute -inset-6 rounded-full border-t border-brand-gold nfd-spin-slow" />
+      <BrandLogo variant="stacked" className="h-28 md:h-36" />
     </div>
-    <p className="nfd-display italic text-[#F6E1E8] text-xl mt-6 tracking-wide">
-      New Flower Decoration
+    <p className="nfd-display text-brand-champagne/80 text-[11px] md:text-xs mt-7 tracking-[0.42em] uppercase">
+      Decoration Training Institute
     </p>
     <div className="w-40 h-[2px] bg-white/10 mt-4 overflow-hidden rounded-full">
-      <div className="h-full bg-[#C9A227] animate-[nfd-marquee_1.6s_ease-in-out_infinite]" style={{ width: "60%" }} />
+      <div className="h-full bg-brand-gold animate-[nfd-marquee_1.6s_ease-in-out_infinite]" style={{ width: "60%" }} />
     </div>
   </div>
 );
@@ -391,15 +429,16 @@ const goToSection = useScrollToSection();
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[#4A1027]/95 backdrop-blur shadow-lg py-2" : "bg-transparent py-4"
+        scrolled ? "bg-brand-deep/95 backdrop-blur shadow-lg py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2">
-          <GiFlowerPot className="text-[#C9A227] text-2xl md:text-3xl" />
-          <span className="nfd-display text-lg md:text-2xl text-[#F6E1E8] tracking-wide">
-            New Flower <span className="text-[#C9A227] italic">Decoration</span>
-          </span>
+        <a href="#home" className="flex items-center shrink-0" aria-label="New Flower Decoration Training Institute — home">
+          <BrandLogo
+            className={`transition-all duration-500 ${
+              scrolled ? "h-10 md:h-12" : "h-12 md:h-16"
+            }`}
+          />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -407,7 +446,7 @@ const goToSection = useScrollToSection();
   <button
     key={l.label}
     onClick={() => goToSection(l.id)}
-    className="text-sm tracking-wide cursor-pointer text-[#F6E1E8]/90 hover:text-[#C9A227]"
+    className="text-sm tracking-wide cursor-pointer text-brand-champagne/90 hover:text-brand-gold"
   >
     {l.label}
   </button>
@@ -415,8 +454,8 @@ const goToSection = useScrollToSection();
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:+911234567890" className="flex items-center gap-2 text-[#F6E1E8] text-sm">
-            <FaPhoneAlt className="text-[#C9A227]" /> +91 6262646491
+          <a href="tel:+911234567890" className="flex items-center gap-2 text-brand-champagne text-sm">
+            <FaPhoneAlt className="text-brand-gold" /> +91 6262646491
           </a>
          <Link
   to="/book-decoration"
@@ -430,14 +469,14 @@ const goToSection = useScrollToSection();
       });
     }
   }}
-  className="px-5 py-2.5 rounded-full bg-[#C9A227] text-[#2B0E1A] text-sm font-semibold hover:bg-[#e8c860] transition-colors duration-300"
+  className="px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold hover:bg-brand-gold-light transition-colors duration-300"
 >
   Book Decoration
 </Link>
         </div>
 
         <button
-          className="lg:hidden text-[#F6E1E8] text-2xl"
+          className="lg:hidden text-brand-champagne text-2xl"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
         >
@@ -450,7 +489,7 @@ const goToSection = useScrollToSection();
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-[#4A1027] px-6 py-4 flex flex-col gap-4">
+        <div className="bg-brand-deep px-6 py-4 flex flex-col gap-4">
         {NAV_LINKS.map((l) => (
   <button
     key={l.label}
@@ -458,12 +497,12 @@ const goToSection = useScrollToSection();
        goToSection(l.id)
        setOpen(false)
     }}
-    className="text-sm tracking-wide text-[#F6E1E8]/90 hover:text-[#C9A227]"
+    className="text-sm tracking-wide text-brand-champagne/90 hover:text-brand-gold"
   >
     {l.label}
   </button>
 ))}
-          <button type="button" onClick={()=> navigate("book-decoration")} className="mt-2 text-center px-5 py-2.5 rounded-full bg-[#C9A227] text-[#2B0E1A] text-sm font-semibold">
+          <button type="button" onClick={()=> navigate("book-decoration")} className="mt-2 text-center px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold">
             Book Decoration
           </button>
         </div>
@@ -488,12 +527,12 @@ const Hero = () => {
         loop
         playsInline
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2B0E1A]/80 via-[#4A1027]/70 to-[#2B0E1A]/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-deep/70 to-brand-ink/90" />
 
       {petals.map((_, i) => (
         <span
           key={i}
-          className="nfd-petal text-[#C9A227]/70"
+          className="nfd-petal text-brand-gold/70"
           style={{
             left: `${(i + 1) * 9}%`,
             animationDuration: `${9 + (i % 5)}s`,
@@ -506,45 +545,45 @@ const Hero = () => {
       ))}
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center" style={{ animation: "nfd-fadein 1.2s ease-out" }}>
-        <div className="hidden sm:flex items-center justify-center gap-2 text-[#C9A227] text-sm mb-4 tracking-widest">
+        <div className="hidden sm:flex items-center justify-center gap-2 text-brand-gold text-sm mb-4 tracking-widest">
           <span className="flex gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
               <FaStar key={i} />
             ))}
           </span>
-          <span className="text-[#F6E1E8]/90">500+ Events</span>
-          <span className="text-[#F6E1E8]/40">•</span>
-          <span className="text-[#F6E1E8]/90">1000+ Happy Clients</span>
-          <span className="text-[#F6E1E8]/40 hidden sm:inline">•</span>
-          <span className="text-[#F6E1E8]/90 hidden sm:inline">Professional Training</span>
+          <span className="text-brand-champagne/90">500+ Events</span>
+          <span className="text-brand-champagne/40">•</span>
+          <span className="text-brand-champagne/90">1000+ Happy Clients</span>
+          <span className="text-brand-champagne/40 hidden sm:inline">•</span>
+          <span className="text-brand-champagne/90 hidden sm:inline">Professional Training</span>
         </div>
 
-        <h1 className="nfd-display text-[33px] sm:text-5xl md:text-6xl lg:text-7xl text-[#FDF6F0] leading-[1.1] mb-6">
+        <h1 className="nfd-display text-[33px] sm:text-5xl md:text-6xl lg:text-7xl text-brand-cream leading-[1.1] mb-6">
           Creating Memorable Celebrations
-          <br className="hidden sm:block" /> & <span className="italic text-[#C9A227]">Expert</span> Training
+          <br className="hidden sm:block" /> & <span className="italic text-brand-gold">Expert</span> Training
         </h1>
 
-        <p className="text-[#F6E1E8]/80 max-w-xl mx-auto mb-9 text-sm sm:text-base">
+        <p className="text-brand-champagne/80 max-w-xl mx-auto mb-9 text-sm sm:text-base">
          Premium event decoration services and industry-focused online & offline training to help you become a professional decorator.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
            to="/book-decoration"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#C9A227] text-[#2B0E1A] font-semibold hover:bg-[#e8c860] hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
           >
             Book Decoration
           </Link>
           <a
             href="#courses"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-[#F6E1E8]/50 text-[#F6E1E8] font-medium hover:bg-white/10 transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-brand-champagne/50 text-brand-champagne font-medium hover:bg-white/10 transition-all duration-300"
           >
             Explore Courses
           </a>
         </div>
       </div>
 
-      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 nfd-arrow-bounce text-[#F6E1E8]/70">
+      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 nfd-arrow-bounce text-brand-champagne/70">
         <FaChevronDown />
       </div>
     </section>
@@ -557,15 +596,15 @@ const Hero = () => {
 const TrustBar = () => (
   <div className="relative z-20 -mt-14 md:-mt-16 px-4">
     <Reveal>
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl shadow-black/10 grid grid-cols-3 divide-x divide-[#F6E1E8] py-6 md:py-8">
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl shadow-black/10 grid grid-cols-3 divide-x divide-brand-champagne py-6 md:py-8">
         {[
            { label: "Students Trained", value: "5000+" },
           { label: "Events Decorated", value: "500+" },
           { label: "Years of Trust", value: "5+" },
         ].map((s) => (
           <div key={s.label} className="text-center px-2">
-            <p className="nfd-display text-xl md:text-3xl text-[#7A1F3B]">{s.value}</p>
-            <p className="text-[10px] md:text-xs uppercase tracking-wider text-[#2B0E1A]/60 mt-1">{s.label}</p>
+            <p className="nfd-display text-xl md:text-3xl text-brand-primary">{s.value}</p>
+            <p className="text-[10px] md:text-xs uppercase tracking-wider text-brand-ink/60 mt-1">{s.label}</p>
           </div>
         ))}
       </div>
@@ -579,7 +618,7 @@ const TrustBar = () => (
 const TrustedBy = () => (
   <section className="pt-16 md:pt-20 pb-10 ">
     <Reveal>
-      <p className="text-center text-xs md:text-sm tracking-[0.25em] uppercase text-[#2B0E1A]/50 mb-6">
+      <p className="text-center text-xs md:text-sm tracking-[0.25em] uppercase text-brand-ink/50 mb-6">
         Trusted By
       </p>
     </Reveal>
@@ -588,7 +627,7 @@ const TrustedBy = () => (
         {[...TRUSTED, ...TRUSTED].map((t, i) => (
           <span
             key={i}
-            className="mx-4 md:mx-6 px-6 py-3 rounded-full border border-[#7A1F3B]/15 nfd-display italic text-[#7A1F3B]/70 text-sm md:text-base whitespace-nowrap"
+            className="mx-4 md:mx-6 px-6 py-3 rounded-full border border-brand-primary/15 nfd-display italic text-brand-primary/70 text-sm md:text-base whitespace-nowrap"
           >
             {t}
           </span>
@@ -603,14 +642,14 @@ const TrustedBy = () => (
    ============================================================ */
 const SectionHeading = ({ eyebrow, title, subtitle, light = false }) => (
   <Reveal className="max-w-2xl mx-auto text-center mb-6 md:mb-12 px-4">
-    <p className={`text-xs md:text-sm tracking-[0.3em] uppercase mb-3 ${light ? "text-[#C9A227]" : "text-[#7A1F3B]"}`}>
+    <p className={`text-xs md:text-sm tracking-[0.3em] uppercase mb-3 ${light ? "text-brand-gold" : "text-brand-primary"}`}>
       {eyebrow}
     </p>
-    <h2 className={`nfd-display text-3xl md:text-4xl lg:text-5xl ${light ? "text-[#FDF6F0]" : "text-[#2B0E1A]"}`}>
+    <h2 className={`nfd-display text-3xl md:text-4xl lg:text-5xl ${light ? "text-brand-cream" : "text-brand-ink"}`}>
       {title}
     </h2>
     {subtitle && (
-      <p className={`mt-4 text-sm md:text-base ${light ? "text-[#F6E1E8]/70" : "text-[#2B0E1A]/60"}`}>{subtitle}</p>
+      <p className={`mt-4 text-sm md:text-base ${light ? "text-brand-champagne/70" : "text-brand-ink/60"}`}>{subtitle}</p>
     )}
   </Reveal>
 );
@@ -619,7 +658,7 @@ const SectionHeading = ({ eyebrow, title, subtitle, light = false }) => (
    SERVICES
    ============================================================ */
 const Services = () => (
-  <section id="services" className="py-12 md:py-20 px-5 md:px-8 bg-[#FDF6F0]">
+  <section id="services" className="py-12 md:py-20 px-5 md:px-8 bg-brand-cream">
     <SectionHeading
       eyebrow="What We Offer"
       title="Our Decoration Services"
@@ -630,12 +669,12 @@ const Services = () => (
         const Icon = s.icon;
         return (
           <Reveal key={s.title} delay={i * 80}>
-            <div className="group h-full bg-white rounded-2xl p-6 md:p-8 border border-transparent hover:border-[#C9A227] hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-[#7A1F3B]/10 transition-all duration-500 cursor-pointer">
-              <div className="w-14 h-14 rounded-full bg-[#F6E1E8] flex items-center justify-center text-[#7A1F3B] text-xl mb-5 group-hover:bg-[#7A1F3B] group-hover:text-[#C9A227] transition-colors duration-500">
+            <div className="group h-full bg-white rounded-2xl p-6 md:p-8 border border-transparent hover:border-brand-gold hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-brand-primary/10 transition-all duration-500 cursor-pointer">
+              <div className="w-14 h-14 rounded-full bg-brand-champagne flex items-center justify-center text-brand-primary text-xl mb-5 group-hover:bg-brand-primary group-hover:text-brand-gold transition-colors duration-500">
                 <Icon />
               </div>
-              <h3 className="nfd-display text-lg md:text-xl text-[#2B0E1A] mb-2">{s.title}</h3>
-              <p className="text-xs md:text-sm text-[#2B0E1A]/60 leading-relaxed">{s.desc}</p>
+              <h3 className="nfd-display text-lg md:text-xl text-brand-ink mb-2">{s.title}</h3>
+              <p className="text-xs md:text-sm text-brand-ink/60 leading-relaxed">{s.desc}</p>
             </div>
           </Reveal>
         );
@@ -648,7 +687,7 @@ const Services = () => (
    FEATURED PROJECTS (masonry)
    ============================================================ */
 const Projects = () => (
-  <section id="projects" className="py-12 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
+  <section id="projects" className="py-12 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
     <SectionHeading eyebrow="Portfolio" title="Featured Projects" subtitle="A glimpse into celebrations we've brought to life." />
     <div className="max-w-6xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
       {PROJECTS.map((p, i) => (
@@ -659,8 +698,8 @@ const Projects = () => (
               alt={p.title}
               className="w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2B0E1A]/90 via-[#2B0E1A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
-              <span className="text-[#C9A227] text-xs uppercase tracking-widest mb-1">{p.cat}</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
+              <span className="text-brand-gold text-xs uppercase tracking-widest mb-1">{p.cat}</span>
               <h3 className="nfd-display text-white text-lg mb-0">{p.title}</h3>
            
             </div>
@@ -672,14 +711,14 @@ const Projects = () => (
 {/* Video Reels — YouTube Shorts */}
     <Reveal className="max-w-6xl mx-auto mt-10 md:mt-20">
       <div className="text-center mb-8 md:mb-10">
-        <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#7A1F3B] mb-2">Watch Our Work</p>
-        <h3 className="nfd-display text-2xl md:text-3xl text-[#2B0E1A]">Event Highlights</h3>
+        <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-primary mb-2">Watch Our Work</p>
+        <h3 className="nfd-display text-2xl md:text-3xl text-brand-ink">Event Highlights</h3>
       </div>
  
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
         {PROJECT_VIDEOS.map((v, i) => (
           <Reveal key={v.title} delay={i * 90}>
-            <div className="group relative rounded-2xl overflow-hidden border border-[#535353] shadow-sm hover:shadow-xl hover:shadow-[#7A1F3B]/15 hover:-translate-y-1.5 transition-all duration-500 bg-black">
+            <div className="group relative rounded-2xl overflow-hidden border border-brand-muted-dark shadow-sm hover:shadow-xl hover:shadow-brand-primary/15 hover:-translate-y-1.5 transition-all duration-500 bg-black">
               <div className="relative w-full aspect-[9/16]">
                 <iframe
                   src={getYouTubeEmbedUrl(v.url)}
@@ -706,9 +745,9 @@ const Projects = () => (
    WHY CHOOSE US
    ============================================================ */
 const WhyChooseUs = () => (
-  <section className="py-14 md:py-25 px-5 md:px-8 bg-[#4A1027] relative overflow-hidden">
-    <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#7A1F3B]/40 blur-3xl" />
-    <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#7A1F3B]/40 blur-3xl" />
+  <section className="py-14 md:py-25 px-5 md:px-8 bg-brand-deep relative overflow-hidden">
+    <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-primary/40 blur-3xl" />
+    <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-brand-primary/40 blur-3xl" />
     <div className="relative">
       <SectionHeading eyebrow="Why Us" title="Why Choose Us" light />
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
@@ -717,11 +756,11 @@ const WhyChooseUs = () => (
           return (
             <Reveal key={w.title} delay={i * 100}>
               <div className="h-full bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 text-center hover:bg-white/10 transition-colors duration-500">
-                <div className="w-14 h-14 mx-auto rounded-full bg-[#C9A227]/15 flex items-center justify-center text-[#C9A227] text-xl mb-5">
+                <div className="w-14 h-14 mx-auto rounded-full bg-brand-gold/15 flex items-center justify-center text-brand-gold text-xl mb-5">
                   <Icon />
                 </div>
                 <h3 className="nfd-display text-white text-base md:text-lg mb-2">{w.title}</h3>
-                <p className="text-[#F6E1E8]/60 text-xs md:text-sm">{w.desc}</p>
+                <p className="text-brand-champagne/60 text-xs md:text-sm">{w.desc}</p>
               </div>
             </Reveal>
           );
@@ -735,7 +774,7 @@ const WhyChooseUs = () => (
    COURSES
    ============================================================ */
 const Courses = () => (
-  <section id="courses" className="py-16 md:py-22 px-5 md:px-8 bg-[#FDF6F0]">
+  <section id="courses" className="py-16 md:py-22 px-5 md:px-8 bg-brand-cream">
     <SectionHeading eyebrow="Learn With Us" title="Our Courses" subtitle="Turn your passion for decoration into a career." />
  <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-7">
   {COURSES.map((c, i) => (
@@ -750,9 +789,9 @@ const Courses = () => (
     bg-white/90
     backdrop-blur-xl
     border border-white/60
-    shadow-xl shadow-[#7A1F3B]/10
+    shadow-xl shadow-brand-primary/10
     hover:-translate-y-3
-    hover:shadow-[0_25px_60px_rgba(122,31,59,0.18)]
+    hover:shadow-[0_25px_60px_var(--brand-primary-tint)]
     transition-all
     duration-500
     before:absolute
@@ -761,7 +800,7 @@ const Courses = () => (
     before:bg-gradient-to-br
     before:from-white/30
     before:via-transparent
-    before:to-[#C9A227]/5
+    before:to-brand-gold/5
     before:pointer-events-none
   "
 >
@@ -813,16 +852,16 @@ const Courses = () => (
   className="
     text-2xl
     font-semibold
-    text-[#2B0E1A]
+    text-brand-ink
     transition
     duration-300
-    group-hover:text-[#7A1F3B]
+    group-hover:text-brand-primary
   "
 >
   {c.title}
 </h3>
 
-          <p className="mt-3 text-[15px] leading-7 text-[#2B0E1A]/65 min-h-[90px]">
+          <p className="mt-3 text-[15px] leading-7 text-brand-ink/65 min-h-[90px]">
 
             {c.desc}
 
@@ -838,13 +877,13 @@ const Courses = () => (
     items-center
     gap-3
     text-sm
-    text-[#2B0E1A]/75
+    text-brand-ink/75
     transition
     duration-300
     group-hover:translate-x-1
   "
 >
-                <FaCheckCircle className="text-[#7A1F3B] shrink-0" />
+                <FaCheckCircle className="text-brand-primary shrink-0" />
 
                 {f}
               </li>
@@ -855,13 +894,13 @@ const Courses = () => (
 
             <div>
 
-              <p className="text-xs uppercase tracking-widest text-[#2B0E1A]/50">
+              <p className="text-xs uppercase tracking-widest text-brand-ink/50">
 
                 Starting From
 
               </p>
 
-            <h4 className="text-2xl sm:text-3xl font-bold text-[#7A1F3B] tracking-tight">
+            <h4 className="text-2xl sm:text-3xl font-bold text-brand-primary tracking-tight">
   {c.price}
 </h4>
 
@@ -874,7 +913,7 @@ to={`/course/${c.slug}`}
     relative
     overflow-hidden
     rounded-full
-    bg-[#7A1F3B]
+    bg-brand-primary
     sm:px-5
     px-4
     py-2
@@ -885,7 +924,7 @@ to={`/course/${c.slug}`}
     duration-500
     hover:scale-105
    
-    hover:bg-[#5d1730]
+    hover:bg-brand-primary-soft
     shadow-lg
   "
 >
@@ -917,22 +956,22 @@ to={`/course/${c.slug}`}
    PROCESS TIMELINE
    ============================================================ */
 const Process = () => (
-  <section className="py-14 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
+  <section className="py-14 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
     <SectionHeading eyebrow="How It Works" title="Our Process" />
     <div className="max-w-6xl mx-auto relative">
-      <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-[#7A1F3B]/15" />
+      <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-brand-primary/15" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
         {PROCESS.map((p, i) => {
           const Icon = p.icon;
           return (
             <Reveal key={p.title} delay={i * 120}>
               <div className="flex flex-col items-center text-center relative">
-                <div className="w-16 h-16 rounded-full bg-[#7A1F3B] text-[#C9A227] flex items-center justify-center text-xl relative z-10 shadow-lg shadow-[#7A1F3B]/30">
+                <div className="w-16 h-16 rounded-full bg-brand-primary text-brand-gold flex items-center justify-center text-xl relative z-10 shadow-lg shadow-brand-primary/30">
                   <Icon />
                 </div>
-                <span className="mt-4 text-[12px] tracking-widest uppercase text-[#7A1F3B]/50">Step {i + 1}</span>
-                <h3 className="nfd-display text-[20px] text-[#2B0E1A] mt-1 mb-2">{p.title}</h3>
-                <p className="text-[15px] text-[#2B0E1A]/60 max-w-[180px]">{p.desc}</p>
+                <span className="mt-4 text-[12px] tracking-widest uppercase text-brand-primary/50">Step {i + 1}</span>
+                <h3 className="nfd-display text-[20px] text-brand-ink mt-1 mb-2">{p.title}</h3>
+                <p className="text-[15px] text-brand-ink/60 max-w-[180px]">{p.desc}</p>
               </div>
             </Reveal>
           );
@@ -957,37 +996,37 @@ const Testimonials = () => {
   const next = () => setActive((a) => (a + 1) % GOOGLE_REVIEWS.length);
 
   return (
-    <section id="testimonials" className="py-14 md:py-18 px-5 md:px-8 bg-[#FDF6F0]">
+    <section id="testimonials" className="py-14 md:py-18 px-5 md:px-8 bg-brand-cream">
       <SectionHeading eyebrow="Kind Words" title="Client Stories" subtitle="Real celebrations, real feedback." />
 
 
 
       {/* Google reviews slider */}
       <Reveal className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-lg shadow-[#7A1F3B]/10 p-8 md:p-10 relative">
-          <FaQuoteLeft className="text-[#F6E1E8] text-4xl absolute top-6 left-6" />
+        <div className="bg-white rounded-3xl shadow-lg shadow-brand-primary/10 p-8 md:p-10 relative">
+          <FaQuoteLeft className="text-brand-champagne text-4xl absolute top-6 left-6" />
           <div className="relative text-center min-h-[170px] flex flex-col items-center justify-center">
             <img
               src={GOOGLE_REVIEWS[active].avatar}
               alt={GOOGLE_REVIEWS[active].name}
-              className="w-14 h-14 rounded-full object-cover mb-4 border-2 border-[#C9A227]"
+              className="w-14 h-14 rounded-full object-cover mb-4 border-2 border-brand-gold"
             />
-            <div className="flex gap-1 text-[#C9A227] text-sm mb-3">
+            <div className="flex gap-1 text-brand-gold text-sm mb-3">
               {Array.from({ length: GOOGLE_REVIEWS[active].rating }).map((_, i) => (
                 <FaStar key={i} />
               ))}
             </div>
-            <p className="text-sm md:text-base text-[#2B0E1A]/75 max-w-lg mb-4 transition-all duration-500">
+            <p className="text-sm md:text-base text-brand-ink/75 max-w-lg mb-4 transition-all duration-500">
               "{GOOGLE_REVIEWS[active].text}"
             </p>
-            <p className="nfd-display text-[#7A1F3B]">{GOOGLE_REVIEWS[active].name}</p>
-            <span className="flex items-center gap-1 text-[10px] text-[#2B0E1A]/40 mt-1">
+            <p className="nfd-display text-brand-primary">{GOOGLE_REVIEWS[active].name}</p>
+            <span className="flex items-center gap-1 text-[10px] text-brand-ink/40 mt-1">
               <FaGoogle /> Google Review
             </span>
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-6">
-            <button onClick={prev} aria-label="Previous review" className="w-9 h-9 rounded-full border border-[#7A1F3B]/20 flex items-center justify-center text-[#7A1F3B] hover:bg-[#7A1F3B] hover:text-white transition-colors duration-300">
+            <button onClick={prev} aria-label="Previous review" className="w-9 h-9 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition-colors duration-300">
               <FaChevronLeft className="text-xs" />
             </button>
             <div className="flex gap-2">
@@ -997,12 +1036,12 @@ const Testimonials = () => {
                   onClick={() => setActive(i)}
                   aria-label={`Go to review ${i + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === active ? "w-6 bg-[#C9A227]" : "w-2 bg-[#7A1F3B]/20"
+                    i === active ? "w-6 bg-brand-gold" : "w-2 bg-brand-primary/20"
                   }`}
                 />
               ))}
             </div>
-            <button onClick={next} aria-label="Next review" className="w-9 h-9 rounded-full border border-[#7A1F3B]/20 flex items-center justify-center text-[#7A1F3B] hover:bg-[#7A1F3B] hover:text-white transition-colors duration-300">
+            <button onClick={next} aria-label="Next review" className="w-9 h-9 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition-colors duration-300">
               <FaChevronRight className="text-xs" />
             </button>
           </div>
@@ -1019,14 +1058,14 @@ const StatItem = ({ icon: Icon, end, suffix, label, start }) => {
   const count = useCounter(end, start);
   return (
     <div className="text-center">
-      <div className="w-14 h-14 mx-auto rounded-full bg-white/10 flex items-center justify-center text-[#C9A227] text-xl mb-4">
+      <div className="w-14 h-14 mx-auto rounded-full bg-white/10 flex items-center justify-center text-brand-gold text-xl mb-4">
         <Icon />
       </div>
       <p className="nfd-display text-3xl md:text-4xl text-white">
         {count}
         {suffix}
       </p>
-      <p className="text-[#F6E1E8]/60 text-xs md:text-sm mt-1 uppercase tracking-wider">{label}</p>
+      <p className="text-brand-champagne/60 text-xs md:text-sm mt-1 uppercase tracking-wider">{label}</p>
     </div>
   );
 };
@@ -1034,7 +1073,7 @@ const StatItem = ({ icon: Icon, end, suffix, label, start }) => {
 const Numbers = () => {
   const [ref, visible] = useReveal(0.3);
   return (
-    <section ref={ref} className="py-15 md:py-22 px-5 md:px-8 bg-[#7A1F3B]">
+    <section ref={ref} className="py-15 md:py-22 px-5 md:px-8 bg-brand-primary">
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
         {NUMBERS.map((n) => (
           <StatItem key={n.label} {...n} start={visible} />
@@ -1048,7 +1087,7 @@ const Numbers = () => {
    INSTAGRAM GALLERY
    ============================================================ */
 const InstagramGallery = () => (
-  <section className="py-18 md:py-20 px-5  md:px-8 bg-[#FDF6F0]">
+  <section className="py-18 md:py-20 px-5  md:px-8 bg-brand-cream">
     <SectionHeading  eyebrow="@newflowerdecoration" title="From Our Instagram" subtitle="Latest décor moments, straight from the field." />
 <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
   {INSTAGRAM_POSTS.map((post, i) => (
@@ -1065,7 +1104,7 @@ const InstagramGallery = () => (
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
 
-        <div className="absolute inset-0 bg-[#7A1F3B]/0 group-hover:bg-[#7A1F3B]/50 transition-colors duration-400 flex items-center justify-center">
+        <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/50 transition-colors duration-400 flex items-center justify-center">
           <FaInstagram className="text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
         </div>
       </a>
@@ -1077,7 +1116,7 @@ const InstagramGallery = () => (
         href="https://instagram.com/New.flower.decor.gadarwara"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-5 sm:px-7 py-3 rounded-full border border-[#7A1F3B]/30 text-[#7A1F3B] text-sm font-medium hover:bg-[#7A1F3B] hover:text-white transition-colors duration-300"
+        className="inline-flex items-center gap-2 px-5 sm:px-7 py-3 rounded-full border border-brand-primary/30 text-brand-primary text-sm font-medium hover:bg-brand-primary hover:text-white transition-colors duration-300"
       >
         <FaInstagram />@New.flower.decor.gadarwara
       </a>
@@ -1091,14 +1130,14 @@ const InstagramGallery = () => (
 const FaqItem = ({ faq, isOpen, onClick }) => {
   const contentRef = useRef(null);
   return (
-    <div className="border-b border-[#7A1F3B]/15">
+    <div className="border-b border-brand-primary/15">
       <button
         onClick={onClick}
         className="w-full flex items-center justify-between gap-4 py-5 text-left"
       >
-        <span className="nfd-display text-base md:text-lg text-[#2B0E1A]">{faq.q}</span>
+        <span className="nfd-display text-base md:text-lg text-brand-ink">{faq.q}</span>
         <FaChevronDown
-          className={`text-[#7A1F3B] shrink-0 transition-transform duration-400 ${isOpen ? "rotate-180" : ""}`}
+          className={`text-brand-primary shrink-0 transition-transform duration-400 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       <div
@@ -1106,7 +1145,7 @@ const FaqItem = ({ faq, isOpen, onClick }) => {
         style={{ maxHeight: isOpen ? contentRef.current?.scrollHeight + "px" : "0px" }}
         className="overflow-hidden transition-all duration-500 ease-in-out"
       >
-        <p className="text-sm text-[#2B0E1A]/60 pb-5 pr-8">{faq.a}</p>
+        <p className="text-sm text-brand-ink/60 pb-5 pr-8">{faq.a}</p>
       </div>
     </div>
   );
@@ -1115,7 +1154,7 @@ const FaqItem = ({ faq, isOpen, onClick }) => {
 const FAQ = () => {
   const [open, setOpen] = useState(0);
   return (
-    <section className="py-14 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
+    <section className="py-14 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
       <SectionHeading eyebrow="FAQ" title="Common Questions" />
       <Reveal className="max-w-2xl mx-auto bg-white rounded-2xl p-6 md:p-10 shadow-sm">
         {FAQS.map((f, i) => (
@@ -1130,25 +1169,25 @@ const FAQ = () => {
    CTA
    ============================================================ */
 const CTA = () => (
-  <section className="relative py-14 md:py-24 px-5 md:px-8 bg-[#4A1027] overflow-hidden">
-    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,#C9A227,transparent_45%),radial-gradient(circle_at_80%_80%,#C9A227,transparent_45%)]" />
+  <section className="relative py-14 md:py-24 px-5 md:px-8 bg-brand-deep overflow-hidden">
+    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,var(--color-brand-gold),transparent_45%),radial-gradient(circle_at_80%_80%,var(--color-brand-gold),transparent_45%)]" />
     <Reveal className="relative max-w-3xl mx-auto text-center">
       <FloralDivider />
       <h2 className="nfd-display text-3xl md:text-5xl text-white mt-4 mb-4">
-        Need Decoration for Your <span className="italic text-[#C9A227]">Special Day?</span>
+        Need Decoration for Your <span className="italic text-brand-gold">Special Day?</span>
       </h2>
-      <p className="text-[#F6E1E8]/70 text-sm md:text-base mb-8 max-w-xl mx-auto">
+      <p className="text-brand-champagne/70 text-sm md:text-base mb-8 max-w-xl mx-auto">
         Book a free consultation with our design team and let's bring your vision to life.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link
          to={"book-decoration"}
-          className="px-8 py-3.5 rounded-full bg-[#C9A227] text-[#2B0E1A] font-semibold hover:bg-[#e8c860] hover:-translate-y-0.5 transition-all duration-300"
+          className="px-8 py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300"
         >
           Book Consultation
         </Link>
-        <a href="tel:+911234567890" className="flex items-center gap-2 text-[#F6E1E8] text-sm">
-          <FaPhoneAlt className="text-[#C9A227]" /> +91 62626 46491
+        <a href="tel:+911234567890" className="flex items-center gap-2 text-brand-champagne text-sm">
+          <FaPhoneAlt className="text-brand-gold" /> +91 62626 46491
         </a>
       </div>
     </Reveal>
@@ -1188,16 +1227,13 @@ export const Footer = () => {
 const goToSection = useScrollToSection()
 
     return (
-  <footer id="contact" className="bg-[#2B0E1A] text-[#F6E1E8] pt-14 md:pt-20 pb-8 px-5 md:px-8">
+  <footer id="contact" className="bg-brand-ink text-brand-champagne pt-14 md:pt-20 pb-8 px-5 md:px-8">
     <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-8 mb-12">
       <div>
-        <div className="flex items-center gap-2 mb-4">
-          <GiFlowerPot className="text-[#C9A227] text-2xl" />
-          <span className="nfd-display text-xl">
-            New Flower <span className="italic text-[#C9A227]">Decoration</span>
-          </span>
+        <div className="mb-5">
+          <BrandLogo className="h-14 md:h-16" />
         </div>
-        <p className="text-sm text-[#F6E1E8]/60 mb-5 leading-relaxed">
+        <p className="text-sm text-brand-champagne/60 mb-5 leading-relaxed">
           Crafting elegant, memorable décor for weddings, birthdays & corporate events since 2020.
         </p>
    <div className="flex gap-3">
@@ -1207,7 +1243,7 @@ const goToSection = useScrollToSection()
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-9 h-9 rounded-full border border-[#F6E1E8]/20 flex items-center justify-center hover:bg-[#C9A227] hover:text-[#2B0E1A] hover:border-[#C9A227] transition-colors duration-300"
+      className="w-9 h-9 rounded-full border border-brand-champagne/20 flex items-center justify-center hover:bg-brand-gold hover:text-brand-ink hover:border-brand-gold transition-colors duration-300"
     >
       <Icon className="text-sm" />
     </a>
@@ -1217,12 +1253,12 @@ const goToSection = useScrollToSection()
 
       <div>
         <h4 className="nfd-display text-lg mb-4">Quick Links</h4>
-<ul className="space-y-2 text-sm text-[#F6E1E8]/60">
+<ul className="space-y-2 text-sm text-brand-champagne/60">
   {NAV_LINKS.map((l) => (
     <li key={l.label}>
       <button
         onClick={() => goToSection(l.id)}
-        className="hover:text-[#C9A227] transition-colors duration-300"
+        className="hover:text-brand-gold transition-colors duration-300"
       >
         {l.label}
       </button>
@@ -1233,9 +1269,9 @@ const goToSection = useScrollToSection()
 
       <div>
         <h4 className="nfd-display text-lg mb-4">Services</h4>
-        <ul className="space-y-2 text-sm text-[#F6E1E8]/60">
+        <ul className="space-y-2 text-sm text-brand-champagne/60">
           {SERVICES.slice(0, 6).map((s) => (
-            <li key={s.title} className="hover:text-[#C9A227] transition-colors duration-300 cursor-pointer">
+            <li key={s.title} className="hover:text-brand-gold transition-colors duration-300 cursor-pointer">
               {s.title}
             </li>
           ))}
@@ -1244,15 +1280,15 @@ const goToSection = useScrollToSection()
 
       <div>
         <h4 className="nfd-display text-lg mb-4">Contact</h4>
-        <ul className="space-y-3 text-sm text-[#F6E1E8]/60 mb-5">
+        <ul className="space-y-3 text-sm text-brand-champagne/60 mb-5">
           <li className="flex items-start gap-2">
-            <FaMapMarkerAlt className="text-[#C9A227] mt-1 shrink-0" /> Niranjan Ward, Gadarwara 487551
+            <FaMapMarkerAlt className="text-brand-gold mt-1 shrink-0" /> Niranjan Ward, Gadarwara 487551
           </li>
           <li className="flex items-center gap-2">
-            <FaPhoneAlt className="text-[#C9A227]" /> +91 62626 46491
+            <FaPhoneAlt className="text-brand-gold" /> +91 62626 46491
           </li>
           <li className="flex items-center gap-2">
-            <FaEnvelope className="text-[#C9A227]" /> hello@newflowerdecoration.com
+            <FaEnvelope className="text-brand-gold" /> hello@newflowerdecoration.com
           </li>
         </ul>
       <div className="rounded-xl overflow-hidden h-32 border border-white/10">
@@ -1266,9 +1302,9 @@ const goToSection = useScrollToSection()
       </div>
     </div>
 
-    <div className="max-w-7xl mx-auto border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#F6E1E8]/40">
+    <div className="max-w-7xl mx-auto border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-champagne/40">
       <p>© {new Date().getFullYear()} New Flower Decoration. All rights reserved.</p>
-      <p>Designed with <span className="text-[#C9A227]">♥</span> for beautiful celebrations.</p>
+      <p>Designed with <span className="text-brand-gold">♥</span> for beautiful celebrations.</p>
     </div>
   </footer>
      );
@@ -1348,31 +1384,31 @@ useEffect(() => {
         transition={{ duration: 0.35 }}
         className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       >
-        <div  onClick={(e) => e.stopPropagation()} className="relative w-full max-w-sm rounded-3xl bg-[#FFF8F5] border border-[#7A1F3B]/10 shadow-[0_20px_60px_rgba(0,0,0,.25)] p-7">
+        <div  onClick={(e) => e.stopPropagation()} className="relative w-full max-w-sm rounded-3xl bg-brand-cream-light border border-brand-primary/10 shadow-[0_20px_60px_var(--brand-shadow-soft)] p-7">
 
           {/* Close */}
           <button
             onClick={() => setShowBatchPopup(false)}
-            className="absolute top-4 right-4 h-8 cursor-pointer w-8 rounded-full bg-[#F6ECEF] hover:bg-[#7A1F3B] hover:text-white transition"
+            className="absolute top-4 right-4 h-8 cursor-pointer w-8 rounded-full bg-brand-champagne-soft hover:bg-brand-primary hover:text-white transition"
           >
             ✕
           </button>
 
           {/* Badge */}
-          <div className="mx-auto mb-4 w-fit rounded-full bg-[#7A1F3B]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#7A1F3B]">
+          <div className="mx-auto mb-4 w-fit rounded-full bg-brand-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-primary">
             New Batch
           </div>
 
           {/* Heading */}
-          <h2 className="text-center text-2xl font-bold text-[#2B0E1A]">
+          <h2 className="text-center text-2xl font-bold text-brand-ink">
             Now Enrolling
           </h2>
 
           {/* Text */}
-          <p className="mt-3 text-center text-sm leading-6 text-[#6B5A61]">
+          <p className="mt-3 text-center text-sm leading-6 text-brand-muted">
             Join our professional decoration training.
             <br />
-            <span className="font-semibold text-[#7A1F3B]">
+            <span className="font-semibold text-brand-primary">
               Batch starts on 30 August 2026.
             </span>
           </p>
@@ -1386,7 +1422,7 @@ useEffect(() => {
             
               // form open karo
             }}
-            className="mt-6 w-full cursor-pointer rounded-full bg-[#7A1F3B] py-3 text-white font-medium hover:bg-[#621831] transition"
+            className="mt-6 w-full cursor-pointer rounded-full bg-brand-primary py-3 text-white font-medium hover:bg-brand-primary-soft transition"
           >
             Apply Now
           </button>

@@ -30,23 +30,23 @@ const COURSE_HIGHLIGHTS = [
 ];
 
 const CourseHighlights = () => (
-  <section className="py-12 md:py-18 px-5 md:px-8 bg-[#FDF6F0]">
+  <section className="py-12 md:py-18 px-5 md:px-8 bg-brand-cream">
     <Reveal>
       <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
 
-        <p className="text-xs uppercase tracking-[0.35em] text-[#7A1F3B] mb-3">
+        <p className="text-xs uppercase tracking-[0.35em] text-brand-primary mb-3">
           COURSE HIGHLIGHTS
         </p>
 
-        <h2 className="nfd-display text-3xl md:text-5xl text-[#2B0E1A]">
+        <h2 className="nfd-display text-3xl md:text-5xl text-brand-ink">
           Everything You Need
           <br />
-          <span className="italic text-[#C9A227]">
+          <span className="italic text-brand-gold">
             To Start Your Journey
           </span>
         </h2>
 
-        <p className="mt-5 text-[#2B0E1A]/65 leading-7">
+        <p className="mt-5 text-brand-ink/65 leading-7">
           Learn professional event decoration through structured
           online & offline training designed for beginners as well
           as experienced decorators.
@@ -64,19 +64,19 @@ const CourseHighlights = () => (
         return (
           <Reveal key={item.title} delay={index * 100}>
 
-            <div className="group h-full bg-white rounded-3xl border border-[#F6E1E8] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-[#C9A227] hover:shadow-xl hover:shadow-[#7A1F3B]/10">
+            <div className="group h-full bg-white rounded-3xl border border-brand-champagne p-7 transition-all duration-500 hover:-translate-y-2 hover:border-brand-gold hover:shadow-xl hover:shadow-brand-primary/10">
 
-              <div className="w-16 h-16 rounded-full bg-[#F6E1E8] flex items-center justify-center text-[#7A1F3B] mb-6 transition-all duration-500 group-hover:bg-[#7A1F3B] group-hover:text-[#C9A227]">
+              <div className="w-16 h-16 rounded-full bg-brand-champagne flex items-center justify-center text-brand-primary mb-6 transition-all duration-500 group-hover:bg-brand-primary group-hover:text-brand-gold">
 
                 <Icon size={28} />
 
               </div>
 
-              <h3 className="nfd-display text-xl text-[#2B0E1A] mb-3">
+              <h3 className="nfd-display text-xl text-brand-ink mb-3">
                 {item.title}
               </h3>
 
-              <p className="text-sm leading-7 text-[#2B0E1A]/60">
+              <p className="text-sm leading-7 text-brand-ink/60">
                 {item.desc}
               </p>
 

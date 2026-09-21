@@ -21,7 +21,7 @@ import {
   FaQuoteLeft,
 } from "react-icons/fa";
 import { GiFlowerPot } from "react-icons/gi";
-import { GlobalStyles, FloralDivider, Navbar, Footer, Loader } from "./Home";
+import { GlobalStyles, FloralDivider, Navbar, Footer, Loader, BrandLogo } from "./Home";
 import Reveal from "../components/Reveal";
 /* ============================================================
    CourseView — single course detail page
@@ -238,7 +238,7 @@ const PremiumVideoPlayer = ({ src, poster }) => {
   }, []);
 
   return (
-    <div className="relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl shadow-[#7A1F3B]/25 ring-1 ring-[#C9A227]/30 group">
+    <div className="relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl shadow-brand-primary/25 ring-1 ring-brand-gold/30 group">
       <video
         ref={videoRef}
         src={src}
@@ -253,7 +253,7 @@ const PremiumVideoPlayer = ({ src, poster }) => {
       />
 
       {/* Corner badge */}
-      <span className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-1 rounded-full bg-[#C9A227] text-[#2B0E1A] text-[10px] sm:text-xs font-semibold tracking-wide z-10">
+      <span className="absolute top-3 left-3 sm:top-4 sm:left-4 px-3 py-1 rounded-full bg-brand-gold text-brand-ink text-[10px] sm:text-xs font-semibold tracking-wide z-10">
         Course Preview
       </span>
 
@@ -266,7 +266,7 @@ const PremiumVideoPlayer = ({ src, poster }) => {
         }`}
       >
         <span className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
-        <span className="relative w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-[#C9A227]/95 text-[#2B0E1A] flex items-center justify-center text-2xl sm:text-3xl nfd-pulse hover:scale-105 transition-transform duration-300">
+        <span className="relative w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-brand-gold/95 text-brand-ink flex items-center justify-center text-2xl sm:text-3xl nfd-pulse hover:scale-105 transition-transform duration-300">
           {playing ? <FaPause /> : <FaPlay className="ml-1" />}
         </span>
       </button>
@@ -279,28 +279,28 @@ const PremiumVideoPlayer = ({ src, poster }) => {
           className="relative w-full h-1.5 sm:h-2 rounded-full bg-white/25 cursor-pointer mb-3 group/bar"
         >
           <div
-            className="absolute top-0 left-0 h-full rounded-full bg-[#C9A227] transition-[width] duration-100"
+            className="absolute top-0 left-0 h-full rounded-full bg-brand-gold transition-[width] duration-100"
             style={{ width: `${progress}%` }}
           />
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#C9A227] shadow opacity-0 group-hover/bar:opacity-100 transition-opacity"
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-brand-gold shadow opacity-0 group-hover/bar:opacity-100 transition-opacity"
             style={{ left: `calc(${progress}% - 6px)` }}
           />
         </div>
 
         <div className="flex items-center justify-between text-white">
           <div className="flex items-center gap-3 sm:gap-4">
-            <button onClick={togglePlay} aria-label="Toggle play" className="text-sm sm:text-base hover:text-[#C9A227] transition-colors">
+            <button onClick={togglePlay} aria-label="Toggle play" className="text-sm sm:text-base hover:text-brand-gold transition-colors">
               {playing ? <FaPause /> : <FaPlay />}
             </button>
-            <button onClick={toggleMute} aria-label="Toggle mute" className="text-sm sm:text-base hover:text-[#C9A227] transition-colors">
+            <button onClick={toggleMute} aria-label="Toggle mute" className="text-sm sm:text-base hover:text-brand-gold transition-colors">
               {muted ? <FaVolumeMute /> : <FaVolumeUp />}
             </button>
             <span className="text-[10px] sm:text-xs text-white/70 tabular-nums">
               {formatTime(current)} / {formatTime(duration)}
             </span>
           </div>
-          <button onClick={toggleFullscreen} aria-label="Fullscreen" className="text-sm sm:text-base hover:text-[#C9A227] transition-colors">
+          <button onClick={toggleFullscreen} aria-label="Fullscreen" className="text-sm sm:text-base hover:text-brand-gold transition-colors">
             <FaExpand />
           </button>
         </div>
@@ -357,18 +357,18 @@ export default function CourseView() {
           className="absolute inset-0 bg-cover bg-center scale-105"
           style={{ backgroundImage: `url(${course.img})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2B0E1A]/90 via-[#4A1027]/88 to-[#2B0E1A]/95" />
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_15%_20%,#C9A227,transparent_45%),radial-gradient(circle_at_85%_80%,#C9A227,transparent_45%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/90 via-brand-deep/88 to-brand-ink/95" />
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_15%_20%,var(--color-brand-gold),transparent_45%),radial-gradient(circle_at_85%_80%,var(--color-brand-gold),transparent_45%)]" />
 
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Breadcrumb */}
 
 
           <div className="flex items-center justify-center gap-3 mb-5">
-            <span className="px-4 py-1.5 rounded-full bg-[#C9A227] text-[#2B0E1A] text-xs font-semibold">
+            <span className="px-4 py-1.5 rounded-full bg-brand-gold text-brand-ink text-xs font-semibold">
               {course.badge}
             </span>
-            <span className="px-4 py-1.5 rounded-full border border-[#F6E1E8]/30 text-[#F6E1E8]/80 text-xs">
+            <span className="px-4 py-1.5 rounded-full border border-brand-champagne/30 text-brand-champagne/80 text-xs">
               {course.type}
             </span>
           </div>
@@ -376,32 +376,32 @@ export default function CourseView() {
           <h1 className="nfd-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
             {course.title}
           </h1>
-          <p className="nfd-display italic text-[#C9A227] text-base md:text-lg mb-4">{detail.tagline}</p>
-          <p className="text-[#F6E1E8]/75 text-sm md:text-base max-w-2xl mx-auto mb-8">{course.desc}</p>
+          <p className="nfd-display italic text-brand-gold text-base md:text-lg mb-4">{detail.tagline}</p>
+          <p className="text-brand-champagne/75 text-sm md:text-base max-w-2xl mx-auto mb-8">{course.desc}</p>
 
           {/* Quick stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-9 text-[#F6E1E8]/85 text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-9 text-brand-champagne/85 text-xs sm:text-sm">
             <span className="flex items-center gap-1.5">
-              <FaStar className="text-[#C9A227]" /> {detail.stats.rating} Rating
+              <FaStar className="text-brand-gold" /> {detail.stats.rating} Rating
             </span>
             <span className="flex items-center gap-1.5">
-              <FaUsers className="text-[#C9A227]" /> {detail.stats.students} Students
+              <FaUsers className="text-brand-gold" /> {detail.stats.students} Students
             </span>
             <span className="flex items-center gap-1.5">
-              <FaClock className="text-[#C9A227]" /> {detail.stats.duration}
+              <FaClock className="text-brand-gold" /> {detail.stats.duration}
             </span>
             <span className="flex items-center gap-1.5">
-              <FaLanguage className="text-[#C9A227]" /> {detail.stats.language}
+              <FaLanguage className="text-brand-gold" /> {detail.stats.language}
             </span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <span className="nfd-display text-2xl md:text-3xl text-white">
-              {course.price} <span className="text-xs text-[#F6E1E8]/50 font-sans">onwards</span>
+              {course.price} <span className="text-xs text-brand-champagne/50 font-sans">onwards</span>
             </span>
             <Link
               to={`/enroll-form`}
-              className="group inline-flex items-center gap-2 py-2.5 px-6 sm:px-8 sm:py-3 rounded-full bg-[#C9A227] text-[#2B0E1A] font-semibold hover:bg-[#e8c860] hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
+              className="group inline-flex items-center gap-2 py-2.5 px-6 sm:px-8 sm:py-3 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
             >
               Enroll Now
               <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-1" />
@@ -413,17 +413,17 @@ export default function CourseView() {
       {/* ---------------- Demo Video ---------------- */}
 <section className="relative mt-8 md:mt-14 px-5 md:px-8 pb-12 md:pb-20">
   <Reveal className="max-w-5xl mx-auto">
-    <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#4A1027] via-[#7A1F3B] to-[#2B0E1A] p-8 md:p-14">
+    <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-brand-deep via-brand-primary to-brand-ink p-8 md:p-14">
 
       {/* Glow */}
-      <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#C9A227]/20 blur-3xl" />
+      <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-brand-gold/20 blur-3xl" />
       <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
 
       <div className="relative text-center">
 
         <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-5 py-2 mb-6 backdrop-blur-md">
-          <FaPlay className="text-[#C9A227] text-xs" />
-          <span className="text-xs uppercase tracking-[0.3em] text-[#F6E1E8]/80">
+          <FaPlay className="text-brand-gold text-xs" />
+          <span className="text-xs uppercase tracking-[0.3em] text-brand-champagne/80">
             Free Preview
           </span>
         </div>
@@ -431,12 +431,12 @@ export default function CourseView() {
         <h2 className="nfd-display text-3xl md:text-5xl text-white leading-tight">
           Watch the Official
           <br />
-          <span className="italic text-[#C9A227]">
+          <span className="italic text-brand-gold">
             Demo Lesson
           </span>
         </h2>
 
-        <p className="mt-6 max-w-2xl mx-auto text-[#F6E1E8]/70 leading-8">
+        <p className="mt-6 max-w-2xl mx-auto text-brand-champagne/70 leading-8">
           Experience the teaching style, practical demonstrations and course
           quality before enrolling. Watch the official demo lesson hosted on
           our learning platform.
@@ -446,14 +446,14 @@ export default function CourseView() {
           href="https://tcspsi.courses.store/585464"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-3 mt-10 rounded-full bg-[#C9A227] hover:bg-[#e8c860] text-[#2B0E1A] font-semibold px-8 py-4 transition-all duration-500 hover:-translate-y-1 shadow-2xl shadow-black/30"
+          className="group inline-flex items-center gap-3 mt-10 rounded-full bg-brand-gold hover:bg-brand-gold-light text-brand-ink font-semibold px-8 py-4 transition-all duration-500 hover:-translate-y-1 shadow-2xl shadow-black/30"
         >
           <FaPlay className="text-sm" />
            Demo Video
           <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
         </a>
 
-        <p className="mt-5 text-xs text-[#F6E1E8]/50">
+        <p className="mt-5 text-xs text-brand-champagne/50">
           Opens securely on our official learning platform
         </p>
 
@@ -463,12 +463,12 @@ export default function CourseView() {
 </section>
 
       {/* ---------------- About / Highlights ---------------- */}
-      <section className="py-10 md:py-20 px-5 md:px-8 bg-[#F6E1E8]/40">
+      <section className="py-10 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-start">
           <Reveal>
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#7A1F3B] mb-3">About This Course</p>
-            <h2 className="nfd-display text-2xl md:text-3xl text-[#2B0E1A] mb-4">{course.title}</h2>
-            <p className="text-sm md:text-base text-[#2B0E1A]/65 leading-relaxed mb-6">{detail.longDesc}</p>
+            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-primary mb-3">About This Course</p>
+            <h2 className="nfd-display text-2xl md:text-3xl text-brand-ink mb-4">{course.title}</h2>
+            <p className="text-sm md:text-base text-brand-ink/65 leading-relaxed mb-6">{detail.longDesc}</p>
             <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: FaSignal, label: detail.stats.level },
@@ -476,8 +476,8 @@ export default function CourseView() {
                 { icon: FaChalkboardTeacher, label: detail.stats.lessons },
                 { icon: FaCertificate, label: "Certificate Included" },
               ].map((s) => (
-                <div key={s.label} className="flex items-center gap-2 text-xs sm:text-sm text-[#2B0E1A]/70 bg-white rounded-xl px-3 py-2.5 border border-[#7A1F3B]/10">
-                  <s.icon className="text-[#7A1F3B] shrink-0" /> {s.label}
+                <div key={s.label} className="flex items-center gap-2 text-xs sm:text-sm text-brand-ink/70 bg-white rounded-xl px-3 py-2.5 border border-brand-primary/10">
+                  <s.icon className="text-brand-primary shrink-0" /> {s.label}
                 </div>
               ))}
             </div>
@@ -485,11 +485,11 @@ export default function CourseView() {
 
           <Reveal delay={120}>
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
-              <h3 className="nfd-display text-lg md:text-xl text-[#2B0E1A] mb-5">What You'll Learn</h3>
+              <h3 className="nfd-display text-lg md:text-xl text-brand-ink mb-5">What You'll Learn</h3>
               <ul className="space-y-3.5">
                 {detail.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3 text-sm text-[#2B0E1A]/75">
-                    <FaCheckCircle className="text-[#7A1F3B] mt-0.5 shrink-0" /> {h}
+                  <li key={h} className="flex items-start gap-3 text-sm text-brand-ink/75">
+                    <FaCheckCircle className="text-brand-primary mt-0.5 shrink-0" /> {h}
                   </li>
                 ))}
               </ul>
@@ -499,23 +499,23 @@ export default function CourseView() {
       </section>
 
       {/* ---------------- Curriculum ---------------- */}
-      <section className="py-12 md:py-20 px-5 md:px-8 bg-[#FDF6F0]">
+      <section className="py-12 md:py-20 px-5 md:px-8 bg-brand-cream">
         <div className="max-w-3xl mx-auto">
           <Reveal className="text-center mb-8 sm:mb-12">
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#7A1F3B] mb-3">Curriculum</p>
-            <h2 className="nfd-display text-2xl md:text-4xl text-[#2B0E1A]">What's Inside the Course</h2>
+            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-primary mb-3">Curriculum</p>
+            <h2 className="nfd-display text-2xl md:text-4xl text-brand-ink">What's Inside the Course</h2>
           </Reveal>
 
           <div className="space-y-4">
             {detail.curriculum.map((m, i) => (
               <Reveal key={m.title} delay={i * 90}>
-                <div className="flex items-start gap-4 bg-white rounded-2xl p-5 md:p-6 border border-[#7A1F3B]/10 hover:border-[#C9A227] hover:shadow-md transition-all duration-400">
-                  <span className="w-10 h-10 shrink-0 rounded-full bg-[#7A1F3B] text-[#C9A227] flex items-center justify-center nfd-display text-sm">
+                <div className="flex items-start gap-4 bg-white rounded-2xl p-5 md:p-6 border border-brand-primary/10 hover:border-brand-gold hover:shadow-md transition-all duration-400">
+                  <span className="w-10 h-10 shrink-0 rounded-full bg-brand-primary text-brand-gold flex items-center justify-center nfd-display text-sm">
                     {i + 1}
                   </span>
                   <div>
-                    <h3 className="nfd-display text-base md:text-lg text-[#2B0E1A] mb-1">{m.title}</h3>
-                    <p className="text-xs md:text-sm text-[#2B0E1A]/60">{m.desc}</p>
+                    <h3 className="nfd-display text-base md:text-lg text-brand-ink mb-1">{m.title}</h3>
+                    <p className="text-xs md:text-sm text-brand-ink/60">{m.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -525,20 +525,20 @@ export default function CourseView() {
       </section>
 
       {/* ---------------- CTA ---------------- */}
-      <section className="relative py-12 md:py-20 px-5 md:px-8 bg-[#4A1027] overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,#C9A227,transparent_45%),radial-gradient(circle_at_80%_80%,#C9A227,transparent_45%)]" />
+      <section className="relative py-12 md:py-20 px-5 md:px-8 bg-brand-deep overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,var(--color-brand-gold),transparent_45%),radial-gradient(circle_at_80%_80%,var(--color-brand-gold),transparent_45%)]" />
         <Reveal className="relative max-w-2xl mx-auto text-center">
-          <GiFlowerPot className="text-[#C9A227] text-3xl mx-auto mb-4" />
+          <BrandLogo variant="mark" className="h-14 mx-auto mb-4" />
           <FloralDivider />
           <h2 className="nfd-display text-3xl md:text-4xl text-white mt-4 mb-4">
-            Ready to Master <span className="italic text-[#C9A227]">{course.title.split(" ").slice(0, 3).join(" ")}?</span>
+            Ready to Master <span className="italic text-brand-gold">{course.title.split(" ").slice(0, 3).join(" ")}?</span>
           </h2>
-          <p className="text-[#F6E1E8]/70 text-sm md:text-base mb-8 max-w-md mx-auto">
+          <p className="text-brand-champagne/70 text-sm md:text-base mb-8 max-w-md mx-auto">
             Join {detail.stats.students} students already learning with New Flower Decoration.
           </p>
           <Link
             to={`/enroll-form`}
-            className="inline-flex items-center gap-2 py-3 px-6 sm:px-8 sm:py-3.5 rounded-full bg-[#C9A227] text-[#2B0E1A] font-semibold hover:bg-[#e8c860] hover:-translate-y-0.5 transition-all duration-300"
+            className="inline-flex items-center gap-2 py-3 px-6 sm:px-8 sm:py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300"
           >
             Enroll Now for {course.price} <FaArrowRight className="text-xs" />
           </Link>

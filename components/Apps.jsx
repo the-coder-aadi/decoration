@@ -10,11 +10,11 @@ import {
  
 const AppSection = () => {
   return (
-    <section className="relative py-10 sm:py-16 bg-[#FDF6F0] overflow-hidden">
+    <section className="relative py-10 sm:py-16 bg-brand-cream overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-[#C9A227]/10 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[280px] h-[280px] rounded-full bg-[#7A1F3B]/10 blur-[100px]" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-brand-gold/10 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[280px] h-[280px] rounded-full bg-brand-primary/10 blur-[100px]" />
       </div>
  
       <div className="relative max-w-7xl mx-auto px-6">
@@ -23,21 +23,21 @@ const AppSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="rounded-[36px] bg-white shadow-2xl shadow-[#7A1F3B]/10 overflow-hidden"
+          className="rounded-[36px] bg-white shadow-2xl shadow-brand-primary/10 overflow-hidden"
         >
           <div className="grid lg:grid-cols-2">
             {/* ---------------- LEFT COLUMN ---------------- */}
             <div className="relative p-8 md:p-14">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#FDF6F0] px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#7A1F3B]">
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-cream px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
                 <Smartphone size={15} />
                 Official Student App
               </span>
  
-              <h2 className="mt-6 text-4xl md:text-6xl nfd-display text-[#2B0E1A] leading-tight">
-                Learn <span className="text-[#C9A227] italic">Anytime,</span> Anywhere
+              <h2 className="mt-6 text-4xl md:text-6xl nfd-display text-brand-ink leading-tight">
+                Learn <span className="text-brand-gold italic">Anytime,</span> Anywhere
               </h2>
  
-              <p className="mt-6 text-[#2B0E1A]/70 leading-8">
+              <p className="mt-6 text-brand-ink/70 leading-8">
                 Access all your premium courses, HD videos, assignments and certificates
                 directly from our official learning app.
               </p>
@@ -48,7 +48,7 @@ const AppSection = () => {
                   href="https://play.google.com/store/apps/details?id=co.sansa.nistk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl bg-[#7A1F3B] px-6 py-4 text-white hover:scale-105 transition-all duration-300 shadow-xl"
+                  className="group flex items-center gap-4 rounded-2xl bg-brand-primary px-6 py-4 text-white hover:scale-105 transition-all duration-300 shadow-xl"
                 >
                   <PlayCircle size={26} />
                   <div>
@@ -61,21 +61,21 @@ const AppSection = () => {
                   href="https://apps.apple.com/in/app/myinstitute/id1472483563"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl border-2 border-[#7A1F3B] bg-white px-6 py-4 hover:scale-105 transition-all duration-300"
+                  className="group flex items-center gap-4 rounded-2xl border-2 border-brand-primary bg-white px-6 py-4 hover:scale-105 transition-all duration-300"
                 >
-                  <Apple className="text-[#7A1F3B]" size={26} />
+                  <Apple className="text-brand-primary" size={26} />
                   <div>
-                    <p className="text-xs text-[#2B0E1A]/60">Download on</p>
-                    <h4 className="font-semibold text-[#2B0E1A]">App Store</h4>
+                    <p className="text-xs text-brand-ink/60">Download on</p>
+                    <h4 className="font-semibold text-brand-ink">App Store</h4>
                   </div>
                 </a>
               </div>
  
-              <div className="mt-8 rounded-2xl bg-[#FDF6F0] border border-[#C9A227]/30 p-5">
-                <h4 className="font-semibold text-[#2B0E1A]">Login Instructions</h4>
-                <p className="mt-3 text-[#2B0E1A]/70 leading-7">
+              <div className="mt-8 rounded-2xl bg-brand-cream border border-brand-gold/30 p-5">
+                <h4 className="font-semibold text-brand-ink">Login Instructions</h4>
+                <p className="mt-3 text-brand-ink/70 leading-7">
                   Download the app, enter the organization code{" "}
-                  <span className="font-bold text-[#7A1F3B]">tcspsi</span>, verify your
+                  <span className="font-bold text-brand-primary">tcspsi</span>, verify your
                   mobile number with OTP and start learning instantly.
                 </p>
               </div>
@@ -83,15 +83,15 @@ const AppSection = () => {
             {/* ---------------- END LEFT COLUMN ---------------- */}
  
             {/* ---------------- RIGHT COLUMN ---------------- */}
-            <div className="relative flex items-center justify-center p-6 md:p-14 bg-gradient-to-br from-[#7A1F3B] via-[#5A1730] to-[#2B0E1A] overflow-hidden">
+            <div className="relative flex items-center justify-center p-6 md:p-14 bg-gradient-to-br from-brand-primary via-brand-primary-soft to-brand-ink overflow-hidden">
               {/* Glow */}
-              <div className="absolute w-80 h-80 rounded-full bg-[#C9A227]/20 blur-[120px]" />
+              <div className="absolute w-80 h-80 rounded-full bg-brand-gold/20 blur-[120px]" />
  
               {/* Floating Circles */}
               <motion.div
                 animate={{ y: [-12, 12, -12] }}
                 transition={{ repeat: Infinity, duration: 6 }}
-                className="absolute top-12 left-10 w-5 h-5 rounded-full bg-[#C9A227]"
+                className="absolute top-12 left-10 w-5 h-5 rounded-full bg-brand-gold"
               />
  
               <motion.div
@@ -107,7 +107,7 @@ const AppSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 whileHover={{ y: -10, rotate: -2 }}
-                className="relative z-10 w-[320px] rounded-[42px] border-[10px] border-black bg-black shadow-[0_30px_80px_rgba(0,0,0,.45)] overflow-hidden"
+                className="relative z-10 w-[320px] rounded-[42px] border-[10px] border-black bg-black shadow-[0_30px_80px_var(--brand-shadow-strong)] overflow-hidden"
               >
                 {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-2 rounded-b-3xl bg-white z-20" />
@@ -129,12 +129,12 @@ const AppSection = () => {
                     Organization Code
                   </h3>
                   <div className="mt-3 sm:mt-4 flex items-center justify-between rounded-2xl bg-white/10 px-3 sm:px-5 py-2 sm:py-4">
-                    <span className="text-[#C9A227] font-bold tracking-widest text-xl">
+                    <span className="text-brand-gold font-bold tracking-widest text-xl">
                       tcspsi
                     </span>
                     <button
                       onClick={() => navigator.clipboard.writeText("tcspsi")}
-                      className="rounded-full bg-[#C9A227] px-4 py-2 text-sm font-semibold text-[#2B0E1A] hover:scale-105 transition"
+                      className="rounded-full bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-ink hover:scale-105 transition"
                     >
                       Copy
                     </button>

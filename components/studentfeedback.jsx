@@ -114,13 +114,13 @@ const fullscreen = () => {
 const featuredRef = useRef(null);
 
   return (
-    <section className="relative py-10 md:py-18 bg-[#FDF6F0] overflow-hidden">
+    <section className="relative py-10 md:py-18 bg-brand-cream overflow-hidden">
 
       {/* Background Glow */}
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-[#C9A227]/10 blur-[130px] rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-brand-gold/10 blur-[130px] rounded-full" />
 
-      <div className="absolute -left-32 bottom-0 w-[300px] h-[300px] bg-[#7A1F3B]/10 blur-[100px] rounded-full" />
+      <div className="absolute -left-32 bottom-0 w-[300px] h-[300px] bg-brand-primary/10 blur-[100px] rounded-full" />
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-8">
 
@@ -128,25 +128,25 @@ const featuredRef = useRef(null);
 <Reveal>
         <div className="text-center max-w-3xl mx-auto">
 
-          <span className="inline-flex items-center px-5 py-2 rounded-full bg-white border border-[#F6E1E8] text-[#7A1F3B] uppercase tracking-[0.3em] text-xs">
+          <span className="inline-flex items-center px-5 py-2 rounded-full bg-white border border-brand-champagne text-brand-primary uppercase tracking-[0.3em] text-xs">
 
             Student Success Stories
 
           </span>
 
-          <h2 className="mt-6 nfd-display text-4xl md:text-6xl text-[#2B0E1A] leading-tight">
+          <h2 className="mt-6 nfd-display text-4xl md:text-6xl text-brand-ink leading-tight">
 
             Hear From Our
 
             <br />
 
-            <span className="italic text-[#C9A227]">
+            <span className="italic text-brand-gold">
               Successful Students
             </span>
 
           </h2>
 
-          <p className="mt-5 text-[#2B0E1A]/65 leading-8 max-w-2xl mx-auto">
+          <p className="mt-5 text-brand-ink/65 leading-8 max-w-2xl mx-auto">
 
             Watch how our students transformed their passion into a successful career.
 
@@ -159,14 +159,14 @@ const featuredRef = useRef(null);
 
         <div  ref={featuredRef} className="mt-6 sm:mt-16 grid  lg:grid-cols-[0.9fr_0.6fr] gap-8 sm:gap-10 items-center">
 <Reveal>
-          <div className="group relative  overflow-hidden rounded-[28px] bg-black shadow-2xl shadow-[#7A1F3B]/10">
+          <div className="group relative  overflow-hidden rounded-[28px] bg-black shadow-2xl shadow-brand-primary/10">
 
      <video
   ref={videoRef}
   key={active.video}
   poster={active.poster}
   
- className="w-full max-w-[360px]  mx-auto aspect-[9/16] object-contain bg-[#FDF6F0]"
+ className="w-full max-w-[360px]  mx-auto aspect-[9/16] object-contain bg-brand-cream"
   onTimeUpdate={updateProgress}
   onLoadedMetadata={updateProgress}
   onPlay={() => setPlaying(true)}
@@ -184,7 +184,7 @@ const featuredRef = useRef(null);
     className="w-full h-1.5 bg-white/20 rounded-full cursor-pointer"
   >
     <div
-      className="h-full bg-[#C9A227] rounded-full"
+      className="h-full bg-brand-gold rounded-full"
       style={{ width: `${progress}%` }}
     />
   </div>
@@ -195,7 +195,7 @@ const featuredRef = useRef(null);
 
       <button
         onClick={togglePlay}
-        className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-lg flex items-center justify-center hover:bg-[#C9A227] transition"
+        className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-lg flex items-center justify-center hover:bg-brand-gold transition"
       >
         {playing ? (
           <Pause className="text-white" size={18} />
@@ -250,33 +250,33 @@ const featuredRef = useRef(null);
                 <Star
                   key={i}
                   size={18}
-                  fill="#C9A227"
-                  className="text-[#C9A227]"
+                  fill="var(--color-brand-gold)"
+                  className="text-brand-gold"
                 />
 
               ))}
 
             </div>
 
-            <h3 className="nfd-display text-4xl text-[#2B0E1A]">
+            <h3 className="nfd-display text-4xl text-brand-ink">
 
               {active.name}
 
             </h3>
 
-            <p className="text-[#7A1F3B] mt-2">
+            <p className="text-brand-primary mt-2">
 
               {active.role}
 
             </p>
 
-            <p className="mt-2 sm:mt-6 leading-8 text-[#2B0E1A]/65">
+            <p className="mt-2 sm:mt-6 leading-8 text-brand-ink/65">
 
               {active.review}
 
             </p>
 
-            <Link to={"/enroll-form"}   className="mt-4 sm:mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#7A1F3B] text-white hover:bg-[#5d152d] transition">
+            <Link to={"/enroll-form"}   className="mt-4 sm:mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-brand-primary text-white hover:bg-brand-primary-soft transition">
 
               Enroll Now
 
@@ -298,17 +298,17 @@ const featuredRef = useRef(null);
 
             <div>
 
-              <h3 className="nfd-display text-2xl md:text-3xl text-[#2B0E1A]">
+              <h3 className="nfd-display text-2xl md:text-3xl text-brand-ink">
                 More Success Stories
               </h3>
 
-              <p className="text-sm text-[#2B0E1A]/60 mt-2">
+              <p className="text-sm text-brand-ink/60 mt-2">
                 Tap any student to instantly watch their journey.
               </p>
 
             </div>
 
-            <span className="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#F6E1E8] text-xs uppercase tracking-[0.25em] text-[#7A1F3B]">
+            <span className="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-brand-champagne text-xs uppercase tracking-[0.25em] text-brand-primary">
               Real Students
             </span>
 
@@ -351,8 +351,8 @@ onClick={() => {
                   className={`relative min-w-[250px] md:min-w-0 text-left rounded-[24px] overflow-hidden transition-all duration-500 snap-start group
                   ${
                     activeCard
-                      ? "ring-2 ring-[#C9A227] shadow-xl shadow-[#C9A227]/20 scale-[1.02]"
-                      : "hover:-translate-y-2 hover:shadow-xl hover:shadow-[#7A1F3B]/10"
+                      ? "ring-2 ring-brand-gold shadow-xl shadow-brand-gold/20 scale-[1.02]"
+                      : "hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-primary/10"
                   }`}
                 >
 
@@ -370,7 +370,7 @@ onClick={() => {
                       }`}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2B0E1A]/95 via-[#2B0E1A]/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/95 via-brand-ink/25 to-transparent" />
 
                     {/* Play Button */}
 
@@ -380,7 +380,7 @@ onClick={() => {
                         className={`w-14 h-14 rounded-full backdrop-blur-xl border border-white/30 flex items-center justify-center transition-all duration-500
                         ${
                           activeCard
-                            ? "bg-[#C9A227] scale-110"
+                            ? "bg-brand-gold scale-110"
                             : "bg-white/20 group-hover:scale-110"
                         }`}
                       >
@@ -399,7 +399,7 @@ onClick={() => {
 
                     {activeCard && (
 
-                      <span className="absolute top-3 left-3 bg-[#C9A227] text-[#2B0E1A] text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
+                      <span className="absolute top-3 left-3 bg-brand-gold text-brand-ink text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
 
                         Now Playing
 
@@ -420,27 +420,27 @@ onClick={() => {
                         <Star
                           key={i}
                           size={13}
-                          fill="#C9A227"
-                          className="text-[#C9A227]"
+                          fill="var(--color-brand-gold)"
+                          className="text-brand-gold"
                         />
 
                       ))}
 
                     </div>
 
-                    <h4 className="font-semibold text-[#2B0E1A] text-lg">
+                    <h4 className="font-semibold text-brand-ink text-lg">
 
                       {student.name}
 
                     </h4>
 
-                    <p className="text-[#7A1F3B] text-xs mt-1">
+                    <p className="text-brand-primary text-xs mt-1">
 
                       {student.role}
 
                     </p>
 
-                    <p className="text-xs text-[#2B0E1A]/60 mt-3 line-clamp-2">
+                    <p className="text-xs text-brand-ink/60 mt-3 line-clamp-2">
 
                       {student.review}
 
