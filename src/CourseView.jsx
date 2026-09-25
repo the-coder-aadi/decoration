@@ -27,7 +27,7 @@ const COURSES = [
   {
     type: "Offline Practical Training",
     slug: "offline-tent-flower-training",
-    title: "Tent & Flower Decoration Training",
+    title: "Event Management Training",
     desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20 starts 16 December 2026.",
     features: ["18 Days Practical + 1 Hr Theory Daily", "Room, Food & Tea Included (Sharing Basis)"],
     price: "₹22,000",
@@ -95,7 +95,7 @@ const COURSE_DETAILS = {
       { title: "Live Setup & Practical Demos", desc: "Classroom live setups and hands-on practice throughout the course." },
       { title: "Certificate & Job Placement", desc: "Certificate from New Flower Decoration on completion, with a job placement option." },
     ],
-    ctaHref: "/enroll-form",
+    ctaHref: "https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor",
     ctaLabel: "Register for Batch 20",
     bottomNote: "Batch 20 starts 16 December 2026 — seats are limited.",
     demoSection: {
@@ -103,7 +103,7 @@ const COURSE_DETAILS = {
       badgeText: "Batch 20 Registration",
       heading: "Reserve Your Seat in the Next Batch",
       body: "Seats for Batch 20 (starting 16 December 2026) are limited. Fill out the official registration form to secure your place — ₹2,000 registration, ₹20,000 after joining.",
-      ctaHref: "/enroll-form",
+      ctaHref: "https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor",
       ctaLabel: "Open Registration Form",
       note: "Opens the official Batch 20 registration form",
     },

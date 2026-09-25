@@ -298,7 +298,7 @@ const COURSES = [
   {
     type: "Offline Practical Training",
     slug: "offline-tent-flower-training",
-    title: "Tent & Flower Decoration Training",
+    title: "Event Management Training",
     desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20 starts 16 December 2026.",
     features: [
       "18 Days Practical + 1 Hr Theory Daily",
@@ -402,98 +402,217 @@ const FAQS = [
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-    const navigate = useNavigate()
-    const location = useLocation();
 
-const goToSection = useScrollToSection();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goToSection = useScrollToSection();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-brand-deep/95 backdrop-blur shadow-lg py-2" : "bg-transparent py-4"
-      }`}
+      className={`
+        fixed top-0 left-0 right-0 z-50
+        transition-all duration-500 ease-out
+     ${
+  scrolled || open
+    ? "bg-brand-deep/92 backdrop-blur-xl border-b border-brand-gold/10 shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
+    : "bg-transparent border-b border-transparent"
+}
+      `}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
-        <a href="#home" className="flex items-center shrink-0" aria-label="New Flower Decoration Training Institute — home">
+      <div
+        className={`
+          max-w-7xl mx-auto px-5 sm:px-6 md:px-8
+          flex items-center justify-between
+          transition-all duration-500
+          ${scrolled ? "h-[58px] md:h-[70px]" : "h-[66px] md:h-[88px]"}
+        `}
+      >
+        {/* LOGO */}
+        <a
+          href="#home"
+          className="flex items-center shrink-0 relative z-20"
+          aria-label="New Flower Decoration Training Institute — home"
+        >
           <BrandLogo
-            className={`transition-all duration-500 ${
-              scrolled ? "h-10 md:h-14" : "h-12 md:h-18"
-            }`}
+            className={`
+              transition-all duration-500 ease-out
+              ${scrolled ? "h-10 sm:h-11 md:h-12" : "h-11 sm:h-13 md:h-16"}
+            `}
           />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
-     {NAV_LINKS.map((l) => (
-  <button
-    key={l.label}
-    onClick={() => goToSection(l.id)}
-    className="text-sm tracking-wide cursor-pointer text-brand-champagne/90 hover:text-brand-gold"
-  >
-    {l.label}
-  </button>
-))}
+        {/* MOBILE SCROLLED BRAND */}
+   {/* Mobile Scrolled Brand */}
+<div
+  className={`
+    lg:hidden
+    absolute left-1/2 -translate-x-1/2
+    transition-all duration-500
+    ${
+      scrolled
+        ? "opacity-100 translate-y-0"
+        : "opacity-0 -translate-y-1 pointer-events-none"
+    }
+  `}
+>
+  <div className="flex flex-col items-center leading-none whitespace-nowrap">
+    <span className="text-brand-gold text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase">
+      New Flower
+    </span>
+
+    <span className="mt-1 text-brand-champagne/65 text-[7px] sm:text-[8px] tracking-[0.25em] uppercase">
+      Decoration Training Institute
+    </span>
+  </div>
+</div>
+
+        {/* DESKTOP NAV */}
+        <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+          {NAV_LINKS.map((l) => (
+            <button
+              key={l.label}
+              onClick={() => goToSection(l.id)}
+              className="
+                relative
+                text-sm
+                tracking-wide
+                text-brand-champagne/85
+                hover:text-brand-gold
+                transition-colors duration-300
+                cursor-pointer
+                py-2
+                group
+              "
+            >
+              {l.label}
+
+              <span
+                className="
+                  absolute
+                  left-1/2
+                  -bottom-0.5
+                  h-px
+                  w-0
+                  -translate-x-1/2
+                  bg-brand-gold
+                  transition-all
+                  duration-300
+                  group-hover:w-full
+                "
+              />
+            </button>
+          ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:+916262646491" className="flex items-center gap-2 text-brand-champagne text-sm">
-            <FaPhoneAlt className="text-brand-gold" /> +91 6262646491
+        {/* DESKTOP ACTIONS */}
+        <div className="hidden lg:flex items-center gap-5">
+          <a
+            href="tel:+916262646491"
+            className="
+              flex items-center gap-2
+              text-brand-champagne/80
+              text-sm
+              hover:text-brand-gold
+              transition-colors duration-300
+            "
+          >
+            <FaPhoneAlt className="text-brand-gold text-xs" />
+            <span>+91 6262646491</span>
           </a>
-         <Link
-  to="/book-decoration"
-  onClick={(e) => {
-    if (location.pathname === "/book-decoration") {
-      e.preventDefault(); // dobara navigation mat karo
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }}
-  className="px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold hover:bg-brand-gold-light transition-colors duration-300"
->
-  Book Decoration
-</Link>
+          <Link
+            to="/book-decoration"
+            onClick={(e) => {
+              if (location.pathname === "/book-decoration") {
+                e.preventDefault();
+
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }
+            }}
+            className="
+              px-5 py-2.5
+              rounded-full
+              bg-brand-gold
+              text-brand-ink
+              text-sm
+              font-semibold
+              hover:bg-brand-gold-light
+              hover:-translate-y-0.5
+              transition-all duration-300
+              shadow-md shadow-black/10
+            "
+          >
+            Book Decoration
+          </Link>
         </div>
 
+        {/* MOBILE MENU BUTTON */}
         <button
-          className="lg:hidden text-brand-champagne text-2xl"
+          className="
+            lg:hidden
+            relative z-20
+            w-10 h-10
+            flex items-center justify-center
+            
+           
+           
+            
+            text-brand-champagne
+            text-xl          
+            transition-all duration-300
+          "
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           {open ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
+      {/* MOBILE MENU */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+  className={`lg:hidden overflow-hidden transition-all duration-500 ${
+    open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+  }`}
+>
+  <div className="bg-brand-deep px-6 py-4 flex flex-col gap-4">
+    {NAV_LINKS.map((l) => (
+      <button
+        key={l.label}
+        onClick={() => {
+          goToSection(l.id);
+          setOpen(false);
+        }}
+        className="text-sm tracking-wide text-brand-champagne/90 hover:text-brand-gold"
       >
-        <div className="bg-brand-deep px-6 py-4 flex flex-col gap-4">
-        {NAV_LINKS.map((l) => (
-  <button
-    key={l.label}
-    onClick={() =>{
-       goToSection(l.id)
-       setOpen(false)
-    }}
-    className="text-sm tracking-wide text-brand-champagne/90 hover:text-brand-gold"
-  >
-    {l.label}
-  </button>
-))}
-          <button type="button" onClick={()=> navigate("/book-decoration")} className="mt-2 text-center px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold">
-            Book Decoration
-          </button>
-        </div>
-      </div>
+        {l.label}
+      </button>
+    ))}
+
+    <button
+      type="button"
+      onClick={() => navigate("/book-decoration")}
+      className="mt-2 text-center px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold"
+    >
+      Book Decoration
+    </button>
+  </div>
+</div>
     </header>
   );
 };
@@ -502,95 +621,161 @@ const goToSection = useScrollToSection();
    HERO
    ============================================================ */
 const Hero = () => {
-  const petals = Array.from({ length: 10 });
   return (
-    <section id="home" className="relative h-[100svh] min-h-[640px] w-full overflow-hidden flex items-center justify-center">
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-        poster="https://picsum.photos/seed/nfd-hero/1600/900"
-        autoPlay
-        muted
-        loop
-        playsInline
+    <section
+      id="home"
+      className="relative min-h-[100svh] w-full overflow-hidden flex items-center"
+    >
+      {/* Background */}
+      <img
+        src="/herobanner.jpg"
+        alt="Flower decoration training"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/80 via-brand-deep/70 to-brand-ink/90" />
 
-      {petals.map((_, i) => (
-        <span
-          key={i}
-          className="nfd-petal text-brand-gold/70"
-          style={{
-            left: `${(i + 1) * 9}%`,
-            animationDuration: `${9 + (i % 5)}s`,
-            animationDelay: `${i * 0.9}s`,
-            fontSize: `${10 + (i % 4) * 4}px`,
-          }}
-        >
-          <GiFlowerPot />
-        </span>
-      ))}
+      {/* Premium cinematic overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/[0.96] via-brand-ink/[0.86] to-brand-ink/[0.58]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center" style={{ animation: "nfd-fadein 1.2s ease-out" }}>
-     <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-brand-gold text-xs sm:text-sm mb-3 sm:mb-4 tracking-widest uppercase">
-  <span className="text-brand-champagne/90 font-semibold">
-    5,000+ Students Trained
-  </span>
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-brand-ink/80 to-transparent" />
 
-  <span className="text-brand-champagne/40 hidden sm:inline">•</span>
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] items-center gap-10 lg:gap-14">
 
-  <span className="text-brand-champagne/90 font-semibold">
-    5+ Years of Trust
-  </span>
-
-  <span className="text-brand-champagne/40 hidden sm:inline">•</span>
-
-  <span className="text-brand-champagne/90 font-semibold">
-    500+ Events
-  </span>
-</div>
-
-        <h1 className="nfd-display text-[33px] sm:text-5xl md:text-6xl lg:text-7xl text-brand-cream leading-[1.1] mb-4 sm:mb-6">
-          Learn Decoration.
-          <br className="hidden sm:block" /> Build Your <span className="italic text-brand-gold">Event Career</span>.
-        </h1>
-
-     <p className="text-brand-champagne/80 max-w-xl mx-auto mb-2 sm:mb-4 text-xs sm:text-base">
-  <span className="sm:hidden">
-    Practical training in flower, tent, balloon and event decoration — from basic to advanced, with business skills.
-  </span>
-
-  <span className="hidden sm:inline">
-    Practical offline training and online courses in flower, tent, balloon and event decoration — basic to advanced, plus the business skills to run your own decoration setup.
-  </span>
-</p>
-        
-
-<p className="text-[#C9A45C] text-xs sm:text-sm mb-7 sm:mb-9 tracking-[0.12em] font-medium">
-  Tent &amp; Flower Decoration Training · Batch 20 · Starts 16 December 2026
-</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="/enroll-form"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto px-8 py-3 sm:py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
+          {/* LEFT CONTENT */}
+          <div
+            className="max-w-2xl"
+            style={{ animation: "nfd-fadein 1s ease-out" }}
           >
-            Join Batch
-          </a>
-          <a
-            href="#courses"
-            className="w-full sm:w-auto px-8 py-3 sm:py-3.5 rounded-full border border-brand-champagne/50 text-brand-champagne font-medium hover:bg-white/10 transition-all duration-300"
+
+            {/* Stats */}
+            <div className="flex flex-wrap items-center gap-x-3  sm:gap-x-4 gap-y-1  sm:gap-y-2 mb-4.5 sm:mb-7 text-[10px] sm:text-xs tracking-[0.16em] uppercase">
+              <span className="text-brand-champagne/90 font-semibold">
+                5,000+ Students Trained
+              </span>
+
+              <span className="text-brand-gold/50">
+                •
+              </span>
+
+              <span className="text-brand-champagne/90 font-semibold">
+                5+ Years of Trust
+              </span>
+
+              <span className="text-brand-gold/50">
+                •
+              </span>
+
+              <span className="text-brand-champagne/90 font-semibold">
+                500+ Events
+              </span>
+            </div>
+
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-3  sm:mb-5">
+              <span className="w-10 h-px bg-brand-gold" />
+
+              <span className="text-brand-gold text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
+                Professional Decoration Training
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h1 className="nfd-display text-[37px] sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.7rem] leading-[1.03] text-brand-cream mb-5 sm:mb-6">
+              Learn Decoration.
+              <br />
+              Build Your{" "}
+              <span className="italic text-brand-gold">
+                Event Career.
+              </span>
+            </h1>
+
+            {/* Description */}
+         {/* <p className="max-w-xl text-brand-champagne/75 text-sm sm:text-base leading-7 mb-5">
+  Master the art of decoration — from practical skills to building your own successful event business.
+</p> */}
+
+            {/* Batch */}
+            <p className="text-[#fae9c8] text-[11px] sm:text-xs tracking-[0.12em] font-medium mb-6 sm:mb-8">
+              Tent &amp; Flower Decoration Training · Batch 20 · Starts 16 December 2026
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold text-sm hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-black/20"
+              >
+                Join Batch
+              </a>
+
+              <a
+                href="#courses"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-brand-champagne/35 text-brand-champagne text-sm font-medium hover:bg-white/10 transition-all duration-300"
+              >
+                Explore Courses
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT — OWNER */}
+          <div
+            className="relative flex justify-center lg:justify-end items-center"
+            style={{ animation: "nfd-fadein 1.2s ease-out" }}
           >
-            Explore Courses
-          </a>
+            <div className="relative w-[280px] sm:w-[330px] lg:w-[360px] xl:w-[390px]">
+
+              {/* Thin luxury frame */}
+              <div className="absolute -inset-2 rounded-2xl border border-brand-gold/20 pointer-events-none" />
+
+              {/* Owner image */}
+              <img
+                src="/owner.jpg"
+                alt="Founder and Lead Trainer"
+                className="relative block rounded-2xl w-full aspect-[4/5] object-cover object-center"
+              />
+
+              {/* Image bottom blend */}
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-ink/70 to-transparent pointer-events-none" />
+
+              {/* Minimal caption */}
+              <div className="absolute bottom-4 left-5">
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-brand-champagne/80">
+                  Founder &amp; Lead Trainer
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 nfd-arrow-bounce text-brand-champagne/70">
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 nfd-arrow-bounce text-brand-champagne/60">
         <FaChevronDown />
       </div>
+      {/* Subtle Falling Flowers */}
+<div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+  {Array.from({ length: 7 }).map((_, i) => (
+    <span
+      key={i}
+      className="nfd-petal text-brand-gold/50"
+      style={{
+        left: `${8 + i * 13}%`,
+        animationDuration: `${11 + (i % 4) * 2}s`,
+        animationDelay: `${i * 1.7}s`,
+        fontSize: `${10 + (i % 3) * 3}px`,
+      }}
+    >
+      <GiFlowerPot />
+    </span>
+  ))}
+</div>
     </section>
+    
   );
 };
 
@@ -1001,7 +1186,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-14 md:py-18 px-5 md:px-8 bg-brand-cream">
-      <SectionHeading eyebrow="Kind Words" title="Client Stories" subtitle="Real celebrations, real feedback." />
+      <SectionHeading eyebrow="Kind Words" title="Student Stories" subtitle="Real celebrations, real feedback." />
 
 
 
@@ -1292,7 +1477,7 @@ const goToSection = useScrollToSection()
     href="tel:+916262646491"
     className="hover:text-brand-gold transition-colors"
   >
-    +91 62626 46491
+    +91 6232491618
   </a>
 </li>
 
@@ -1319,7 +1504,7 @@ const goToSection = useScrollToSection()
 
     <div className="max-w-7xl mx-auto border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-champagne/40">
       <p>© {new Date().getFullYear()} New Flower Decoration. All rights reserved.</p>
-      <p>Designed with <span className="text-brand-gold">♥</span> for beautiful celebrations.</p>
+      {/* <p>Designed with <span className="text-brand-gold">♥</span> for beautiful celebrations.</p> */}
     </div>
   </footer>
      );
@@ -1425,16 +1610,6 @@ useEffect(() => {
   <span className="font-semibold text-brand-primary">
     ISO Certified Course · Starts 16 December 2026
   </span>
-  <br />
-  Mon–Sat · 11 AM–5 PM · 21 Days
-  <br />
-  <span className="font-semibold text-brand-primary">
-    18 Days Practical + 1 Hr Theory Daily
-  </span>
-  <br />
-  <span className="font-semibold text-brand-primary">
-    ₹22,000 Total · ₹2,000 Registration
-  </span>
 </p>
 
           {/* CTA */}
@@ -1443,7 +1618,7 @@ useEffect(() => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setShowBatchPopup(false)}
-            className="mt-6 block w-full text-center cursor-pointer rounded-full bg-brand-primary py-3 text-white font-medium hover:bg-brand-primary-soft transition"
+            className="mt-5 block w-full text-center cursor-pointer rounded-full bg-brand-primary py-3 text-white font-medium hover:bg-brand-primary-soft transition"
           >
             Explore the Course
           </a>
