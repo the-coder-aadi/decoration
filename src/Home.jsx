@@ -640,7 +640,7 @@ const Hero = () => {
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-brand-ink/80 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-22  sm:pt-28 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] items-center gap-10 lg:gap-14">
 
           {/* LEFT CONTENT */}
