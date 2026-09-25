@@ -221,7 +221,7 @@ export const Loader = ({ loading }) => (
   >
     <div className="relative flex items-center justify-center px-6">
       <div className="absolute -inset-6 rounded-full border border-brand-gold/20" />
-      <div className="absolute -inset-6 rounded-full border-t border-brand-gold nfd-spin-slow" />
+    
       <BrandLogo variant="stacked" className="h-28 md:h-36" />
     </div>
     <p className="nfd-display text-brand-champagne/80 text-[11px] md:text-xs mt-7 tracking-[0.42em] uppercase">

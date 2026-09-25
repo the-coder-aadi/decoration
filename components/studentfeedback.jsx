@@ -276,7 +276,7 @@ const featuredRef = useRef(null);
 
             </p>
 
-            <Link to={"/enroll-form"}   className="mt-4 sm:mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-brand-primary text-white hover:bg-brand-primary-soft transition">
+            <Link to={"https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor"}   className="mt-4 sm:mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-brand-primary text-white hover:bg-brand-primary-soft transition">
 
               Enroll Now
 
