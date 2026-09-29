@@ -22,7 +22,7 @@ import { GlobalStyles, FloralDivider, Navbar, Footer, Loader, BrandLogo } from "
    Same palette/type system as Home.jsx / BookingForm.jsx
    ============================================================ */
  
-const COURSE_TYPES = ["Offline Practical Training (Batch 20)", "All-in-One Event Course (Online)", "Balloon Decor Course (Online)"];
+const COURSE_TYPES = ["Offline Practical Training (Batch 20th)", "All-in-One Event Course (Online)", "Balloon Decor Course (Online)"];
  
 const INITIAL_FORM = {
   fullName: "",
@@ -159,7 +159,7 @@ export default function Enroll() {
         },
         body: JSON.stringify({
           access_key: "95cb9edb-6519-4b7f-afae-824c62b5e539",
-          subject: "🎓 Course Enrollment Request",
+          subject: "🎓 Course Enquiry Request",
           from_name: "New Flower Decoration Website",
           ...form,
         }),
@@ -207,10 +207,11 @@ export default function Enroll() {
             Turn Your Passion for Decoration Into a{" "}
             <span className="italic text-brand-gold">Career</span>
           </h1>
-          <p className="text-brand-champagne/70 text-sm md:text-base max-w-xl mx-auto">
-            Enroll in our online or offline decoration course and learn directly from industry
-            professionals. Fill the form below and our team will reach out with batch details.
-          </p>
+         <p className="text-brand-champagne/70 text-sm md:text-base max-w-xl mx-auto">
+  Enquire about our online or offline decoration courses and get complete
+  details about batches, courses and training. Fill the form below and our
+  team will get in touch with you.
+</p>
           <FloralDivider />
         </div>
       </section>
@@ -271,15 +272,15 @@ export default function Enroll() {
                 <h3 className="nfd-display text-2xl md:text-3xl text-brand-ink mb-3">
                   Enrollment Request Sent!
                 </h3>
-                <p className="text-sm text-brand-ink/60 max-w-sm mb-8">
-                  Thank you for your interest! Our academy team will contact you shortly with batch
-                  timings and course details.
-                </p>
+              <p className="text-sm text-brand-ink/60 max-w-sm mb-8">
+  Thank you for your enquiry! Our academy team will contact you shortly
+  with course details, batch timings and other information.
+</p>
                 <button
                   onClick={resetForm}
                   className="px-7 py-3 rounded-full bg-brand-primary text-white text-sm font-medium hover:bg-brand-primary-soft transition-colors duration-300"
                 >
-                  Enroll for Another Course
+                   Make Another Enquiry
                 </button>
               </div>
  
@@ -293,8 +294,8 @@ export default function Enroll() {
               >
                 <div className="sm:col-span-2">
                   <h2 className="nfd-display text-xl md:text-2xl text-brand-ink mb-1">
-                    Course Enrollment
-                  </h2>
+  Course Enquiry
+</h2>
                   <p className="text-xs text-brand-ink/50 mb-2">
                     Fields marked <span className="text-brand-gold">*</span> are required.
                   </p>
@@ -401,11 +402,7 @@ export default function Enroll() {
                       </>
                     )}
                   </button>
-                  <p className="text-xs text-brand-ink/40 mt-3">
-                    By submitting, you agree to be contacted by New Flower Decoration regarding this
-                    course.
-                  </p>
-                </div>
+      </div>
               </form>
             </div>
           </div>

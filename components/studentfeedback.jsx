@@ -14,36 +14,61 @@ import {
 const STUDENTS = [
   {
     id: 1,
-    name: "Jenish Panchal",
-    role: "Ahmedabad, Gujrat",
-    review: "Started his own decoration journey after completing our training.",
-    poster:
-"https://res.cloudinary.com/dhjti8rys/video/upload/so_1/v1784262406/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_uvmtpf.jpg",
-    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1784262406/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_uvmtpf.mp4",
+  name: "Students Feedback",
+  role: "From All Over India",
+  review: "An open interaction with our students as they share their course experience, learning journey and feedback on the training.",
+ poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_6,c_fill,w_720,h_1280/v1790568830/VID-20260927-WA0006_mfjknc.jpg",
+video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790568830/VID-20260927-WA0006_mfjknc.mp4",
   },
   {
     id: 2,
-    name: "Varun Nathan",
-    role: "Jabalpur, Madhya Pradesh",
-    review: "Now handling events decoration projects successfully.",
-   poster: "https://res.cloudinary.com/dhjti8rys/video/upload/c_fill,w_600,h_900,g_auto,so_1/v1784263012/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_1_oeiygx.jpg",
-    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1784263012/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_1_oeiygx.mp4",
+    name: "Sahil Shamnani",
+    role: "Pachora, maharashtra",
+  review: "Perfect for beginners, with training that starts from the basics.",
+poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_0,c_fit,w_720,h_1280,b_black/v1790568656/VID-20260927-WA0007_kxivzm.jpg",
+video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790568656/VID-20260927-WA0007_kxivzm.mp4",
   },
   {
     id: 3,
-    name: "Hemant Barot",
-    role: "Baroda, Gujrat",
-    review: "Learned advanced decoration techniques and event management.",
-  poster: "https://res.cloudinary.com/dhjti8rys/video/upload/c_fill,w_600,h_900,g_auto,so_1/v1784263022/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_2_pyozfo.jpg",
-    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1784263022/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_2_pyozfo.mp4",
+    name: "Aaryaman Panchal",
+    role: "Rajsthan",
+    review: "If you are worried about wasting your money, don't be. This course is worth the money.",
+  poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_1,c_fit,w_720,h_1280,b_black/v1790568539/VID-20260927-WA0005_jczhqo.jpg",
+    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790568539/VID-20260927-WA0005_jczhqo.mp4",
   },
+
+
   {
     id: 4,
-    name: "Kiran Hembram",
-    role: "Seraikela Kharsawan, Jharkhand",
-    review: "Successfully started her own decoration business.",
-    poster: "https://res.cloudinary.com/dhjti8rys/video/upload/c_fill,w_600,h_900,g_auto,so_1/v1784265132/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_3_wwlcf4.jpg",
-    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1784265132/Thank_you_so_much_Share_your_feedback_Next_Batch_20_July_2026_6-in-1_Professional_Decoration_3_wwlcf4.mp4",
+    name: "Arnab Das",
+    role: "West Bengal",
+    review: "A beautiful place with excellent facilities, truly unique in India.",
+   poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_1,c_fit,w_720,h_1280,b_black/v1790649664/VID-20260927-WA0002_s36xan.jpg",
+    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790649664/VID-20260927-WA0002_s36xan.mp4",
+  },
+   {
+    id: 5,
+    name: "Subhash Kumar",
+    role: "Jharkhand",
+   review: "The training covered everything through both practical and theoretical learning.",
+ poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_1,c_fit,w_720,h_1280,b_black/v1790649713/VID-20260927-WA0003_sdobry.jpg",
+    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790649713/VID-20260927-WA0003_sdobry.mp4",
+  },
+   {
+    id: 6,
+    name: "Abhishek Rathore",
+    role: "Dewas, Madhya Pradesh",
+   review: "Great beginner-friendly training with daily tasks that made learning fun and engaging.",
+  poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_1,c_fit,w_720,h_1280,b_black/v1790650519/VID-20260927-WA0004_e4nykz.jpg",
+    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790650519/VID-20260927-WA0004_e4nykz.mp4",
+  },
+   {
+    id: 7,
+    name: "Lekkala Mangapathi",
+    role: "Andra Pradesh",
+   review: "Along with decoration skills, we learned business marketing and how to grow our business.",
+   poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_0,c_fit,w_720,h_1280,b_black/v1790651047/VID-20260927-WA0008_mmzbyo.jpg",
+    video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790651047/VID-20260927-WA0008_mmzbyo.mp4",
   },
 ];
 
@@ -114,7 +139,7 @@ const fullscreen = () => {
 const featuredRef = useRef(null);
 
   return (
-    <section className="relative py-10 md:py-18 bg-brand-cream overflow-hidden">
+    <section id="student-training" className="relative py-10 md:py-18 bg-brand-cream overflow-hidden">
 
       {/* Background Glow */}
 

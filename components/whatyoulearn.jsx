@@ -55,7 +55,7 @@ const LEARNING_CATEGORIES = [
 ];
 
 const WhatYouLearn = () => (
-  <section className="py-14 md:py-20 px-5 md:px-8 bg-brand-champagne/30">
+  <section className="py-12 md:py-20 px-5 md:px-8 bg-brand-champagne/30">
 
     <Reveal>
       <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">

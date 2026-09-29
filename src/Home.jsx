@@ -3,16 +3,9 @@ import {
   FaCrown,
   FaUsers,
   FaHeadset,
-  FaTags,
-  FaBirthdayCake,
-  FaPaintBrush,
-  FaBriefcase,
-  FaTheaterMasks,
   FaCalendarCheck,
   FaComments,
   FaClipboardList,
-  FaPaintRoller,
-  FaGlassCheers,
   FaStar,
   FaPlay,
   FaGoogle,
@@ -30,11 +23,9 @@ import {
   FaArrowRight,
   FaCheckCircle,
   FaQuoteLeft,
-  FaRing,
-  FaSun,
   FaChalkboardTeacher,
 } from "react-icons/fa";
-import { GiFlowerPot, GiCampingTent } from "react-icons/gi";
+import { GiFlowerPot } from "react-icons/gi";
 import { useNavigate , Link, useLocation} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import WhatYouLearn from "../components/whatyoulearn";
@@ -43,6 +34,7 @@ import TrainingShowcase from "../components/traningshowcase";
 import StudentFeedback from "../components/studentfeedback";
 import AppSection from "../components/Apps";
 import { useScrollToSection } from "../components/scrolltosection";
+import Certificates from "../components/Certificates";
 /* ============================================================
    NEW FLOWER DECORATION TRAINING INSTITUTE — Home Page
 
@@ -188,6 +180,25 @@ export const FloralDivider = ({ tone = "gold" }) => {
   );
 };
 
+const PROJECT_VIDEOS = [
+  { title: "Amazing Haldi Decor Ideas", url: "https://youtube.com/shorts/CO8Wl7mhGbA?si=qcOHt0U6mrVb6Xor" },
+  { title: "DBR02-X Firing System", url: "https://youtube.com/shorts/rqtbhsmP8pY?si=hXvfx-9xwOwm7Jn-" },
+  { title: "Event line, Cloth information", url: "https://youtube.com/shorts/JhiqDud07jM?si=KiNSmcD3cGJcYE2i" },
+  {   title: "Instructor-Led Learning Session", url: "https://youtube.com/shorts/rclFCoTv-Cg?si=_3VDHdeQrFCUfB_g" },
+];
+
+function getYouTubeEmbedUrl(url = "") {
+  const shorts = url.match(/shorts\/([a-zA-Z0-9_-]{6,})/);
+  if (shorts) return `https://www.youtube.com/embed/${shorts[1]}`;
+  const short = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+  if (short) return `https://www.youtube.com/embed/${short[1]}`;
+  const watch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+  if (watch) return `https://www.youtube.com/embed/${watch[1]}`;
+  if (url.includes("/embed/")) return url;
+  return url;
+}
+ 
+
 /* ============================================================
    BRAND LOGO — the single place the official logo is defined.
    Swap the files in /public to change the logo everywhere at once.
@@ -238,75 +249,64 @@ export const Loader = ({ loading }) => (
    ============================================================ */
 const NAV_LINKS = [
   { label: "Home", id: "home" },
-  { label: "Services", id: "services" },
-  { label: "Projects", id: "projects" },
-  { label: "Courses", id: "courses" },
+  { label: "Training", id: "training-program" },
+  { label: "Student Training", id: "student-training" },
+  { label: "Online Courses", id: "online-courses" },
   { label: "Reviews", id: "testimonials" },
   { label: "Contact", id: "contact" },
 ];
 
-const PROJECT_VIDEOS = [
-  { title: "Elegant Haldi Decoration Ideas", url: "https://youtube.com/shorts/CO8Wl7mhGbA?si=nemHtDLFZdYwD0Jh" },
-  { title: "Sangeet Stage Transformation", url: "https://youtube.com/shorts/8XLrIWdpZWk?si=aHMpEp0pjVofU8JH" },
-  { title: "Haldi Décor Behind The Scenes", url: "https://youtube.com/shorts/tZEmYsHyJqI?si=XksjctWWJkm0LVKh" },
-  { title: "Bridal Entry Highlights", url: "https://youtube.com/shorts/zYxXqtAk--8?si=UcuGy8CAnTZX-KHC" },
+/* Placeholder training videos for the "Student Training" showcase.
+   These are temporary open-licence sample clips standing in for real
+   classroom/practical footage — swap the `video` (and `poster`, if you like)
+   fields below with your own student training videos when ready. */
+const TRAINING_VIDEOS = [
+  {
+    title: "Practical Session — Flower Decoration",
+    poster: "/traning.jpg",
+    video: "https://youtube.com/shorts/CO8Wl7mhGbA?si=qcOHt0U6mrVb6Xor",
+  },
+  {
+    title: "Hands-On Training — Balloon Setup",
+    poster: "/offlinebatch.jpg",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  },
+  {
+    title: "Classroom Practical — Stage Decoration",
+    poster: "/decor2.jpg",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  },
+  {
+    title: "Instructor-Led Demonstration",
+    poster: "/decor4.jpg",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+  },
 ];
- 
-function getYouTubeEmbedUrl(url = "") {
-  const shorts = url.match(/shorts\/([a-zA-Z0-9_-]{6,})/);
-  if (shorts) return `https://www.youtube.com/embed/${shorts[1]}`;
-  const short = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
-  if (short) return `https://www.youtube.com/embed/${short[1]}`;
-  const watch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
-  if (watch) return `https://www.youtube.com/embed/${watch[1]}`;
-  if (url.includes("/embed/")) return url;
-  return url;
-}
- 
+
 
 
 const TRUSTED = ["Hotels", "Banquet Halls", "Resorts", "Wedding Venues", "Farmhouses", "Corporate Offices"];
 
-const SERVICES = [
-  { icon: FaRing, title: "Wedding Decoration", desc: "Grand mandaps, aisles & stages styled to perfection." },
-  { icon: FaBirthdayCake, title: "Birthday Decoration", desc: "Themed setups that make every birthday memorable." },
-  { icon: FaSun, title: "Haldi Decoration", desc: "Vibrant marigold & fabric décor full of colour." },
-  { icon: FaPaintBrush, title: "Mehndi Decoration", desc: "Bright, festive backdrops for the mehndi function." },
-  { icon: FaBriefcase, title: "Corporate Event", desc: "Elegant, brand-ready décor for business gatherings." },
-  { icon: GiCampingTent, title: "Tent & Lighting", desc: "Premium tents, drapes & lighting for any scale." },
-  { icon: GiFlowerPot, title: "Flower Decoration", desc: "Fresh & artificial florals, handcrafted with care." },
-  { icon: FaTheaterMasks, title: "Stage Decoration", desc: "Show-stopping stages for weddings & performances." },
-];
-
-const PROJECTS = [
-  { img: "/mandap.jpg", cat: "Wedding", title: "Royal Mandap, Gadarwara" },
-  { img: "/sangeetdecor.jpg", cat: "Stage", title: "Sangeet Night Stage" },
-  { img: "/haldidecor.jpg", cat: "Haldi", title: "Marigold Haldi Setup" },
-  { img: "/decor2.jpg", cat: "Corporate", title: "primium gate Décor" },
-  { img: "/birthdaydecor.webp", cat: "Birthday", title: "Ocean Blue Birthday Theme" },
-  { img: "/mehndidecor.jpg", cat: "Mehndi", title: "Boho Mehndi Corner" },
-];
-
 const WHY_US = [
-  { icon: FaUsers, title: "Experienced Team", desc: "Skilled decorators & designers who also train our students." },
-  { icon: FaCrown, title: "Premium Decoration", desc: "Curated materials for a truly luxury finish." },
-  { icon: FaTags, title: "Affordable Packages", desc: "Flexible pricing to fit every budget & scale." },
-  { icon: FaHeadset, title: "24×7 Support", desc: "We're on call before, during & after your event." },
+  { icon: FaChalkboardTeacher, title: "Experienced Trainers", desc: "Industry professionals who bring real event experience into the classroom." },
+  { icon: FaUsers, title: "Practical, Hands-On Training", desc: "Learn by doing — real setups and real practice, not just theory." },
+  { icon: FaCrown, title: "Career-Focused Curriculum", desc: "Skills mapped to real roles in the event industry." },
+  { icon: FaHeadset, title: "Dedicated Student Support", desc: "Guidance from enrollment through course completion." },
 ];
 
 const COURSES = [
   {
     type: "Offline Practical Training",
     slug: "offline-tent-flower-training",
-    title: "Event Management Training",
-    desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20 starts 16 December 2026.",
+    title: "Events Management Training",
+    desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20th starts 16 December 2026.",
     features: [
       "18 Days Practical + 1 Hr Theory Daily",
       "Room, Food & Tea Included (Sharing Basis)",
     ],
     price: "₹22,000",
     img: "/offlinebatch.jpg",
-    badge: "Batch 20 Open",
+    badge: "Batch 20th Open",
   },
 
   {
@@ -338,12 +338,17 @@ const COURSES = [
   },
 ];
 
-const PROCESS = [
-  { icon: FaCalendarCheck, title: "Book", desc: "Reserve your date with a quick inquiry." },
-  { icon: FaComments, title: "Discussion", desc: "We understand your theme, colours & budget." },
-  { icon: FaClipboardList, title: "Planning", desc: "Design layout & material sourcing finalised." },
-  { icon: FaPaintRoller, title: "Decoration", desc: "Our team sets up the full décor on-site." },
-  { icon: FaGlassCheers, title: "Event Day", desc: "You celebrate — we handle everything else." },
+/* Offline training is the institute's primary program — kept separate
+   from the online catalogue so the two are never mixed in one section. */
+const OFFLINE_COURSE = COURSES.find((c) => c.type === "Offline Practical Training");
+const ONLINE_COURSES = COURSES.filter((c) => c.type === "Online Course");
+
+const TRAINING_PROCESS = [
+  { icon: FaClipboardList, title: "Information", desc: "Explore the training program, curriculum, duration, eligibility and learning outcomes." },
+  { icon: FaComments, title: "Inquiry", desc: "Contact the institute and discuss the course, batch, schedule and training requirements." },
+  { icon: FaCalendarCheck, title: "Registration", desc: "Complete your enrollment and registration for the selected training program." },
+  { icon: FaCheckCircle, title: "Confirmation", desc: "We confirm your admission, batch details, schedule and joining information." },
+  { icon: FaChalkboardTeacher, title: "Training Begins", desc: "Begin practical, professional training with instructor guidance and hands-on learning." },
 ];
 
 
@@ -363,7 +368,7 @@ const NUMBERS = [
 ];
 const INSTAGRAM_POSTS = [
   {
-    img: "/instadecor4.jpg",
+    img: "/decor1.jpg",
     link: "https://www.instagram.com/p/DMbqTw0srUu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
   {
@@ -371,29 +376,29 @@ const INSTAGRAM_POSTS = [
     link: "https://www.instagram.com/p/DYMVETcjKnv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
   {
-    img: "/instadecor3.webp",
+    img: "/decor2.jpg",
     link: "https://www.instagram.com/p/DOclbMTifyL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
   {
-    img: "/newdecor.webp",
+    img: "/decor4.jpg",
     link: "https://www.instagram.com/p/DFUeWnDMDkM/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
   {
-    img: "/instadecor1.jpg",
+    img: "/decor5.jpg",
     link: "https://www.instagram.com/p/DWfirPPCCAP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
   {
-    img: "/decor4.jpg",
+    img: "/decor6.jpg",
     link: "https://www.instagram.com/p/DRfX0t_jK6O/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
 ];
 const FAQS = [
-  { q: "How far in advance should I book?", a: "For weddings we recommend booking 2–3 months ahead, especially in peak season. Birthdays and small functions can be booked 1–2 weeks prior." },
-  { q: "Do you provide flowers, tents and lighting together?", a: "Yes — we handle full décor including florals, tenting, lighting, stage and furniture as one complete package." },
-  { q: "Can I customise a theme or colour palette?", a: "Absolutely. Every package is customisable to your theme, colours and venue." },
-  { q: "Do you travel outside the city?", a: "Yes, our team travels for destination weddings and outstation events with prior scheduling." },
+  { q: "How do I join a batch?", a: "Fill out the enrollment form or contact us directly — our team will confirm your batch, schedule and next steps." },
   { q: "Are the courses beginner friendly?", a: "Yes, both online and offline courses start from the basics and don't require prior experience." },
-  { q: "What is included in the consultation?", a: "A free session covering your requirements, budget planning and an initial design concept." },
+  { q: "What is the difference between online and offline training?", a: "Offline training is hands-on, in-person practical training at our institute. Online courses are recorded video lessons you can watch anytime through our learning app." },
+  { q: "Is a certificate provided after training?", a: "Yes, a certificate is provided on successful completion of the offline training program." },
+  { q: "What is included in the offline batch fee?", a: "The offline batch includes 18 days of practical training plus 1 hour of daily theory, along with room, food and tea on a sharing basis." },
+  { q: "Can I access the online course on my phone?", a: "Yes — online courses can be watched anytime through our official learning app on Android and iOS." },
 ];
 
 /* ============================================================
@@ -533,9 +538,9 @@ export const Navbar = () => {
           </a>
 
           <Link
-            to="/book-decoration"
+             to="https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor"
             onClick={(e) => {
-              if (location.pathname === "/book-decoration") {
+              if (location.pathname === "/enroll-form") {
                 e.preventDefault();
 
                 window.scrollTo({
@@ -557,7 +562,7 @@ export const Navbar = () => {
               shadow-md shadow-black/10
             "
           >
-            Book Decoration
+            Enroll Now
           </Link>
         </div>
 
@@ -606,10 +611,10 @@ export const Navbar = () => {
 
     <button
       type="button"
-      onClick={() => navigate("/book-decoration")}
+      onClick={() => navigate("/enroll-form")}
       className="mt-2 text-center px-5 py-2.5 rounded-full bg-brand-gold text-brand-ink text-sm font-semibold"
     >
-      Book Decoration
+      Enroll Now
     </button>
   </div>
 </div>
@@ -652,7 +657,7 @@ const Hero = () => {
             {/* Stats */}
             <div className="flex flex-wrap items-center gap-x-3  sm:gap-x-4 gap-y-1  sm:gap-y-2 mb-4.5 sm:mb-7 text-[10px] sm:text-xs tracking-[0.16em] uppercase">
               <span className="text-brand-champagne/90 font-semibold">
-                5,000+ Students Trained
+                1,500+ Students Trained
               </span>
 
               <span className="text-brand-gold/50">
@@ -668,7 +673,7 @@ const Hero = () => {
               </span>
 
               <span className="text-brand-champagne/90 font-semibold">
-                500+ Events
+                1000+ Events
               </span>
             </div>
 
@@ -698,7 +703,7 @@ const Hero = () => {
 
             {/* Batch */}
             <p className="text-[#fae9c8] text-[11px] sm:text-xs tracking-[0.12em] font-medium mb-6 sm:mb-8">
-              Tent &amp; Flower Decoration Training · Batch 20 · Starts 16 December 2026
+              Events Management Training · Batch 20th · Starts 16 December 2026
             </p>
 
             {/* Buttons */}
@@ -713,10 +718,10 @@ const Hero = () => {
               </a>
 
               <a
-                href="#courses"
+                href="#training-program"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-brand-champagne/35 text-brand-champagne text-sm font-medium hover:bg-white/10 transition-all duration-300"
               >
-                Explore Courses
+                Explore Training
               </a>
             </div>
           </div>
@@ -733,7 +738,7 @@ const Hero = () => {
 
               {/* Owner image */}
               <img
-                src="/owner.jpg"
+                src="/owner1.jpg"
                 alt="Founder and Lead Trainer"
                 className="relative block rounded-2xl w-full aspect-[4/5] object-cover object-center"
               />
@@ -787,7 +792,7 @@ const TrustBar = () => (
     <Reveal>
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl shadow-black/10 grid grid-cols-3 divide-x divide-brand-champagne py-6 md:py-8">
         {[
-          { label: "Current Batch", value: "20" },
+          { label: "Current Batch", value: "20th" },
           { label: "Training Duration", value: "21 Days" },
           { label: "Total Fee", value: "₹22,000" },
         ].map((s) => (
@@ -844,65 +849,89 @@ const SectionHeading = ({ eyebrow, title, subtitle, light = false }) => (
 );
 
 /* ============================================================
-   SERVICES
-   ============================================================ */
-const Services = () => (
-  <section id="services" className="py-12 md:py-20 px-5 md:px-8 bg-brand-cream">
-    <SectionHeading
-      eyebrow="What We Offer"
-      title="Our Decoration Services"
-      subtitle="Complete décor solutions crafted for every celebration, big or small."
-    />
-    <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      {SERVICES.map((s, i) => {
-        const Icon = s.icon;
-        return (
-          <Reveal key={s.title} delay={i * 80}>
-            <div className="group h-full bg-white rounded-2xl p-6 md:p-8 border border-transparent hover:border-brand-gold hover:-translate-y-2 shadow-sm hover:shadow-xl hover:shadow-brand-primary/10 transition-all duration-500 cursor-pointer">
-              <div className="w-14 h-14 rounded-full bg-brand-champagne flex items-center justify-center text-brand-primary text-xl mb-5 group-hover:bg-brand-primary group-hover:text-brand-gold transition-colors duration-500">
-                <Icon />
-              </div>
-              <h3 className="nfd-display text-lg md:text-xl text-brand-ink mb-2">{s.title}</h3>
-              <p className="text-xs md:text-sm text-brand-ink/60 leading-relaxed">{s.desc}</p>
-            </div>
-          </Reveal>
-        );
-      })}
-    </div>
-  </section>
-);
+   STUDENT TRAINING — practical training video showcase
+   (replaces the previous "Featured Projects" portfolio section)
 
-/* ============================================================
-   FEATURED PROJECTS (masonry)
+   NOTE: the four videos below are temporary, high-quality placeholder
+   clips (open-licence sample footage) — swap the `video` field in the
+   TRAINING_VIDEOS array with real student training footage when ready.
    ============================================================ */
-const Projects = () => (
-  <section id="projects" className="py-12 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
-    <SectionHeading eyebrow="Portfolio" title="Featured Projects" subtitle="A glimpse into celebrations we've brought to life." />
-    <div className="max-w-6xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
-      {PROJECTS.map((p, i) => (
-        <Reveal key={p.title} delay={i * 90} className="mb-5 break-inside-avoid">
-          <div className="relative group overflow-hidden rounded-2xl cursor-pointer">
-            <img
-              src={p.img}
-              alt={p.title}
-              className="w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
-              <span className="text-brand-gold text-xs uppercase tracking-widest mb-1">{p.cat}</span>
-              <h3 className="nfd-display text-white text-lg mb-0">{p.title}</h3>
-           
-            </div>
-          </div>
-        </Reveal>
-      ))}
-    </div>
+const TrainingVideoCard = ({ v, delay }) => {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
 
-{/* Video Reels — YouTube Shorts */}
-    <Reveal className="max-w-6xl mx-auto mt-10 md:mt-20">
-      <div className="text-center mb-8 md:mb-10">
-        <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-brand-primary mb-2">Watch Our Work</p>
-        <h3 className="nfd-display text-2xl md:text-3xl text-brand-ink">Event Highlights</h3>
+  const togglePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.paused) {
+      el.play();
+      setPlaying(true);
+    } else {
+      el.pause();
+      setPlaying(false);
+    }
+  };
+
+  return (
+    <Reveal delay={delay}>
+      <div className="group relative rounded-2xl overflow-hidden border border-brand-muted-dark shadow-sm hover:shadow-xl hover:shadow-brand-primary/15 hover:-translate-y-1.5 transition-all duration-500 bg-black">
+        <div className="relative w-full aspect-[9/16]">
+          <video
+            ref={videoRef}
+            poster={v.poster}
+            className="absolute inset-0 w-full h-full object-cover"
+            playsInline
+            muted
+            loop
+            preload="none"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+          >
+            <source src={v.video} type="video/mp4" />
+          </video>
+
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause video" : "Play video"}
+            className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/25 transition-colors duration-500"
+          >
+            <span
+              className={`w-14 h-14 rounded-full backdrop-blur-xl border border-white/30 flex items-center justify-center transition-all duration-500 ${
+                playing ? "opacity-0 group-hover:opacity-100 bg-white/20" : "bg-brand-gold"
+              }`}
+            >
+              {playing ? (
+                <span className="block w-3.5 h-3.5 border-l-2 border-r-2 border-white" />
+              ) : (
+                <FaPlay className="text-brand-ink ml-0.5" />
+              )}
+            </span>
+          </button>
+
+          <span className="absolute top-3 left-3 bg-white/15 backdrop-blur-md text-white text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-white/20">
+            Placeholder Preview
+          </span>
+        </div>
+
+        <p className="absolute bottom-0 left-0 right-0 p-3 text-white text-xs font-medium bg-gradient-to-t from-black/85 to-transparent pointer-events-none">
+          {v.title}
+        </p>
       </div>
+    </Reveal>
+  );
+};
+
+const StudentTraining = () => (
+  <section id="training-videos" className="py-12 md:py-20 px-5 md:px-8 bg-[#fff9ed]">
+    <SectionHeading
+      eyebrow="Practical Learning"
+      title="Student Training"
+      subtitle="A look inside our practical, instructor-led classroom training sessions."
+    />
+
+<Reveal className="max-w-6xl mx-auto mt-4 md:mt-10">
+
  
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
         {PROJECT_VIDEOS.map((v, i) => (
@@ -960,197 +989,164 @@ const WhyChooseUs = () => (
 );
 
 /* ============================================================
-   COURSES
+   COURSE CARD — shared card used by the Online Courses grid
    ============================================================ */
-const Courses = () => (
-  <section id="courses" className="py-16 md:py-22 px-5 md:px-8 bg-brand-cream">
-    <SectionHeading eyebrow="Learn With Us" title="Our Courses" subtitle="Turn your passion for decoration into a career." />
- <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-7">
-  {COURSES.map((c, i) => (
-    <Reveal key={c.title} delay={i * 120}>
-<div
-  className="
-    group
-    relative
-    h-full
-    rounded-[28px]
-    overflow-hidden
-    bg-white/90
-    backdrop-blur-xl
-    border border-white/60
-    shadow-xl shadow-brand-primary/10
-    hover:-translate-y-3
-    hover:shadow-[0_25px_60px_var(--brand-primary-tint)]
-    transition-all
-    duration-500
-    before:absolute
-    before:inset-0
-    
-    before:bg-gradient-to-br
-    before:from-white/30
-    before:via-transparent
-    before:to-brand-gold/5
-    before:pointer-events-none
-  "
->
-        {/* IMAGE */}
+const CourseCard = ({ c, delay = 0 }) => (
+  <Reveal delay={delay}>
+    <div
+      className="
+        group
+        relative
+        h-full
+        rounded-[28px]
+        overflow-hidden
+        bg-white/90
+        backdrop-blur-xl
+        border border-white/60
+        shadow-xl shadow-brand-primary/10
+        hover:-translate-y-3
+        hover:shadow-[0_25px_60px_var(--brand-primary-tint)]
+        transition-all
+        duration-500
+        before:absolute
+        before:inset-0
+        before:bg-gradient-to-br
+        before:from-white/30
+        before:via-transparent
+        before:to-brand-gold/5
+        before:pointer-events-none
+      "
+    >
+      {/* IMAGE */}
+      <div className="relative overflow-hidden">
+        <img
+          src={c.img}
+          alt={c.title}
+          className="h-60 w-full object-cover duration-700 transition-all group-hover:scale-110 group-hover:rotate-[1deg]"
+        />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-700 transition bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full" />
+      </div>
 
-        <div className="relative overflow-hidden">
+      {/* CONTENT */}
+      <div className="flex flex-col p-5 sm:p-7 h-auto sm:h-[350px]">
+        <h3 className="text-2xl font-semibold text-brand-ink transition duration-300 group-hover:text-brand-primary">
+          {c.title}
+        </h3>
 
- <img
-  src={c.img}
-  alt={c.title}
-  className="
-    h-60
-    w-full
-    object-cover
-    duration-700
-    transition-all
-    group-hover:scale-110
-    group-hover:rotate-[1deg]
-  "
-/>
+        <p className="mt-3 text-[15px] leading-7 text-brand-ink/65 min-h-[90px]">{c.desc}</p>
 
-   <div
-  className="
-    absolute
-    inset-0
-    opacity-0
-    group-hover:opacity-100
-    duration-700
-    transition
-    bg-gradient-to-r
-    from-transparent
-    via-white/20
-    to-transparent
-    -translate-x-full
-    group-hover:translate-x-full
-  "
-/>
+        <ul className="space-y-3 mt-2 flex-1">
+          {c.features.map((f) => (
+            <li key={f} className="flex items-center gap-3 text-sm text-brand-ink/75 transition duration-300 group-hover:translate-x-1">
+              <FaCheckCircle className="text-brand-primary shrink-0" />
+              {f}
+            </li>
+          ))}
+        </ul>
 
+        <div className="mt-6 flex items-center justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-brand-ink/50">Starting From</p>
+            <h4 className="text-2xl sm:text-3xl font-bold text-brand-primary tracking-tight">{c.price}</h4>
+          </div>
 
+          <Link
+            to={`/course/${c.slug}`}
+            className="group/btn relative overflow-hidden rounded-full bg-brand-primary sm:px-5 px-4 py-2 sm:py-2.5 text-white font-semibold transition-all duration-500 hover:scale-105 hover:bg-brand-primary-soft shadow-lg"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              <span className="hidden sm:inline">View Course</span>
+              <span className="sm:hidden text-[15px]">View</span>
+              <FaArrowRight className="duration-300 group-hover/btn:translate-x-1" />
+            </span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  </Reveal>
+);
 
-
+/* ============================================================
+   OFFLINE TRAINING PROGRAM — the institute's primary program
+   ============================================================ */
+const OfflineProgram = () => (
+  <section id="training-program" className="py-12 md:py-20 px-5 md:px-8 bg-brand-cream">
+    <SectionHeading
+      eyebrow="Primary Training Program"
+      title="Offline Training Program"
+      subtitle="Live, in-person, hands-on training — the core of what we teach at the institute."
+    />
+    <Reveal className="max-w-6xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-0 rounded-[32px] overflow-hidden bg-white shadow-xl shadow-brand-primary/10 border border-white/60">
+        <div className="relative min-h-[280px] lg:min-h-full">
+          <img src={OFFLINE_COURSE.img} alt={OFFLINE_COURSE.title} className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/70 via-brand-ink/10 to-transparent lg:bg-gradient-to-r" />
+          <span className="absolute sm:top-5 top-3 left-3  sm:left-5 bg-brand-gold text-brand-ink text-[11px]  sm:text-xs font-semibold uppercase tracking-widest sm:px-4 px-3 py-1  sm:py-2 rounded-full shadow-md">
+            {OFFLINE_COURSE.badge}
+          </span>
         </div>
 
-        {/* CONTENT */}
+        <div className="p-7 sm:p-10 md:p-12 flex flex-col justify-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-brand-primary mb-3">Offline · Classroom Training</p>
+          <h3 className="nfd-display text-2xl md:text-4xl text-brand-ink mb-4">{OFFLINE_COURSE.title}</h3>
+          <p className="text-sm md:text-base text-brand-ink/65 leading-relaxed mb-6">{OFFLINE_COURSE.desc}</p>
 
-        <div className="flex flex-col p-5 sm:p-7 h-auto sm:h-[350px]">
-
-         <h3
-  className="
-    text-2xl
-    font-semibold
-    text-brand-ink
-    transition
-    duration-300
-    group-hover:text-brand-primary
-  "
->
-  {c.title}
-</h3>
-
-          <p className="mt-3 text-[15px] leading-7 text-brand-ink/65 min-h-[90px]">
-
-            {c.desc}
-
-          </p>
-
-          <ul className="space-y-3 mt-2 flex-1">
-
-            {c.features.map((f) => (
-            <li
-  key={f}
-  className="
-    flex
-    items-center
-    gap-3
-    text-sm
-    text-brand-ink/75
-    transition
-    duration-300
-    group-hover:translate-x-1
-  "
->
+          <ul className="space-y-3 mb-8">
+            {OFFLINE_COURSE.features.map((f) => (
+              <li key={f} className="flex items-center gap-3 text-sm md:text-base text-brand-ink/75">
                 <FaCheckCircle className="text-brand-primary shrink-0" />
-
                 {f}
               </li>
             ))}
           </ul>
 
-          <div className="mt-6  flex items-center justify-between">
-
+          <div className="flex flex-wrap items-center gap-5">
             <div>
-
-              <p className="text-xs uppercase tracking-widest text-brand-ink/50">
-
-                Starting From
-
-              </p>
-
-            <h4 className="text-2xl sm:text-3xl font-bold text-brand-primary tracking-tight">
-  {c.price}
-</h4>
-
+              <p className="text-xs uppercase tracking-widest text-brand-ink/50">Total Fee</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-brand-primary tracking-tight">{OFFLINE_COURSE.price}</h4>
             </div>
-
-<Link
-to={`/course/${c.slug}`}
-  className="
-    group/btn
-    relative
-    overflow-hidden
-    rounded-full
-    bg-brand-primary
-    sm:px-5
-    px-4
-    py-2
-    sm:py-2.5
-    text-white
-    font-semibold
-    transition-all
-    duration-500
-    hover:scale-105
-   
-    hover:bg-brand-primary-soft
-    shadow-lg
-  "
->
-  <span className="relative z-10 flex items-center gap-2">
-    <span className="hidden sm:inline">View Course</span>
-    <span className="sm:hidden text-[15px]">View</span>
-
-    <FaArrowRight
-      className="
-        duration-300
-        group-hover/btn:translate-x-1
-      "
-    />
-  </span>
-</Link>
-
+            <Link
+              to={`/course/${OFFLINE_COURSE.slug}`}
+              className="group/btn inline-flex items-center gap-2 rounded-full bg-brand-primary px-6 sm:px-7 py-3 text-white font-semibold transition-all duration-500 hover:scale-105 hover:bg-brand-primary-soft shadow-lg"
+            >
+              View Course Details
+              <FaArrowRight className="duration-300 group-hover/btn:translate-x-1" />
+            </Link>
           </div>
-
         </div>
-
       </div>
     </Reveal>
-  ))}
-</div>
   </section>
 );
 
 /* ============================================================
-   PROCESS TIMELINE
+   ONLINE COURSES — the ONE dedicated section for online learning
    ============================================================ */
-const Process = () => (
-  <section className="py-14 md:py-20 px-5 md:px-8 bg-brand-champagne/40">
-    <SectionHeading eyebrow="How It Works" title="Our Process" />
+const OnlineCourses = () => (
+  <section id="online-courses" className="py-12 md:py-22 px-5 md:px-8 bg-brand-champagne/40">
+    <SectionHeading
+      eyebrow="Learn At Your Own Pace"
+      title="Online Courses"
+      subtitle="Recorded video training you can access anytime, from anywhere, through our learning app."
+    />
+    <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-7">
+      {ONLINE_COURSES.map((c, i) => (
+        <CourseCard key={c.title} c={c} delay={i * 120} />
+      ))}
+    </div>
+  </section>
+);
+
+/* ============================================================
+   TRAINING PROCESS — the student admission/training journey
+   ============================================================ */
+const TrainingProcess = () => (
+  <section className="py-12 md:py-18 px-5 md:px-8 bg-brand-cream">
+    <SectionHeading eyebrow="Training Journey" title="Training Process" subtitle="A simple, transparent path from first inquiry to hands-on training." />
     <div className="max-w-6xl mx-auto relative">
       <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-brand-primary/15" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
-        {PROCESS.map((p, i) => {
+        {TRAINING_PROCESS.map((p, i) => {
           const Icon = p.icon;
           return (
             <Reveal key={p.title} delay={i * 120}>
@@ -1186,7 +1182,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-14 md:py-18 px-5 md:px-8 bg-brand-cream">
-      <SectionHeading eyebrow="Kind Words" title="Student Stories" subtitle="Real celebrations, real feedback." />
+      <SectionHeading eyebrow="Kind Words" title="Student Stories" subtitle="Real students, real training experiences." />
 
 
 
@@ -1276,7 +1272,7 @@ const Numbers = () => {
    INSTAGRAM GALLERY
    ============================================================ */
 const InstagramGallery = () => (
-  <section className="py-18 md:py-20 px-5  md:px-8 bg-brand-cream">
+  <section className="py-14 md:py-20 px-5  md:px-8 bg-brand-cream">
     <SectionHeading  eyebrow="@newflowerdecoration" title="From Our Instagram" subtitle="Latest décor moments, straight from the field." />
 <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
   {INSTAGRAM_POSTS.map((post, i) => (
@@ -1363,17 +1359,17 @@ const CTA = () => (
     <Reveal className="relative max-w-3xl mx-auto text-center">
       <FloralDivider />
       <h2 className="nfd-display text-3xl md:text-5xl text-white mt-4 mb-4">
-        Need Decoration for Your <span className="italic text-brand-gold">Special Day?</span>
+        Ready to Start Your <span className="italic text-brand-gold">Training Journey?</span>
       </h2>
       <p className="text-brand-champagne/70 text-sm md:text-base mb-8 max-w-xl mx-auto">
-        Book a free consultation with our design team and let's bring your vision to life.
+        Join our next batch and begin hands-on, professional training with expert instructor guidance.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link
-         to={"/book-decoration"}
+         to={"/enroll-form"}
           className="px-8 py-3.5 rounded-full bg-brand-gold text-brand-ink font-semibold hover:bg-brand-gold-light hover:-translate-y-0.5 transition-all duration-300"
         >
-          Book Consultation
+          Enquire Now
         </Link>
         <a href="tel:+916262646491" className="flex items-center gap-2 text-brand-champagne text-sm">
           <FaPhoneAlt className="text-brand-gold" /> +91 62626 46491
@@ -1419,7 +1415,7 @@ const goToSection = useScrollToSection()
           <BrandLogo className="h-14 md:h-16" />
         </div>
         <p className="text-sm text-brand-champagne/60 mb-5 leading-relaxed">
-          Crafting elegant, memorable décor for weddings, birthdays & corporate events since 2020.
+          Training students in professional event decoration and event management since 2020.
         </p>
    <div className="flex gap-3">
   {SOCIALS.map(({ icon: Icon, url }, i) => (
@@ -1453,11 +1449,13 @@ const goToSection = useScrollToSection()
       </div>
 
       <div>
-        <h4 className="nfd-display text-lg mb-4">Services</h4>
+        <h4 className="nfd-display text-lg mb-4">Programs</h4>
         <ul className="space-y-2 text-sm text-brand-champagne/60">
-          {SERVICES.slice(0, 6).map((s) => (
-            <li key={s.title} className="hover:text-brand-gold transition-colors duration-300 cursor-pointer">
-              {s.title}
+          {COURSES.map((c) => (
+            <li key={c.title}>
+              <Link to={`/course/${c.slug}`} className="hover:text-brand-gold transition-colors duration-300">
+                {c.title}
+              </Link>
             </li>
           ))}
         </ul>
@@ -1605,7 +1603,7 @@ useEffect(() => {
 
           {/* Text */}
          <p className="mt-3 text-center text-sm leading-6 text-brand-muted">
-  Tent &amp; Flower Decoration Training — Batch 20
+  Events Management Training — Batch 20th
   <br />
   <span className="font-semibold text-brand-primary">
     ISO Certified Course · Starts 16 December 2026
@@ -1632,16 +1630,17 @@ useEffect(() => {
       <Hero />
       <TrustBar />
       <TrustedBy />
-            <TrainingShowcase />
-            <StudentFeedback />
-<CourseHighlights />
-<AppSection />
-<WhatYouLearn />
-      <Services />
-      <Projects />
+      <TrainingShowcase />
+      <OfflineProgram />
+      <StudentFeedback />
+            <WhatYouLearn />
+            <Certificates />
+      <StudentTraining />
+      <TrainingProcess />
+      <OnlineCourses />
+         <CourseHighlights />
+      <AppSection />
       <WhyChooseUs />
-      <Courses />
-      <Process />
       <Testimonials />
       <Numbers />
       <InstagramGallery />

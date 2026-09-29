@@ -27,12 +27,12 @@ const COURSES = [
   {
     type: "Offline Practical Training",
     slug: "offline-tent-flower-training",
-    title: "Event Management Training",
-    desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20 starts 16 December 2026.",
+    title: "Events Management Training",
+    desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20th starts 16 December 2026.",
     features: ["18 Days Practical + 1 Hr Theory Daily", "Room, Food & Tea Included (Sharing Basis)"],
     price: "₹22,000",
     img: "/offlinebatch.jpg",
-    badge: "Batch 20 Open",
+    badge: "Batch 20th Open",
   },
   {
     type: "Online Course",
@@ -68,7 +68,7 @@ const COURSE_DETAILS = {
       "A 21-day, hands-on offline training program covering flower decoration, tent house work, balloon decoration, event SFX, fireworks and lights decoration — taught through live demonstrations and classroom practice, Monday to Saturday, 11:00 AM to 5:00 PM.",
     quickStats: [
       { icon: FaClock, label: "21 Days · Mon–Sat" },
-      { icon: FaUsers, label: "Batch 20" },
+      { icon: FaUsers, label: "Batch 20th" },
       { icon: FaCertificate, label: "Certificate Included" },
     ],
     infoBadges: [
@@ -96,16 +96,16 @@ const COURSE_DETAILS = {
       { title: "Certificate & Job Placement", desc: "Certificate from New Flower Decoration on completion, with a job placement option." },
     ],
     ctaHref: "https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor",
-    ctaLabel: "Register for Batch 20",
-    bottomNote: "Batch 20 starts 16 December 2026 — seats are limited.",
+    ctaLabel: "Register for Batch 20th",
+    bottomNote: "Batch 20th starts 16 December 2026 — seats are limited.",
     demoSection: {
       badgeIcon: FaUsers,
-      badgeText: "Batch 20 Registration",
+      badgeText: "Batch 20th Registration",
       heading: "Reserve Your Seat in the Next Batch",
-      body: "Seats for Batch 20 (starting 16 December 2026) are limited. Fill out the official registration form to secure your place — ₹2,000 registration, ₹20,000 after joining.",
+      body: "Seats for Batch 20th (starting 16 December 2026) are limited. Fill out the official registration form to secure your place — ₹2,000 registration, ₹20,000 after joining.",
       ctaHref: "https://docs.google.com/forms/d/e/1FAIpQLScbygdbmDTW7Kbz1gh4UO4oF_TayCsg9x1Y8708s5vrSaBP0A/viewform?usp=publish-editor",
       ctaLabel: "Open Registration Form",
-      note: "Opens the official Batch 20 registration form",
+      note: "Opens the official Batch 20th registration form",
     },
   },
   "all-in-one-event-course": {

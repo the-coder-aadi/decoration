@@ -43,7 +43,7 @@ const TrainingShowcase = () => {
             <div className="flex flex-wrap gap-4 mt-8">
 
               <a
-             href="#courses"
+             href="#training-program"
                 className="group inline-flex items-center gap-2 rounded-full bg-brand-primary hover:bg-brand-primary-soft text-white px-7 py-3 transition-all duration-500 hover:-translate-y-1"
               >
                 View Courses

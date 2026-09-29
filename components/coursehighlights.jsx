@@ -35,7 +35,7 @@ const CourseHighlights = () => (
       <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
 
         <p className="text-xs uppercase tracking-[0.35em] text-brand-primary mb-3">
-          COURSE HIGHLIGHTS
+          COURSE SYLLABUS HIGHLIGHTS
         </p>
 
         <h2 className="nfd-display text-3xl md:text-5xl text-brand-ink">
