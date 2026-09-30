@@ -333,9 +333,7 @@ const featuredRef = useRef(null);
 
             </div>
 
-            <span className="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-brand-champagne text-xs uppercase tracking-[0.25em] text-brand-primary">
-              Real Students
-            </span>
+          
 
           </div>
           </Reveal>

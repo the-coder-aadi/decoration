@@ -10,6 +10,7 @@ import {
   FaCertificate,
   FaSignal,
   FaInfinity,
+  FaMoneyBillWave ,
   FaPlay,
   FaChalkboardTeacher,
 } from "react-icons/fa";
@@ -29,7 +30,7 @@ const COURSES = [
     slug: "offline-tent-flower-training",
     title: "Events Management Training",
     desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20th starts 16 December 2026.",
-    features: ["18 Days Practical + 1 Hr Theory Daily", "Room, Food & Tea Included (Sharing Basis)"],
+    features: ["21 Days Practical + 1 Hr Theory Daily", "Sharing Room And Food Free"],
     price: "₹22,000",
     img: "/offlinebatch.jpg",
     badge: "Batch 20th Open",
@@ -72,9 +73,9 @@ const COURSE_DETAILS = {
       { icon: FaCertificate, label: "Certificate Included" },
     ],
     infoBadges: [
-      { icon: FaChalkboardTeacher, label: "18 Days Practical + 1 Hr Theory Daily" },
-      { icon: FaSignal, label: "11:00 AM – 5:00 PM" },
-      { icon: FaInfinity, label: "Room + Food + Tea (Sharing Basis)" },
+      { icon: FaChalkboardTeacher, label: "21 Days Practical + 1 Hr Theory Daily" },
+      { icon: FaMoneyBillWave , label: "Registration fees are not refundable" },
+      { icon: FaInfinity, label: "Sharing Room and food free" },
       { icon: FaCertificate, label: "Job Placement Option" },
     ],
     highlights: [

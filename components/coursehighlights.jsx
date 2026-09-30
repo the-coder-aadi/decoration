@@ -1,36 +1,36 @@
 import {
-  Clock3,
-  Video,
-  Smartphone,
-  GraduationCap,
+  Sparkles,
+  Flame,
+  BriefcaseBusiness,
+  Store,
 } from "lucide-react";
 import Reveal from "./Reveal";
 
 const COURSE_HIGHLIGHTS = [
   {
-    icon: Clock3,
-    title: "25+ Hours Learning",
-    desc: "Comprehensive training from basic to advanced event decoration techniques.",
+    icon: Sparkles,
+    title: "Event SFX Trainingdd",
+    desc: "Learn CO2 jets, spark machines, cold pyro, dry ice effects, fire shows, and SFX machine operation.",
   },
   {
-    icon: Video,
-    title: "80+ Video Classes",
-    desc: "Step-by-step HD lessons that you can watch anytime during your access period.",
+    icon: Flame,
+    title: "Fireworks Training",
+    desc: "Learn fireworks systems, material knowledge, stand setup, connections, designing, and practical working.",
   },
   {
-    icon: Smartphone,
-    title: "Learn Anywhere",
-    desc: "Access your training anytime through our Play Store learning application.",
+    icon: BriefcaseBusiness,
+    title: "Event Management",
+    desc: "Learn how to manage events on location, handle event setups, and manage machines and materials.",
   },
   {
-    icon: GraduationCap,
-    title: "Online & Offline",
-    desc: "Choose recorded online learning or practical classroom training.",
+    icon: Store,
+    title: "Business & Material Knowledge",
+    desc: "Learn where to buy machines and materials, find wholesale sellers, and understand basic event business.",
   },
 ];
 
 const CourseHighlights = () => (
-  <section className="py-12 md:py-18 px-5 md:px-8 bg-brand-cream">
+  <section className="py-12 md:py-18 px-5 md:px-8 bg-[#fffbef]">
     <Reveal>
       <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
 

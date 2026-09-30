@@ -247,7 +247,7 @@ export default function Enroll() {
               <div className="border-t border-white/15 pt-6">
                 <p className="text-xs uppercase tracking-widest text-brand-gold mb-2">Have questions?</p>
                 <a href="tel:+916262646491" className="flex items-center gap-2 text-lg nfd-display">
-                  <FaPhoneAlt className="text-brand-gold text-base" /> +91 62626 46491
+                  <FaPhoneAlt className="text-brand-gold text-base" /> +91 6232491618
                 </a>
                 <p className="text-xs text-brand-champagne/60 mt-2">Mon – Sun, 9 AM – 9 PM</p>
               </div>

@@ -19,13 +19,18 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaBars,
+  FaVideo,
   FaTimes,
   FaArrowRight,
   FaCheckCircle,
   FaQuoteLeft,
   FaChalkboardTeacher,
+  FaFire,
+  FaBriefcase,
 } from "react-icons/fa";
-import { GiFlowerPot } from "react-icons/gi";
+
+import { GiFlowerPot, GiSparkles } from "react-icons/gi";
+// import { GiFlowerPot } from "react-icons/gi";
 import { useNavigate , Link, useLocation} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import WhatYouLearn from "../components/whatyoulearn";
@@ -36,7 +41,7 @@ import AppSection from "../components/Apps";
 import { useScrollToSection } from "../components/scrolltosection";
 import Certificates from "../components/Certificates";
 /* ============================================================
-   NEW FLOWER DECORATION TRAINING INSTITUTE — Home Page
+   NEW FLOWER Event Management Training Institute — Home Page
 
    THEME: every colour / font / radius / shadow on this page comes from
    the central theme file  ->  src/theme.css
@@ -216,7 +221,7 @@ export const BrandLogo = ({
   return (
     <img
       src="/logo.png"
-      alt="New Flower Decoration Training Institute"
+      alt="New Flower Event Management Training Institute"
       className={`nfd-logo ${className}`}
       decoding="async"
     />
@@ -231,12 +236,12 @@ export const Loader = ({ loading }) => (
     }`}
   >
     <div className="relative flex items-center justify-center px-6">
-      <div className="absolute -inset-6 rounded-full border border-brand-gold/20" />
+      
     
       <BrandLogo variant="stacked" className="h-28 md:h-36" />
     </div>
     <p className="nfd-display text-brand-champagne/80 text-[11px] md:text-xs mt-7 tracking-[0.42em] uppercase">
-      Decoration Training Institute
+      Event Management Training
     </p>
     <div className="w-40 h-[2px] bg-white/10 mt-4 overflow-hidden rounded-full">
       <div className="h-full bg-brand-gold animate-[nfd-marquee_1.6s_ease-in-out_infinite]" style={{ width: "60%" }} />
@@ -249,8 +254,8 @@ export const Loader = ({ loading }) => (
    ============================================================ */
 const NAV_LINKS = [
   { label: "Home", id: "home" },
-  { label: "Training", id: "training-program" },
-  { label: "Student Training", id: "student-training" },
+  { label: "Program", id: "training-program" },
+  { label: "Student Feedback", id: "student-training" },
   { label: "Online Courses", id: "online-courses" },
   { label: "Reviews", id: "testimonials" },
   { label: "Contact", id: "contact" },
@@ -285,7 +290,14 @@ const TRAINING_VIDEOS = [
 
 
 
-const TRUSTED = ["Hotels", "Banquet Halls", "Resorts", "Wedding Venues", "Farmhouses", "Corporate Offices"];
+const TRUSTED = [
+  "Aspiring Decorators",
+  "Event Professionals",
+  "Wedding Professionals",
+  "Event Planners",
+  "Decoration Business Owners",
+  "Entrepreneurs"
+];
 
 const WHY_US = [
   { icon: FaChalkboardTeacher, title: "Experienced Trainers", desc: "Industry professionals who bring real event experience into the classroom." },
@@ -301,8 +313,9 @@ const COURSES = [
     title: "Events Management Training",
     desc: "Live, hands-on training in flower, tent, balloon, SFX, fireworks and lights decoration. Batch 20th starts 16 December 2026.",
     features: [
-      "18 Days Practical + 1 Hr Theory Daily",
-      "Room, Food & Tea Included (Sharing Basis)",
+      "21 Days Practical + 1 Hr Theory Daily",
+      "Sharing Room And Food Free",
+      "Registration fees are not refundable",
     ],
     price: "₹22,000",
     img: "/offlinebatch.jpg",
@@ -361,10 +374,30 @@ const GOOGLE_REVIEWS = [
 ];
 
 const NUMBERS = [
-  { icon: FaClipboardList, end: 21, suffix: "", label: "Days Practical Training" },
-  { icon: GiFlowerPot, end: 6, suffix: "", label: "Core Skill Areas Covered" },
-  { icon: FaChalkboardTeacher, end: 80, suffix: "+", label: "Online Video Classes" },
-  { icon: FaCrown, end: 1, suffix: "", label: "Year Online Course Access" },
+  {
+    icon: FaVideo,
+    end: 20,
+    suffix: "+",
+    label: "Detailed Fireworks Training Videos",
+  },
+  {
+    icon: FaChalkboardTeacher,
+    end: 21,
+    suffix: "",
+    label: "Days Practical Training",
+  },
+  {
+    icon: FaFire,
+    end: 1,
+    suffix: " Hr",
+    label: "Theory Daily",
+  },
+  {
+    icon: FaUsers,
+    end: 20,
+    suffix: "+",
+    label: "Fireworks Training Videos + Practical Training",
+  },
 ];
 const INSTAGRAM_POSTS = [
   {
@@ -448,7 +481,7 @@ export const Navbar = () => {
         <a
           href="#home"
           className="flex items-center shrink-0 relative z-20"
-          aria-label="New Flower Decoration Training Institute — home"
+          aria-label="New Flower Event Management Training Institute — home"
         >
           <BrandLogo
             className={`
@@ -478,7 +511,7 @@ export const Navbar = () => {
     </span>
 
     <span className="mt-1 text-brand-champagne/65 text-[7px] sm:text-[8px] tracking-[0.25em] uppercase">
-      Decoration Training Institute
+      Event Management Training Institute
     </span>
   </div>
 </div>
@@ -682,7 +715,7 @@ const Hero = () => {
               <span className="w-10 h-px bg-brand-gold" />
 
               <span className="text-brand-gold text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
-                Professional Decoration Training
+                Event Management Training
               </span>
             </div>
 
@@ -1354,7 +1387,7 @@ const FAQ = () => {
    CTA
    ============================================================ */
 const CTA = () => (
-  <section className="relative py-14 md:py-24 px-5 md:px-8 bg-brand-deep overflow-hidden">
+  <section id="contact" className="relative py-14 md:py-24 px-5 md:px-8 bg-brand-deep overflow-hidden">
     <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,var(--color-brand-gold),transparent_45%),radial-gradient(circle_at_80%_80%,var(--color-brand-gold),transparent_45%)]" />
     <Reveal className="relative max-w-3xl mx-auto text-center">
       <FloralDivider />
@@ -1372,7 +1405,7 @@ const CTA = () => (
           Enquire Now
         </Link>
         <a href="tel:+916262646491" className="flex items-center gap-2 text-brand-champagne text-sm">
-          <FaPhoneAlt className="text-brand-gold" /> +91 62626 46491
+          <FaPhoneAlt className="text-brand-gold" /> +91 6232491618
         </a>
       </div>
     </Reveal>
@@ -1408,7 +1441,7 @@ export const Footer = () => {
 const goToSection = useScrollToSection()
 
     return (
-  <footer id="contact" className="bg-brand-ink text-brand-champagne pt-14 md:pt-20 pb-8 px-5 md:px-8">
+  <footer className="bg-brand-ink text-brand-champagne pt-14 md:pt-20 pb-8 px-5 md:px-8">
     <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-8 mb-12">
       <div>
         <div className="mb-5">
@@ -1637,7 +1670,7 @@ useEffect(() => {
             <Certificates />
       <StudentTraining />
       <TrainingProcess />
-      <OnlineCourses />
+      {/* <OnlineCourses /> */}
          <CourseHighlights />
       <AppSection />
       <WhyChooseUs />
