@@ -17,8 +17,8 @@ const STUDENTS = [
   name: "Students Feedback",
   role: "From All Over India",
   review: "An open interaction with our students as they share their course experience, learning journey and feedback on the training.",
- poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_6,c_fill,w_720,h_1280/v1790568830/VID-20260927-WA0006_mfjknc.jpg",
-video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790568830/VID-20260927-WA0006_mfjknc.mp4",
+ poster: "https://res.cloudinary.com/dhjti8rys/video/upload/so_1,c_fit,w_720,h_1280,b_black/v1790826768/newvideo_vxv8lq.jpg",
+video: "https://res.cloudinary.com/dhjti8rys/video/upload/v1790826768/newvideo_vxv8lq.mp4",
   },
   {
     id: 2,
