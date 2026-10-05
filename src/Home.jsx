@@ -672,10 +672,11 @@ const Hero = () => {
       />
 
       {/* Premium cinematic overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/[0.96] via-brand-ink/[0.86] to-brand-ink/[0.58]" />
 
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-brand-ink/80 to-transparent" />
+<div className="absolute inset-0 bg-gradient-to-r from-brand-ink/[0.92] via-brand-ink/[0.78] to-brand-ink/[0.48]" />
+
+{/* Bottom fade */}
+<div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-ink/65 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-22  sm:pt-28 pb-20">
@@ -764,28 +765,24 @@ const Hero = () => {
             className="relative flex justify-center lg:justify-end items-center"
             style={{ animation: "nfd-fadein 1.2s ease-out" }}
           >
-            <div className="relative w-[280px] sm:w-[330px] lg:w-[360px] xl:w-[390px]">
+           <div className="relative w-[280px] sm:w-[330px] lg:w-[360px] xl:w-[390px]">
 
-              {/* Thin luxury frame */}
-              <div className="absolute -inset-2 rounded-2xl border border-brand-gold/20 pointer-events-none" />
+  {/* Thin luxury frame */}
+  <div className="absolute -inset-2 rounded-2xl border border-brand-gold/20 pointer-events-none" />
 
-              {/* Owner image */}
-              <img
-                src="/owner1.jpg"
-                alt="Founder and Lead Trainer"
-                className="relative block rounded-2xl w-full aspect-[4/5] object-cover object-center"
-              />
+  {/* Owner image */}
+<img
+  src="https://res.cloudinary.com/dhjti8rys/image/upload/f_auto,q_auto/v1791172686/file_00000000a7b4820b94297ad81e08f4bc_gaqnis.png"
+  alt="Founder and Lead Trainer"
+  loading="eager"
+  decoding="async"
+  className="relative block rounded-2xl w-full aspect-[4/5] object-cover object-[center_80%] sm:object-[center_78%]"
+/>
 
-              {/* Image bottom blend */}
-              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-ink/70 to-transparent pointer-events-none" />
+{/* Subtle dark blend */}
+<div className="absolute inset-0 rounded-2xl bg-brand-ink/15 pointer-events-none" />
 
-              {/* Minimal caption */}
-              <div className="absolute bottom-4 left-5">
-                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-brand-champagne/80">
-                  Founder &amp; Lead Trainer
-                </p>
-              </div>
-            </div>
+</div>
           </div>
 
         </div>
