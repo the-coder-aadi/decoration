@@ -40,6 +40,7 @@ import StudentFeedback from "../components/studentfeedback";
 import AppSection from "../components/Apps";
 import { useScrollToSection } from "../components/scrolltosection";
 import Certificates from "../components/Certificates";
+import OnlineCourses from "./OnlineCourses";
 /* ============================================================
    NEW FLOWER Event Management Training Institute — Home Page
 
@@ -256,7 +257,7 @@ const NAV_LINKS = [
   { label: "Home", id: "home" },
   { label: "Program", id: "training-program" },
   { label: "Student Feedback", id: "student-training" },
-  { label: "Online Courses", id: "online-courses" },
+  { label: "Online Courses", path: "/online-courses" },
   { label: "Reviews", id: "testimonials" },
   { label: "Contact", id: "contact" },
 ];
@@ -521,7 +522,13 @@ export const Navbar = () => {
           {NAV_LINKS.map((l) => (
             <button
               key={l.label}
-              onClick={() => goToSection(l.id)}
+              onClick={() => {
+  if (l.path) {
+    navigate(l.path);
+  } else {
+    goToSection(l.id);
+  }
+}}
               className="
                 relative
                 text-sm
@@ -632,10 +639,15 @@ export const Navbar = () => {
     {NAV_LINKS.map((l) => (
       <button
         key={l.label}
-        onClick={() => {
-          goToSection(l.id);
-          setOpen(false);
-        }}
+       onClick={() => {
+  if (l.path) {
+    navigate(l.path);
+  } else {
+    goToSection(l.id);
+  }
+
+  setOpen(false);
+}}
         className="text-sm tracking-wide text-brand-champagne/90 hover:text-brand-gold"
       >
         {l.label}
@@ -1152,20 +1164,20 @@ const OfflineProgram = () => (
 /* ============================================================
    ONLINE COURSES — the ONE dedicated section for online learning
    ============================================================ */
-const OnlineCourses = () => (
-  <section id="online-courses" className="py-12 md:py-22 px-5 md:px-8 bg-brand-champagne/40">
-    <SectionHeading
-      eyebrow="Learn At Your Own Pace"
-      title="Online Courses"
-      subtitle="Recorded video training you can access anytime, from anywhere, through our learning app."
-    />
-    <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-7">
-      {ONLINE_COURSES.map((c, i) => (
-        <CourseCard key={c.title} c={c} delay={i * 120} />
-      ))}
-    </div>
-  </section>
-);
+// const OnlineCourses = () => (
+//   <section id="online-courses" className="py-12 md:py-22 px-5 md:px-8 bg-brand-champagne/40">
+//     <SectionHeading
+//       eyebrow="Learn At Your Own Pace"
+//       title="Online Courses"
+//       subtitle="Recorded video training you can access anytime, from anywhere, through our learning app."
+//     />
+//     <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-7">
+//       {ONLINE_COURSES.map((c, i) => (
+//         <CourseCard key={c.title} c={c} delay={i * 120} />
+//       ))}
+//     </div>
+//   </section>
+// );
 
 /* ============================================================
    TRAINING PROCESS — the student admission/training journey
@@ -1513,7 +1525,7 @@ const goToSection = useScrollToSection()
   <FaEnvelope className="text-brand-gold shrink-0" />
   <a
     href="mailto:Newflowerdecoration2000@gmail.com"
-    className="hover:text-brand-gold transition-colors"
+    className="hover:text-brand-gold transition-colors overflow-hidden"
   >
     Newflowerdecoration2000@gmail.com
   </a>
