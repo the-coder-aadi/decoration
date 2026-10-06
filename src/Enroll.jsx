@@ -398,7 +398,7 @@ export default function Enroll() {
                       </>
                     ) : (
                       <>
-                        Submit Enrollment <FaPaperPlane className="text-sm" />
+                        Submit Enquiry <FaPaperPlane className="text-sm" />
                       </>
                     )}
                   </button>

@@ -21,7 +21,7 @@ import {
 import { Navbar } from "./Home";
 import { Footer } from "./Home";
 import Reveal from "../components/Reveal";
-
+import Enroll from "./Enroll";
 /* ============================================================
    DATA
    ============================================================ */
@@ -179,13 +179,13 @@ export default function OnlineCourses() {
 
       {/* ============ 1. HERO ============ */}
       <section className="relative isolate overflow-hidden flex items-center min-h-[90vh] md:min-h-[88vh] sm:py-24 py-20 md:py-0">
-        <img
-          src="/online-course-hero.jpg"
-          alt="Student practicing professional event decoration"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-        />
+   <img
+  src="https://res.cloudinary.com/dhjti8rys/image/upload/v1791254940/decoronline_unuwlc.png"
+  alt="Student practicing professional event decoration"
+  className="absolute inset-0 w-full h-full object-cover"
+  loading="eager"
+  fetchPriority="high"
+/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-ink/85 via-brand-ink/75 to-brand-ink" />
         <div className="absolute -top-24 right-[-10%] w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-brand-gold/20 blur-[120px] pointer-events-none" />
 
@@ -212,7 +212,7 @@ export default function OnlineCourses() {
               <OnlineCoursesGoldButton href="#featured-course">
                 Explore Courses <ArrowRight size={16} />
               </OnlineCoursesGoldButton>
-              <OnlineCoursesGhostButton href="#contact" light>
+              <OnlineCoursesGhostButton href="/enquire-form" light>
                 Course Enquiry
               </OnlineCoursesGhostButton>
             </div>
@@ -522,7 +522,7 @@ export default function OnlineCourses() {
             <OnlineCoursesGoldButton href="#featured-course">
               Explore Courses <ArrowRight size={16} />
             </OnlineCoursesGoldButton>
-            <OnlineCoursesGhostButton href="#contact" light>
+            <OnlineCoursesGhostButton href="/enquire-form" light>
               Course Enquiry
             </OnlineCoursesGhostButton>
           </div>
